@@ -18,17 +18,34 @@ type Itinerary = {
 	title: string;
 };
 
-const transporter = nodemailer.createTransport({
-	host: SMTP_HOST,
-	port: Number(SMTP_PORT),
-	auth: {
-		user: SMTP_USER,
-		pass: SMTP_PASS
+const isDev = process.env.NODE_ENV !== 'production';
+
+const transporter = isDev
+	? null
+	: nodemailer.createTransport({
+			host: SMTP_HOST,
+			port: Number(SMTP_PORT),
+			auth: { user: SMTP_USER, pass: SMTP_PASS }
+		});
+
+async function sendMail(options: nodemailer.SendMailOptions): Promise<void> {
+	if (isDev || !transporter) {
+		console.log('\n--- [DEV EMAIL] ---');
+		console.log(`To:      ${options.to}`);
+		console.log(`From:    ${options.from}`);
+		console.log(`Subject: ${options.subject}`);
+		console.log('-------------------\n');
+		return;
 	}
-});
+	await transporter.sendMail(options);
+}
 
 export async function sendOtpEmail(email: string, code: string): Promise<void> {
-	await transporter.sendMail({
+	if (isDev) {
+		console.log(`\n--- [DEV OTP] ---\nTo: ${email}\nCode: ${code}\n-----------------\n`);
+		return;
+	}
+	await sendMail({
 		from: SMTP_FROM,
 		to: email,
 		subject: 'Your Evajo Admin Login Code',
@@ -57,7 +74,7 @@ export async function sendBookingEnquiryEmail(
 
 	const itineraryUrl = `${PUBLIC_SITE_URL}/tours/${enquiry.itineraryId}`;
 
-	await transporter.sendMail({
+	await sendMail({
 		from: SMTP_FROM,
 		to: ADMIN_EMAIL,
 		subject: `New Booking Enquiry — ${enquiry.itinerary.title}`,

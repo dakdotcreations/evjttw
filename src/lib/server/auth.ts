@@ -1,10 +1,18 @@
 import { sha256 } from '@oslojs/crypto/sha2';
 import { encodeBase32LowerCaseNoPadding, encodeHexLowerCase } from '@oslojs/encoding';
+import { createHmac, timingSafeEqual } from 'node:crypto';
+import { Buffer } from 'node:buffer';
 import type { Cookies } from '@sveltejs/kit';
 import type { Session, User } from '$generated/prisma/client';
+import { AUTH_SECRET } from '$env/static/private';
 import prisma from './prisma';
 
-export const SESSION_COOKIE = 'session';
+export const REFRESH_TOKEN_COOKIE = 'refresh';
+export const ACCESS_TOKEN_COOKIE = 'access';
+/** @deprecated use REFRESH_TOKEN_COOKIE */
+export const SESSION_COOKIE = REFRESH_TOKEN_COOKIE;
+
+const ACCESS_TTL_MS = 15 * 60 * 1000; // 15 minutes
 
 export function generateSessionToken(): string {
 	const bytes = crypto.getRandomValues(new Uint8Array(20));
@@ -67,7 +75,7 @@ export async function invalidateSession(token: string): Promise<void> {
 }
 
 export function setSessionCookie(cookies: Cookies, token: string, expiresAt: Date): void {
-	cookies.set(SESSION_COOKIE, token, {
+	cookies.set(REFRESH_TOKEN_COOKIE, token, {
 		httpOnly: true,
 		sameSite: 'lax',
 		secure: process.env.NODE_ENV === 'production',
@@ -77,5 +85,66 @@ export function setSessionCookie(cookies: Cookies, token: string, expiresAt: Dat
 }
 
 export function deleteSessionCookie(cookies: Cookies): void {
-	cookies.delete(SESSION_COOKIE, { path: '/' });
+	cookies.delete(REFRESH_TOKEN_COOKIE, { path: '/' });
+}
+
+// ── Access token (HMAC-SHA256 signed, no DB lookup) ──────────────────────────
+
+type AccessTokenPayload = {
+	userId: string;
+	sessionId: string;
+	name: string;
+	email: string;
+	exp: number;
+};
+
+export type VerifiedAccessToken = Readonly<AccessTokenPayload>;
+
+function hmacSign(data: string): string {
+	return createHmac('sha256', AUTH_SECRET).update(data).digest('base64url');
+}
+
+export function generateAccessToken(user: User, sessionId: string): string {
+	const payload: AccessTokenPayload = {
+		userId: user.id,
+		sessionId,
+		name: user.name,
+		email: user.email,
+		exp: Date.now() + ACCESS_TTL_MS
+	};
+	const data = Buffer.from(JSON.stringify(payload)).toString('base64url');
+	return `${data}.${hmacSign(data)}`;
+}
+
+export function verifyAccessToken(token: string): VerifiedAccessToken | null {
+	try {
+		const dot = token.lastIndexOf('.');
+		if (dot === -1) return null;
+		const data = token.slice(0, dot);
+		const sig = token.slice(dot + 1);
+		const expected = Buffer.from(hmacSign(data), 'base64url');
+		const actual = Buffer.from(sig, 'base64url');
+		if (expected.length !== actual.length || !timingSafeEqual(expected, actual)) return null;
+		const payload: AccessTokenPayload = JSON.parse(
+			Buffer.from(data, 'base64url').toString('utf-8')
+		);
+		if (Date.now() > payload.exp) return null;
+		return payload;
+	} catch {
+		return null;
+	}
+}
+
+export function setAccessTokenCookie(cookies: Cookies, token: string): void {
+	cookies.set(ACCESS_TOKEN_COOKIE, token, {
+		httpOnly: true,
+		sameSite: 'lax',
+		secure: process.env.NODE_ENV === 'production',
+		path: '/',
+		expires: new Date(Date.now() + ACCESS_TTL_MS)
+	});
+}
+
+export function deleteAccessTokenCookie(cookies: Cookies): void {
+	cookies.delete(ACCESS_TOKEN_COOKIE, { path: '/' });
 }

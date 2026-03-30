@@ -41,3 +41,150 @@ model Otp {
 
   @@index([userId])
 }
+
+// ── Tourism domain ────────────────────────────────────────────────────────────
+
+enum MediaType {
+  image
+  video_blob
+  video_embed
+}
+
+model Country {
+  id          String     @id @default(cuid())
+  name        String
+  code        String     @unique
+  flagEmoji   String?
+  description String?
+  mediaUrl    String?
+  mediaType   MediaType?
+  locations   Location[]
+  features    Feature[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Location {
+  id          String          @id @default(cuid())
+  name        String
+  description String?
+  countryId   String
+  country     Country         @relation(fields: [countryId], references: [id])
+  mediaUrl    String?
+  mediaType   MediaType?
+  steps       ItineraryStep[]
+  features    Feature[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  @@index([countryId])
+}
+
+model Itinerary {
+  id             String          @id @default(cuid())
+  title          String
+  summary        String
+  description    String
+  fixedPrice     Decimal?
+  pricePerPerson Decimal?
+  currency       String          @default("USD")
+  durationDays   Int
+  bestSeasons    String[]
+  coverImage     String?
+  images         String[]
+  published      Boolean         @default(false)
+  steps          ItineraryStep[]
+  enquiries      BookingEnquiry[]
+  features       FeatureItem[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+}
+
+model ItineraryStep {
+  id              String    @id @default(cuid())
+  itineraryId     String
+  itinerary       Itinerary @relation(fields: [itineraryId], references: [id], onDelete: Cascade)
+  stepNumber      Int
+  title           String
+  description     String
+  highlight       String?
+  durationText    String
+  durationMinutes Int?
+  locationId      String
+  location        Location  @relation(fields: [locationId], references: [id])
+  images          String[]
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([itineraryId])
+  @@index([locationId])
+}
+
+model BookingEnquiry {
+  id          String    @id @default(cuid())
+  itineraryId String
+  itinerary   Itinerary @relation(fields: [itineraryId], references: [id], onDelete: Cascade)
+  name        String
+  email       String
+  phone       String?
+  message     String?
+  travelDate  DateTime?
+  groupSize   Int?
+  createdAt   DateTime  @default(now())
+
+  @@index([itineraryId])
+}
+
+model Testimonial {
+  id           String        @id @default(cuid())
+  clientName   String
+  country      String?
+  rating       Int           @default(5)
+  quote        String
+  published    Boolean       @default(false)
+  reviewInvite ReviewInvite?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model ReviewInvite {
+  id            String       @id @default(cuid())
+  token         String       @unique @default(uuid())
+  note          String?
+  used          Boolean      @default(false)
+  testimonialId String?      @unique
+  testimonial   Testimonial? @relation(fields: [testimonialId], references: [id], onDelete: SetNull)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+}
+
+model Feature {
+  id          String        @id @default(cuid())
+  displayName String?
+  countryId   String?
+  country     Country?      @relation(fields: [countryId], references: [id])
+  locationId  String?
+  location    Location?     @relation(fields: [locationId], references: [id])
+  isActive    Boolean       @default(true)
+  sortOrder   Int           @default(0)
+  items       FeatureItem[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([countryId])
+  @@index([locationId])
+}
+
+model FeatureItem {
+  id          String    @id @default(cuid())
+  featureId   String
+  feature     Feature   @relation(fields: [featureId], references: [id], onDelete: Cascade)
+  itineraryId String
+  itinerary   Itinerary @relation(fields: [itineraryId], references: [id], onDelete: Cascade)
+  sortOrder   Int       @default(0)
+  createdAt   DateTime  @default(now())
+
+  @@unique([featureId, itineraryId])
+  @@index([featureId])
+  @@index([itineraryId])
+}

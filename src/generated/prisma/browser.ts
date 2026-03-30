@@ -32,3 +32,48 @@ export type Session = Prisma.SessionModel
  * 
  */
 export type Otp = Prisma.OtpModel
+/**
+ * Model Country
+ * 
+ */
+export type Country = Prisma.CountryModel
+/**
+ * Model Location
+ * 
+ */
+export type Location = Prisma.LocationModel
+/**
+ * Model Itinerary
+ * 
+ */
+export type Itinerary = Prisma.ItineraryModel
+/**
+ * Model ItineraryStep
+ * 
+ */
+export type ItineraryStep = Prisma.ItineraryStepModel
+/**
+ * Model BookingEnquiry
+ * 
+ */
+export type BookingEnquiry = Prisma.BookingEnquiryModel
+/**
+ * Model Testimonial
+ * 
+ */
+export type Testimonial = Prisma.TestimonialModel
+/**
+ * Model ReviewInvite
+ * 
+ */
+export type ReviewInvite = Prisma.ReviewInviteModel
+/**
+ * Model Feature
+ * 
+ */
+export type Feature = Prisma.FeatureModel
+/**
+ * Model FeatureItem
+ * 
+ */
+export type FeatureItem = Prisma.FeatureItemModel

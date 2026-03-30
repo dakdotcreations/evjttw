@@ -5,7 +5,13 @@ import { redirect } from '@sveltejs/kit';
 import prisma from '$lib/server/prisma';
 import { createOtp, verifyOtp as verifyOtpCode } from '$lib/server/otp';
 import { sendOtpEmail } from '$lib/server/mail';
-import { generateSessionToken, createSession, setSessionCookie } from '$lib/server/auth';
+import {
+	generateSessionToken,
+	createSession,
+	setSessionCookie,
+	generateAccessToken,
+	setAccessTokenCookie
+} from '$lib/server/auth';
 import type { Actions, PageServerLoad } from './$types';
 
 const sendOtpSchema = z.object({
@@ -64,6 +70,7 @@ export const actions: Actions = {
 		const token = generateSessionToken();
 		const session = await createSession(token, user.id);
 		setSessionCookie(cookies, token, session.expiresAt);
+		setAccessTokenCookie(cookies, generateAccessToken(user, session.id));
 
 		redirect(303, '/admin');
 	}

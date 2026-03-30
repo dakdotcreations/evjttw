@@ -75,3 +75,8 @@ Prisma ORM, TailwindCSS, and Azure Blob Storage.
 - Use lucide-svelte for all icons — import individually, never wildcard.
 - Prefer server-side load functions over client-side fetch.
 - Error handling: use SvelteKit's error() helper from @sveltejs/kit, not throw new Error().
+
+## Environment Variables
+- Store secrets in `.env` at project root; do not commit real secrets to version control
+- Access env vars in server code via `import { DATABASE_URL } from '$env/static/private';`
+- For client-side config (e.g., public API base URL), use `VITE_` prefix and access via `import { VITE_API_BASE } from '$env/static/public';`

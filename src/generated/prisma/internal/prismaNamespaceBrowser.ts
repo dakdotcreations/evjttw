@@ -53,7 +53,16 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   Session: 'Session',
-  Otp: 'Otp'
+  Otp: 'Otp',
+  Country: 'Country',
+  Location: 'Location',
+  Itinerary: 'Itinerary',
+  ItineraryStep: 'ItineraryStep',
+  BookingEnquiry: 'BookingEnquiry',
+  Testimonial: 'Testimonial',
+  ReviewInvite: 'ReviewInvite',
+  Feature: 'Feature',
+  FeatureItem: 'FeatureItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -105,6 +114,140 @@ export const OtpScalarFieldEnum = {
 export type OtpScalarFieldEnum = (typeof OtpScalarFieldEnum)[keyof typeof OtpScalarFieldEnum]
 
 
+export const CountryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  code: 'code',
+  flagEmoji: 'flagEmoji',
+  description: 'description',
+  mediaUrl: 'mediaUrl',
+  mediaType: 'mediaType',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CountryScalarFieldEnum = (typeof CountryScalarFieldEnum)[keyof typeof CountryScalarFieldEnum]
+
+
+export const LocationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  countryId: 'countryId',
+  mediaUrl: 'mediaUrl',
+  mediaType: 'mediaType',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LocationScalarFieldEnum = (typeof LocationScalarFieldEnum)[keyof typeof LocationScalarFieldEnum]
+
+
+export const ItineraryScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  summary: 'summary',
+  description: 'description',
+  fixedPrice: 'fixedPrice',
+  pricePerPerson: 'pricePerPerson',
+  currency: 'currency',
+  durationDays: 'durationDays',
+  bestSeasons: 'bestSeasons',
+  coverImage: 'coverImage',
+  images: 'images',
+  published: 'published',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ItineraryScalarFieldEnum = (typeof ItineraryScalarFieldEnum)[keyof typeof ItineraryScalarFieldEnum]
+
+
+export const ItineraryStepScalarFieldEnum = {
+  id: 'id',
+  itineraryId: 'itineraryId',
+  stepNumber: 'stepNumber',
+  title: 'title',
+  description: 'description',
+  highlight: 'highlight',
+  durationText: 'durationText',
+  durationMinutes: 'durationMinutes',
+  locationId: 'locationId',
+  images: 'images',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ItineraryStepScalarFieldEnum = (typeof ItineraryStepScalarFieldEnum)[keyof typeof ItineraryStepScalarFieldEnum]
+
+
+export const BookingEnquiryScalarFieldEnum = {
+  id: 'id',
+  itineraryId: 'itineraryId',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  message: 'message',
+  travelDate: 'travelDate',
+  groupSize: 'groupSize',
+  createdAt: 'createdAt'
+} as const
+
+export type BookingEnquiryScalarFieldEnum = (typeof BookingEnquiryScalarFieldEnum)[keyof typeof BookingEnquiryScalarFieldEnum]
+
+
+export const TestimonialScalarFieldEnum = {
+  id: 'id',
+  clientName: 'clientName',
+  country: 'country',
+  rating: 'rating',
+  quote: 'quote',
+  published: 'published',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TestimonialScalarFieldEnum = (typeof TestimonialScalarFieldEnum)[keyof typeof TestimonialScalarFieldEnum]
+
+
+export const ReviewInviteScalarFieldEnum = {
+  id: 'id',
+  token: 'token',
+  note: 'note',
+  used: 'used',
+  testimonialId: 'testimonialId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ReviewInviteScalarFieldEnum = (typeof ReviewInviteScalarFieldEnum)[keyof typeof ReviewInviteScalarFieldEnum]
+
+
+export const FeatureScalarFieldEnum = {
+  id: 'id',
+  displayName: 'displayName',
+  countryId: 'countryId',
+  locationId: 'locationId',
+  isActive: 'isActive',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FeatureScalarFieldEnum = (typeof FeatureScalarFieldEnum)[keyof typeof FeatureScalarFieldEnum]
+
+
+export const FeatureItemScalarFieldEnum = {
+  id: 'id',
+  featureId: 'featureId',
+  itineraryId: 'itineraryId',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt'
+} as const
+
+export type FeatureItemScalarFieldEnum = (typeof FeatureItemScalarFieldEnum)[keyof typeof FeatureItemScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -119,4 +262,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
