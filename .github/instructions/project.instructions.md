@@ -81,3 +81,8 @@ applyTo: "**/*.svelte, **/*.ts, **/*.svelte.ts, prisma/schema.prisma"
 - Utilities/helpers: camelCase in `src/lib/utils/`
 - Server-only code (DB, secrets): `src/lib/server/`
 - Re-export public API from `src/lib/index.ts`
+
+## Environment Variables
+- Store secrets in `.env` at project root; do not commit real secrets to version control
+- Access env vars in server code via `import { DATABASE_URL } from '$env/static/private';`
+- For client-side config (e.g., public API base URL), use `VITE_` prefix and access via `import { VITE_API_BASE } from '$env/static/public';`
