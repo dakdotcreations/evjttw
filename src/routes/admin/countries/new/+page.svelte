@@ -3,6 +3,10 @@
 	import { zod4Client } from 'sveltekit-superforms/adapters';
 	import { z } from 'zod';
 	import MediaUpload from '$lib/components/MediaUpload.svelte';
+	import Input from '$lib/components/ui/Input.svelte';
+	import Textarea from '$lib/components/ui/Textarea.svelte';
+	import Select from '$lib/components/ui/Select.svelte';
+	import Button from '$lib/components/ui/Button.svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -22,6 +26,44 @@
 
 	let mediaType = $derived(($form.mediaType ?? 'image') as 'image' | 'video_blob' | 'video_embed');
 </script>
+
+<div class="max-w-2xl">
+	<div class="mb-6">
+		<a href="/admin/countries" class="text-sm text-indigo-600 hover:underline">← Back to countries</a>
+	</div>
+
+	<div class="rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
+		<h2 class="mb-6 text-lg font-semibold text-gray-900">New Country</h2>
+
+		<form method="POST" action="?/createCountry" use:enhance class="space-y-5">
+			<div class="grid grid-cols-2 gap-5">
+				<Input name="name" label="Name" bind:value={$form.name} error={$errors.name} required />
+				<Input name="code" label="Code" hint="2-letter ISO code" bind:value={$form.code} error={$errors.code} maxlength={2} required />
+			</div>
+
+			<Input name="flagEmoji" label="Flag Emoji" placeholder="🇺🇬" bind:value={$form.flagEmoji} />
+
+			<Textarea name="description" label="Description" bind:value={$form.description} />
+
+			<Select name="mediaType" label="Media Type" bind:value={$form.mediaType}>
+				<option value="">None</option>
+				<option value="image">Image</option>
+				<option value="video_blob">Video (upload)</option>
+				<option value="video_embed">Video (embed URL)</option>
+			</Select>
+
+			{#if $form.mediaType}
+				<MediaUpload name="mediaUrl" bind:value={$form.mediaUrl} {mediaType} label="Cover Media" />
+			{/if}
+
+			<div class="pt-2">
+				<Button variant="primary" size="lg" type="submit" disabled={$submitting}>
+					{$submitting ? 'Creating…' : 'Create Country'}
+				</Button>
+			</div>
+		</form>
+	</div>
+</div>
 
 <div class="max-w-2xl">
 	<div class="mb-6">
