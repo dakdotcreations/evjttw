@@ -3,7 +3,7 @@
 	import { compressImage } from '$lib/utils/compressImage';
 
 	let {
-		value = $bindable(''),
+		value = $bindable<string | undefined>(),
 		name,
 		label = 'Image'
 	}: {
@@ -19,12 +19,12 @@
 	let fileInputEl = $state<HTMLInputElement | null>(null);
 
 	// What's shown in the preview: either the saved Azure URL or a local object URL for the staged file
-	let displayUrl = $state(value);
+	let displayUrl = $state(value ?? '');
 
 	$effect(() => {
 		// When value changes externally (e.g. form reset) and no file is staged, sync display
 		if (!fileInputEl?.files?.length) {
-			displayUrl = value;
+			displayUrl = value ?? '';
 		}
 	});
 

@@ -1381,8 +1381,8 @@ export const CountryScalarFieldEnum = {
   code: 'code',
   flagEmoji: 'flagEmoji',
   description: 'description',
-  mediaUrl: 'mediaUrl',
-  mediaType: 'mediaType',
+  imageUrl: 'imageUrl',
+  videoUrl: 'videoUrl',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1395,8 +1395,8 @@ export const LocationScalarFieldEnum = {
   name: 'name',
   description: 'description',
   countryId: 'countryId',
-  mediaUrl: 'mediaUrl',
-  mediaType: 'mediaType',
+  imageUrl: 'imageUrl',
+  videoUrl: 'videoUrl',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1571,20 +1571,6 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
  * Reference to a field of type 'Boolean'
  */
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-/**
- * Reference to a field of type 'MediaType'
- */
-export type EnumMediaTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MediaType'>
-    
-
-
-/**
- * Reference to a field of type 'MediaType[]'
- */
-export type ListEnumMediaTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MediaType[]'>
     
 
 

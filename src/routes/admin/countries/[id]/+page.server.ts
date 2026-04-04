@@ -3,6 +3,7 @@ import { zod4 } from 'sveltekit-superforms/adapters';
 import { z } from 'zod';
 import { error, redirect } from '@sveltejs/kit';
 import prisma from '$lib/server/prisma';
+import { uploadImageFile } from '$lib/server/azure';
 import { countrySchema } from '$lib/schemas/country';
 import type { Actions, PageServerLoad } from './$types';
 
@@ -21,8 +22,7 @@ export const load: PageServerLoad = async ({ params }) => {
 			...country,
 			flagEmoji: country.flagEmoji ?? undefined,
 			description: country.description ?? undefined,
-			mediaUrl: country.mediaUrl ?? undefined,
-			mediaType: country.mediaType ?? undefined
+			imageUrl: country.imageUrl ?? undefined
 		},
 		zod4(countrySchema)
 	);
@@ -33,7 +33,13 @@ export const load: PageServerLoad = async ({ params }) => {
 
 export const actions: Actions = {
 	updateCountry: async ({ request, params }) => {
-		const form = await superValidate(request, zod4(countrySchema));
+		const formData = await request.formData();
+		const imageFile = formData.get('imageUrl_file');
+		if (imageFile instanceof File && imageFile.size > 0) {
+			const url = await uploadImageFile(imageFile);
+			formData.set('imageUrl', url);
+		}
+		const form = await superValidate(formData, zod4(countrySchema));
 		if (!form.valid) return fail(400, { form });
 
 		await prisma.country.update({
@@ -43,8 +49,7 @@ export const actions: Actions = {
 				code: form.data.code,
 				flagEmoji: form.data.flagEmoji || null,
 				description: form.data.description || null,
-				mediaUrl: form.data.mediaUrl || null,
-				mediaType: form.data.mediaType ?? null
+				imageUrl: form.data.imageUrl || null
 			}
 		});
 

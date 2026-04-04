@@ -120,8 +120,8 @@ export const CountryScalarFieldEnum = {
   code: 'code',
   flagEmoji: 'flagEmoji',
   description: 'description',
-  mediaUrl: 'mediaUrl',
-  mediaType: 'mediaType',
+  imageUrl: 'imageUrl',
+  videoUrl: 'videoUrl',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -134,8 +134,8 @@ export const LocationScalarFieldEnum = {
   name: 'name',
   description: 'description',
   countryId: 'countryId',
-  mediaUrl: 'mediaUrl',
-  mediaType: 'mediaType',
+  imageUrl: 'imageUrl',
+  videoUrl: 'videoUrl',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

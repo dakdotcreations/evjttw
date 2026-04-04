@@ -2,7 +2,7 @@
 	import { superForm } from 'sveltekit-superforms';
 	import { zod4Client } from 'sveltekit-superforms/adapters';
 	import { z } from 'zod';
-	import MediaUpload from '$lib/components/MediaUpload.svelte';
+	import ImageUpload from '$lib/components/ImageUpload.svelte';
 	import { Trash2 } from 'lucide-svelte';
 	import Input from '$lib/components/ui/Input.svelte';
 	import Textarea from '$lib/components/ui/Textarea.svelte';
@@ -16,8 +16,7 @@
 		name: z.string().min(2),
 		description: z.string().optional(),
 		countryId: z.string().min(1),
-		mediaUrl: z.string().optional(),
-		mediaType: z.enum(['image', 'video_blob', 'video_embed']).optional()
+		imageUrl: z.string().optional()
 	});
 
 	const { form, errors, enhance, submitting, message } = superForm(data.form, {
@@ -26,7 +25,6 @@
 	const { form: deleteFormData, enhance: deleteEnhance } = superForm(data.deleteForm);
 
 	let confirmDelete = $state(false);
-	let mediaType = $derived(($form.mediaType ?? 'image') as 'image' | 'video_blob' | 'video_embed');
 </script>
 
 <div class="max-w-2xl space-y-8">
@@ -41,7 +39,7 @@
 	<div class="rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
 		<h2 class="mb-6 text-lg font-semibold text-gray-900">Edit Location</h2>
 
-		<form method="POST" action="?/updateLocation" use:enhance class="space-y-5">
+		<form method="POST" action="?/updateLocation" use:enhance enctype="multipart/form-data" class="space-y-5">
 			<Input name="name" label="Name" bind:value={$form.name} error={$errors.name} required />
 
 			<Select name="countryId" label="Country" bind:value={$form.countryId} error={$errors.countryId} required>
@@ -52,16 +50,7 @@
 
 			<Textarea name="description" label="Description" bind:value={$form.description} />
 
-			<Select name="mediaType" label="Media Type" bind:value={$form.mediaType}>
-				<option value="">None</option>
-				<option value="image">Image</option>
-				<option value="video_blob">Video (upload)</option>
-				<option value="video_embed">Video (embed URL)</option>
-			</Select>
-
-			{#if $form.mediaType}
-				<MediaUpload name="mediaUrl" bind:value={$form.mediaUrl} {mediaType} label="Cover Media" />
-			{/if}
+			<ImageUpload name="imageUrl" label="Cover Image" bind:value={$form.imageUrl} />
 
 			<div class="pt-2">
 				<Button variant="primary" size="lg" type="submit" disabled={$submitting}>

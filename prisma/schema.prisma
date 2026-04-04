@@ -44,20 +44,14 @@ model Otp {
 
 // ── Tourism domain ────────────────────────────────────────────────────────────
 
-enum MediaType {
-  image
-  video_blob
-  video_embed
-}
-
 model Country {
   id          String     @id @default(cuid())
   name        String
   code        String     @unique
   flagEmoji   String?
   description String?
-  mediaUrl    String?
-  mediaType   MediaType?
+  imageUrl    String?
+  videoUrl    String?
   locations   Location[]
   features    Feature[]
   createdAt   DateTime   @default(now())
@@ -70,8 +64,8 @@ model Location {
   description String?
   countryId   String
   country     Country         @relation(fields: [countryId], references: [id])
-  mediaUrl    String?
-  mediaType   MediaType?
+  imageUrl    String?
+  videoUrl    String?
   steps       ItineraryStep[]
   features    Feature[]
   createdAt   DateTime        @default(now())

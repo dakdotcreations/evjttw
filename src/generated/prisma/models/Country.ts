@@ -30,8 +30,8 @@ export type CountryMinAggregateOutputType = {
   code: string | null
   flagEmoji: string | null
   description: string | null
-  mediaUrl: string | null
-  mediaType: $Enums.MediaType | null
+  imageUrl: string | null
+  videoUrl: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -42,8 +42,8 @@ export type CountryMaxAggregateOutputType = {
   code: string | null
   flagEmoji: string | null
   description: string | null
-  mediaUrl: string | null
-  mediaType: $Enums.MediaType | null
+  imageUrl: string | null
+  videoUrl: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -54,8 +54,8 @@ export type CountryCountAggregateOutputType = {
   code: number
   flagEmoji: number
   description: number
-  mediaUrl: number
-  mediaType: number
+  imageUrl: number
+  videoUrl: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -68,8 +68,8 @@ export type CountryMinAggregateInputType = {
   code?: true
   flagEmoji?: true
   description?: true
-  mediaUrl?: true
-  mediaType?: true
+  imageUrl?: true
+  videoUrl?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -80,8 +80,8 @@ export type CountryMaxAggregateInputType = {
   code?: true
   flagEmoji?: true
   description?: true
-  mediaUrl?: true
-  mediaType?: true
+  imageUrl?: true
+  videoUrl?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -92,8 +92,8 @@ export type CountryCountAggregateInputType = {
   code?: true
   flagEmoji?: true
   description?: true
-  mediaUrl?: true
-  mediaType?: true
+  imageUrl?: true
+  videoUrl?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -177,8 +177,8 @@ export type CountryGroupByOutputType = {
   code: string
   flagEmoji: string | null
   description: string | null
-  mediaUrl: string | null
-  mediaType: $Enums.MediaType | null
+  imageUrl: string | null
+  videoUrl: string | null
   createdAt: Date
   updatedAt: Date
   _count: CountryCountAggregateOutputType | null
@@ -210,8 +210,8 @@ export type CountryWhereInput = {
   code?: Prisma.StringFilter<"Country"> | string
   flagEmoji?: Prisma.StringNullableFilter<"Country"> | string | null
   description?: Prisma.StringNullableFilter<"Country"> | string | null
-  mediaUrl?: Prisma.StringNullableFilter<"Country"> | string | null
-  mediaType?: Prisma.EnumMediaTypeNullableFilter<"Country"> | $Enums.MediaType | null
+  imageUrl?: Prisma.StringNullableFilter<"Country"> | string | null
+  videoUrl?: Prisma.StringNullableFilter<"Country"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Country"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Country"> | Date | string
   locations?: Prisma.LocationListRelationFilter
@@ -224,8 +224,8 @@ export type CountryOrderByWithRelationInput = {
   code?: Prisma.SortOrder
   flagEmoji?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  mediaUrl?: Prisma.SortOrderInput | Prisma.SortOrder
-  mediaType?: Prisma.SortOrderInput | Prisma.SortOrder
+  imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  videoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   locations?: Prisma.LocationOrderByRelationAggregateInput
@@ -241,8 +241,8 @@ export type CountryWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Country"> | string
   flagEmoji?: Prisma.StringNullableFilter<"Country"> | string | null
   description?: Prisma.StringNullableFilter<"Country"> | string | null
-  mediaUrl?: Prisma.StringNullableFilter<"Country"> | string | null
-  mediaType?: Prisma.EnumMediaTypeNullableFilter<"Country"> | $Enums.MediaType | null
+  imageUrl?: Prisma.StringNullableFilter<"Country"> | string | null
+  videoUrl?: Prisma.StringNullableFilter<"Country"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Country"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Country"> | Date | string
   locations?: Prisma.LocationListRelationFilter
@@ -255,8 +255,8 @@ export type CountryOrderByWithAggregationInput = {
   code?: Prisma.SortOrder
   flagEmoji?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  mediaUrl?: Prisma.SortOrderInput | Prisma.SortOrder
-  mediaType?: Prisma.SortOrderInput | Prisma.SortOrder
+  imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  videoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.CountryCountOrderByAggregateInput
@@ -273,8 +273,8 @@ export type CountryScalarWhereWithAggregatesInput = {
   code?: Prisma.StringWithAggregatesFilter<"Country"> | string
   flagEmoji?: Prisma.StringNullableWithAggregatesFilter<"Country"> | string | null
   description?: Prisma.StringNullableWithAggregatesFilter<"Country"> | string | null
-  mediaUrl?: Prisma.StringNullableWithAggregatesFilter<"Country"> | string | null
-  mediaType?: Prisma.EnumMediaTypeNullableWithAggregatesFilter<"Country"> | $Enums.MediaType | null
+  imageUrl?: Prisma.StringNullableWithAggregatesFilter<"Country"> | string | null
+  videoUrl?: Prisma.StringNullableWithAggregatesFilter<"Country"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Country"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Country"> | Date | string
 }
@@ -285,8 +285,8 @@ export type CountryCreateInput = {
   code: string
   flagEmoji?: string | null
   description?: string | null
-  mediaUrl?: string | null
-  mediaType?: $Enums.MediaType | null
+  imageUrl?: string | null
+  videoUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   locations?: Prisma.LocationCreateNestedManyWithoutCountryInput
@@ -299,8 +299,8 @@ export type CountryUncheckedCreateInput = {
   code: string
   flagEmoji?: string | null
   description?: string | null
-  mediaUrl?: string | null
-  mediaType?: $Enums.MediaType | null
+  imageUrl?: string | null
+  videoUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   locations?: Prisma.LocationUncheckedCreateNestedManyWithoutCountryInput
@@ -313,8 +313,8 @@ export type CountryUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   flagEmoji?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mediaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mediaType?: Prisma.NullableEnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   locations?: Prisma.LocationUpdateManyWithoutCountryNestedInput
@@ -327,8 +327,8 @@ export type CountryUncheckedUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   flagEmoji?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mediaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mediaType?: Prisma.NullableEnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   locations?: Prisma.LocationUncheckedUpdateManyWithoutCountryNestedInput
@@ -341,8 +341,8 @@ export type CountryCreateManyInput = {
   code: string
   flagEmoji?: string | null
   description?: string | null
-  mediaUrl?: string | null
-  mediaType?: $Enums.MediaType | null
+  imageUrl?: string | null
+  videoUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -353,8 +353,8 @@ export type CountryUpdateManyMutationInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   flagEmoji?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mediaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mediaType?: Prisma.NullableEnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -365,8 +365,8 @@ export type CountryUncheckedUpdateManyInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   flagEmoji?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mediaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mediaType?: Prisma.NullableEnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -377,8 +377,8 @@ export type CountryCountOrderByAggregateInput = {
   code?: Prisma.SortOrder
   flagEmoji?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  mediaUrl?: Prisma.SortOrder
-  mediaType?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
+  videoUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -389,8 +389,8 @@ export type CountryMaxOrderByAggregateInput = {
   code?: Prisma.SortOrder
   flagEmoji?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  mediaUrl?: Prisma.SortOrder
-  mediaType?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
+  videoUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -401,8 +401,8 @@ export type CountryMinOrderByAggregateInput = {
   code?: Prisma.SortOrder
   flagEmoji?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  mediaUrl?: Prisma.SortOrder
-  mediaType?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
+  videoUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -419,10 +419,6 @@ export type CountryNullableScalarRelationFilter = {
 
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
-}
-
-export type NullableEnumMediaTypeFieldUpdateOperationsInput = {
-  set?: $Enums.MediaType | null
 }
 
 export type CountryCreateNestedOneWithoutLocationsInput = {
@@ -461,8 +457,8 @@ export type CountryCreateWithoutLocationsInput = {
   code: string
   flagEmoji?: string | null
   description?: string | null
-  mediaUrl?: string | null
-  mediaType?: $Enums.MediaType | null
+  imageUrl?: string | null
+  videoUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   features?: Prisma.FeatureCreateNestedManyWithoutCountryInput
@@ -474,8 +470,8 @@ export type CountryUncheckedCreateWithoutLocationsInput = {
   code: string
   flagEmoji?: string | null
   description?: string | null
-  mediaUrl?: string | null
-  mediaType?: $Enums.MediaType | null
+  imageUrl?: string | null
+  videoUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   features?: Prisma.FeatureUncheckedCreateNestedManyWithoutCountryInput
@@ -503,8 +499,8 @@ export type CountryUpdateWithoutLocationsInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   flagEmoji?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mediaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mediaType?: Prisma.NullableEnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   features?: Prisma.FeatureUpdateManyWithoutCountryNestedInput
@@ -516,8 +512,8 @@ export type CountryUncheckedUpdateWithoutLocationsInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   flagEmoji?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mediaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mediaType?: Prisma.NullableEnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   features?: Prisma.FeatureUncheckedUpdateManyWithoutCountryNestedInput
@@ -529,8 +525,8 @@ export type CountryCreateWithoutFeaturesInput = {
   code: string
   flagEmoji?: string | null
   description?: string | null
-  mediaUrl?: string | null
-  mediaType?: $Enums.MediaType | null
+  imageUrl?: string | null
+  videoUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   locations?: Prisma.LocationCreateNestedManyWithoutCountryInput
@@ -542,8 +538,8 @@ export type CountryUncheckedCreateWithoutFeaturesInput = {
   code: string
   flagEmoji?: string | null
   description?: string | null
-  mediaUrl?: string | null
-  mediaType?: $Enums.MediaType | null
+  imageUrl?: string | null
+  videoUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   locations?: Prisma.LocationUncheckedCreateNestedManyWithoutCountryInput
@@ -571,8 +567,8 @@ export type CountryUpdateWithoutFeaturesInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   flagEmoji?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mediaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mediaType?: Prisma.NullableEnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   locations?: Prisma.LocationUpdateManyWithoutCountryNestedInput
@@ -584,8 +580,8 @@ export type CountryUncheckedUpdateWithoutFeaturesInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   flagEmoji?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mediaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  mediaType?: Prisma.NullableEnumMediaTypeFieldUpdateOperationsInput | $Enums.MediaType | null
+  imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   locations?: Prisma.LocationUncheckedUpdateManyWithoutCountryNestedInput
@@ -637,8 +633,8 @@ export type CountrySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   code?: boolean
   flagEmoji?: boolean
   description?: boolean
-  mediaUrl?: boolean
-  mediaType?: boolean
+  imageUrl?: boolean
+  videoUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   locations?: boolean | Prisma.Country$locationsArgs<ExtArgs>
@@ -652,8 +648,8 @@ export type CountrySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   code?: boolean
   flagEmoji?: boolean
   description?: boolean
-  mediaUrl?: boolean
-  mediaType?: boolean
+  imageUrl?: boolean
+  videoUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["country"]>
@@ -664,8 +660,8 @@ export type CountrySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   code?: boolean
   flagEmoji?: boolean
   description?: boolean
-  mediaUrl?: boolean
-  mediaType?: boolean
+  imageUrl?: boolean
+  videoUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["country"]>
@@ -676,13 +672,13 @@ export type CountrySelectScalar = {
   code?: boolean
   flagEmoji?: boolean
   description?: boolean
-  mediaUrl?: boolean
-  mediaType?: boolean
+  imageUrl?: boolean
+  videoUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type CountryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "code" | "flagEmoji" | "description" | "mediaUrl" | "mediaType" | "createdAt" | "updatedAt", ExtArgs["result"]["country"]>
+export type CountryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "code" | "flagEmoji" | "description" | "imageUrl" | "videoUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["country"]>
 export type CountryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   locations?: boolean | Prisma.Country$locationsArgs<ExtArgs>
   features?: boolean | Prisma.Country$featuresArgs<ExtArgs>
@@ -703,8 +699,8 @@ export type $CountryPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     code: string
     flagEmoji: string | null
     description: string | null
-    mediaUrl: string | null
-    mediaType: $Enums.MediaType | null
+    imageUrl: string | null
+    videoUrl: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["country"]>
@@ -1137,8 +1133,8 @@ export interface CountryFieldRefs {
   readonly code: Prisma.FieldRef<"Country", 'String'>
   readonly flagEmoji: Prisma.FieldRef<"Country", 'String'>
   readonly description: Prisma.FieldRef<"Country", 'String'>
-  readonly mediaUrl: Prisma.FieldRef<"Country", 'String'>
-  readonly mediaType: Prisma.FieldRef<"Country", 'MediaType'>
+  readonly imageUrl: Prisma.FieldRef<"Country", 'String'>
+  readonly videoUrl: Prisma.FieldRef<"Country", 'String'>
   readonly createdAt: Prisma.FieldRef<"Country", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Country", 'DateTime'>
 }

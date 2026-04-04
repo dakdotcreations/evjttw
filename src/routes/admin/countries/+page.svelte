@@ -1,13 +1,11 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms';
 	import { zod4Client } from 'sveltekit-superforms/adapters';
-	import { z } from 'zod';
 	import { Plus, Pencil, Trash2 } from 'lucide-svelte';
-	import MediaUpload from '$lib/components/MediaUpload.svelte';
+	import ImageUpload from '$lib/components/ImageUpload.svelte';
 	import Dialog from '$lib/components/ui/Dialog.svelte';
 	import Input from '$lib/components/ui/Input.svelte';
 	import Textarea from '$lib/components/ui/Textarea.svelte';
-	import Select from '$lib/components/ui/Select.svelte';
 	import Button from '$lib/components/ui/Button.svelte';
 	import { countrySchema } from '$lib/schemas/country';
 	import type { PageData } from './$types';
@@ -31,13 +29,7 @@
 		}
 	});
 
-	let createMediaType = $derived(
-		($createForm.mediaType ?? 'image') as 'image' | 'video_blob' | 'video_embed'
-	);
-
 	// ── Edit ─────────────────────────────────────────────────
-	const updateSchema = countrySchema.extend({ id: z.string() });
-
 	let editOpen = $state(false);
 	let editCountryId = $state('');
 
@@ -49,16 +41,12 @@
 		message: editMessage
 	} = superForm(data.createForm, {
 		id: 'update-country',
-		validators: zod4Client(updateSchema),
+		validators: zod4Client(countrySchema),
 		resetForm: false,
 		onResult({ result }) {
 			if (result.type === 'success') { editOpen = false; confirmDelete = false; }
 		}
 	});
-
-	let editMediaType = $derived(
-		($editForm.mediaType ?? 'image') as 'image' | 'video_blob' | 'video_embed'
-	);
 
 	function openEdit(c: (typeof data.countries)[number]) {
 		editCountryId = c.id;
@@ -66,8 +54,7 @@
 		$editForm.code = c.code;
 		$editForm.flagEmoji = c.flagEmoji ?? '';
 		$editForm.description = c.description ?? '';
-		$editForm.mediaUrl = c.mediaUrl ?? '';
-		$editForm.mediaType = c.mediaType ?? undefined;
+		$editForm.imageUrl = c.imageUrl ?? '';
 		confirmDelete = false;
 		editOpen = true;
 	}
@@ -144,7 +131,7 @@
 			{$createMessage.success}
 		</p>
 	{/if}
-	<form method="POST" action="?/createCountry" use:createEnhance class="space-y-4">
+	<form method="POST" action="?/createCountry" use:createEnhance enctype="multipart/form-data" class="space-y-4">
 		<div class="grid grid-cols-2 gap-4">
 			<Input
 				name="name"
@@ -165,20 +152,7 @@
 		</div>
 		<Input name="flagEmoji" label="Flag Emoji" placeholder="🇺🇬" bind:value={$createForm.flagEmoji} />
 		<Textarea name="description" label="Description" bind:value={$createForm.description} />
-		<Select name="mediaType" label="Media Type" bind:value={$createForm.mediaType}>
-			<option value="">None</option>
-			<option value="image">Image</option>
-			<option value="video_blob">Video (upload)</option>
-			<option value="video_embed">Video (embed URL)</option>
-		</Select>
-		{#if $createForm.mediaType}
-			<MediaUpload
-				name="mediaUrl"
-				bind:value={$createForm.mediaUrl}
-				mediaType={createMediaType}
-				label="Cover Media"
-			/>
-		{/if}
+		<ImageUpload name="imageUrl" label="Cover Image" bind:value={$createForm.imageUrl} />
 		<div class="flex justify-end gap-3 pt-2">
 			<Button onclick={() => (createOpen = false)}>Cancel</Button>
 			<Button variant="primary" type="submit" disabled={$createSubmitting}>
@@ -195,7 +169,7 @@
 			{$editMessage.success}
 		</p>
 	{/if}
-	<form method="POST" action="?/updateCountry" use:editEnhance class="space-y-4">
+	<form method="POST" action="?/updateCountry" use:editEnhance enctype="multipart/form-data" class="space-y-4">
 		<input type="hidden" name="id" value={editCountryId} />
 		<div class="grid grid-cols-2 gap-4">
 			<Input
@@ -217,20 +191,7 @@
 		</div>
 		<Input name="flagEmoji" label="Flag Emoji" bind:value={$editForm.flagEmoji} />
 		<Textarea name="description" label="Description" bind:value={$editForm.description} />
-		<Select name="mediaType" label="Media Type" bind:value={$editForm.mediaType}>
-			<option value="">None</option>
-			<option value="image">Image</option>
-			<option value="video_blob">Video (upload)</option>
-			<option value="video_embed">Video (embed URL)</option>
-		</Select>
-		{#if $editForm.mediaType}
-			<MediaUpload
-				name="mediaUrl"
-				bind:value={$editForm.mediaUrl}
-				mediaType={editMediaType}
-				label="Cover Media"
-			/>
-		{/if}
+		<ImageUpload name="imageUrl" label="Cover Image" bind:value={$editForm.imageUrl} />
 		<div class="flex items-center justify-between pt-2">
 			{#if confirmDelete}
 				<div class="flex gap-2">

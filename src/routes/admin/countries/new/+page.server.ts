@@ -2,6 +2,7 @@ import { superValidate, fail } from 'sveltekit-superforms';
 import { zod4 } from 'sveltekit-superforms/adapters';
 import { redirect } from '@sveltejs/kit';
 import prisma from '$lib/server/prisma';
+import { uploadImageFile } from '$lib/server/azure';
 import { countrySchema } from '$lib/schemas/country';
 import type { Actions, PageServerLoad } from './$types';
 
@@ -12,7 +13,13 @@ export const load: PageServerLoad = async () => {
 
 export const actions: Actions = {
 	createCountry: async ({ request }) => {
-		const form = await superValidate(request, zod4(countrySchema));
+		const formData = await request.formData();
+		const imageFile = formData.get('imageUrl_file');
+		if (imageFile instanceof File && imageFile.size > 0) {
+			const url = await uploadImageFile(imageFile);
+			formData.set('imageUrl', url);
+		}
+		const form = await superValidate(formData, zod4(countrySchema));
 		if (!form.valid) return fail(400, { form });
 
 		await prisma.country.create({
@@ -21,8 +28,7 @@ export const actions: Actions = {
 				code: form.data.code,
 				flagEmoji: form.data.flagEmoji || null,
 				description: form.data.description || null,
-				mediaUrl: form.data.mediaUrl || null,
-				mediaType: form.data.mediaType ?? null
+				imageUrl: form.data.imageUrl || null
 			}
 		});
 

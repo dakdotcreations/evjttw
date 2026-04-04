@@ -3,6 +3,7 @@ import { zod4 } from 'sveltekit-superforms/adapters';
 import { z } from 'zod';
 import { error } from '@sveltejs/kit';
 import prisma from '$lib/server/prisma';
+import { uploadImageFile } from '$lib/server/azure';
 import { countrySchema } from '$lib/schemas/country';
 import type { Actions, PageServerLoad } from './$types';
 
@@ -23,7 +24,13 @@ export const load: PageServerLoad = async () => {
 
 export const actions: Actions = {
 	createCountry: async ({ request }) => {
-		const form = await superValidate(request, zod4(countrySchema), { id: 'create-country' });
+		const formData = await request.formData();
+		const imageFile = formData.get('imageUrl_file');
+		if (imageFile instanceof File && imageFile.size > 0) {
+			const url = await uploadImageFile(imageFile);
+			formData.set('imageUrl', url);
+		}
+		const form = await superValidate(formData, zod4(countrySchema), { id: 'create-country' });
 		if (!form.valid) return fail(400, { createForm: form });
 
 		await prisma.country.create({
@@ -32,8 +39,7 @@ export const actions: Actions = {
 				code: form.data.code,
 				flagEmoji: form.data.flagEmoji || null,
 				description: form.data.description || null,
-				mediaUrl: form.data.mediaUrl || null,
-				mediaType: form.data.mediaType ?? null
+				imageUrl: form.data.imageUrl || null
 			}
 		});
 
@@ -42,7 +48,13 @@ export const actions: Actions = {
 
 	updateCountry: async ({ request }) => {
 		const updateSchema = countrySchema.extend({ id: z.string() });
-		const form = await superValidate(request, zod4(updateSchema), { id: 'update-country' });
+		const formData = await request.formData();
+		const imageFile = formData.get('imageUrl_file');
+		if (imageFile instanceof File && imageFile.size > 0) {
+			const url = await uploadImageFile(imageFile);
+			formData.set('imageUrl', url);
+		}
+		const form = await superValidate(formData, zod4(updateSchema), { id: 'update-country' });
 		if (!form.valid) return fail(400, { updateForm: form });
 
 		await prisma.country.update({
@@ -52,8 +64,7 @@ export const actions: Actions = {
 				code: form.data.code,
 				flagEmoji: form.data.flagEmoji || null,
 				description: form.data.description || null,
-				mediaUrl: form.data.mediaUrl || null,
-				mediaType: form.data.mediaType ?? null
+				imageUrl: form.data.imageUrl || null
 			}
 		});
 

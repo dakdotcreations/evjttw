@@ -5,6 +5,5 @@ export const countrySchema = z.object({
 	code: z.string().length(2, 'Code must be exactly 2 letters').toUpperCase(),
 	flagEmoji: z.string().optional(),
 	description: z.string().optional(),
-	mediaUrl: z.string().optional(),
-	mediaType: z.enum(['image', 'video_blob', 'video_embed']).optional()
+	imageUrl: z.string().optional()
 });

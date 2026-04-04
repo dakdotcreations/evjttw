@@ -3,6 +3,7 @@ import { zod4 } from 'sveltekit-superforms/adapters';
 import { z } from 'zod';
 import { error } from '@sveltejs/kit';
 import prisma from '$lib/server/prisma';
+import { uploadImageFile } from '$lib/server/azure';
 import { locationSchema } from '$lib/schemas/location';
 import type { Actions, PageServerLoad } from './$types';
 
@@ -24,7 +25,13 @@ export const load: PageServerLoad = async () => {
 
 export const actions: Actions = {
 	createLocation: async ({ request }) => {
-		const form = await superValidate(request, zod4(locationSchema), { id: 'create-location' });
+		const formData = await request.formData();
+		const imageFile = formData.get('imageUrl_file');
+		if (imageFile instanceof File && imageFile.size > 0) {
+			const url = await uploadImageFile(imageFile);
+			formData.set('imageUrl', url);
+		}
+		const form = await superValidate(formData, zod4(locationSchema), { id: 'create-location' });
 		if (!form.valid) return fail(400, { createForm: form });
 
 		await prisma.location.create({
@@ -32,8 +39,7 @@ export const actions: Actions = {
 				name: form.data.name,
 				description: form.data.description || null,
 				countryId: form.data.countryId,
-				mediaUrl: form.data.mediaUrl || null,
-				mediaType: form.data.mediaType ?? null
+				imageUrl: form.data.imageUrl || null
 			}
 		});
 
@@ -42,7 +48,13 @@ export const actions: Actions = {
 
 	updateLocation: async ({ request }) => {
 		const updateSchema = locationSchema.extend({ id: z.string() });
-		const form = await superValidate(request, zod4(updateSchema), { id: 'update-location' });
+		const formData = await request.formData();
+		const imageFile = formData.get('imageUrl_file');
+		if (imageFile instanceof File && imageFile.size > 0) {
+			const url = await uploadImageFile(imageFile);
+			formData.set('imageUrl', url);
+		}
+		const form = await superValidate(formData, zod4(updateSchema), { id: 'update-location' });
 		if (!form.valid) return fail(400, { updateForm: form });
 
 		await prisma.location.update({
@@ -51,8 +63,7 @@ export const actions: Actions = {
 				name: form.data.name,
 				description: form.data.description || null,
 				countryId: form.data.countryId,
-				mediaUrl: form.data.mediaUrl || null,
-				mediaType: form.data.mediaType ?? null
+				imageUrl: form.data.imageUrl || null
 			}
 		});
 
