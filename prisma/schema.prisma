@@ -110,8 +110,8 @@ model ItineraryStep {
   highlight       String?
   durationText    String
   durationMinutes Int?
-  locationId      String
-  location        Location  @relation(fields: [locationId], references: [id])
+  locationId      String?
+  location        Location? @relation(fields: [locationId], references: [id])
   images          String[]
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt

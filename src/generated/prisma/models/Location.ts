@@ -397,11 +397,6 @@ export type LocationMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
-export type LocationScalarRelationFilter = {
-  is?: Prisma.LocationWhereInput
-  isNot?: Prisma.LocationWhereInput
-}
-
 export type LocationNullableScalarRelationFilter = {
   is?: Prisma.LocationWhereInput | null
   isNot?: Prisma.LocationWhereInput | null
@@ -455,10 +450,12 @@ export type LocationCreateNestedOneWithoutStepsInput = {
   connect?: Prisma.LocationWhereUniqueInput
 }
 
-export type LocationUpdateOneRequiredWithoutStepsNestedInput = {
+export type LocationUpdateOneWithoutStepsNestedInput = {
   create?: Prisma.XOR<Prisma.LocationCreateWithoutStepsInput, Prisma.LocationUncheckedCreateWithoutStepsInput>
   connectOrCreate?: Prisma.LocationCreateOrConnectWithoutStepsInput
   upsert?: Prisma.LocationUpsertWithoutStepsInput
+  disconnect?: Prisma.LocationWhereInput | boolean
+  delete?: Prisma.LocationWhereInput | boolean
   connect?: Prisma.LocationWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.LocationUpdateToOneWithWhereWithoutStepsInput, Prisma.LocationUpdateWithoutStepsInput>, Prisma.LocationUncheckedUpdateWithoutStepsInput>
 }

@@ -230,7 +230,7 @@ export type ItineraryStepGroupByOutputType = {
   highlight: string | null
   durationText: string
   durationMinutes: number | null
-  locationId: string
+  locationId: string | null
   images: string[]
   createdAt: Date
   updatedAt: Date
@@ -268,12 +268,12 @@ export type ItineraryStepWhereInput = {
   highlight?: Prisma.StringNullableFilter<"ItineraryStep"> | string | null
   durationText?: Prisma.StringFilter<"ItineraryStep"> | string
   durationMinutes?: Prisma.IntNullableFilter<"ItineraryStep"> | number | null
-  locationId?: Prisma.StringFilter<"ItineraryStep"> | string
+  locationId?: Prisma.StringNullableFilter<"ItineraryStep"> | string | null
   images?: Prisma.StringNullableListFilter<"ItineraryStep">
   createdAt?: Prisma.DateTimeFilter<"ItineraryStep"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ItineraryStep"> | Date | string
   itinerary?: Prisma.XOR<Prisma.ItineraryScalarRelationFilter, Prisma.ItineraryWhereInput>
-  location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
+  location?: Prisma.XOR<Prisma.LocationNullableScalarRelationFilter, Prisma.LocationWhereInput> | null
 }
 
 export type ItineraryStepOrderByWithRelationInput = {
@@ -285,7 +285,7 @@ export type ItineraryStepOrderByWithRelationInput = {
   highlight?: Prisma.SortOrderInput | Prisma.SortOrder
   durationText?: Prisma.SortOrder
   durationMinutes?: Prisma.SortOrderInput | Prisma.SortOrder
-  locationId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrderInput | Prisma.SortOrder
   images?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -305,12 +305,12 @@ export type ItineraryStepWhereUniqueInput = Prisma.AtLeast<{
   highlight?: Prisma.StringNullableFilter<"ItineraryStep"> | string | null
   durationText?: Prisma.StringFilter<"ItineraryStep"> | string
   durationMinutes?: Prisma.IntNullableFilter<"ItineraryStep"> | number | null
-  locationId?: Prisma.StringFilter<"ItineraryStep"> | string
+  locationId?: Prisma.StringNullableFilter<"ItineraryStep"> | string | null
   images?: Prisma.StringNullableListFilter<"ItineraryStep">
   createdAt?: Prisma.DateTimeFilter<"ItineraryStep"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ItineraryStep"> | Date | string
   itinerary?: Prisma.XOR<Prisma.ItineraryScalarRelationFilter, Prisma.ItineraryWhereInput>
-  location?: Prisma.XOR<Prisma.LocationScalarRelationFilter, Prisma.LocationWhereInput>
+  location?: Prisma.XOR<Prisma.LocationNullableScalarRelationFilter, Prisma.LocationWhereInput> | null
 }, "id">
 
 export type ItineraryStepOrderByWithAggregationInput = {
@@ -322,7 +322,7 @@ export type ItineraryStepOrderByWithAggregationInput = {
   highlight?: Prisma.SortOrderInput | Prisma.SortOrder
   durationText?: Prisma.SortOrder
   durationMinutes?: Prisma.SortOrderInput | Prisma.SortOrder
-  locationId?: Prisma.SortOrder
+  locationId?: Prisma.SortOrderInput | Prisma.SortOrder
   images?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -345,7 +345,7 @@ export type ItineraryStepScalarWhereWithAggregatesInput = {
   highlight?: Prisma.StringNullableWithAggregatesFilter<"ItineraryStep"> | string | null
   durationText?: Prisma.StringWithAggregatesFilter<"ItineraryStep"> | string
   durationMinutes?: Prisma.IntNullableWithAggregatesFilter<"ItineraryStep"> | number | null
-  locationId?: Prisma.StringWithAggregatesFilter<"ItineraryStep"> | string
+  locationId?: Prisma.StringNullableWithAggregatesFilter<"ItineraryStep"> | string | null
   images?: Prisma.StringNullableListFilter<"ItineraryStep">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ItineraryStep"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ItineraryStep"> | Date | string
@@ -363,7 +363,7 @@ export type ItineraryStepCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   itinerary: Prisma.ItineraryCreateNestedOneWithoutStepsInput
-  location: Prisma.LocationCreateNestedOneWithoutStepsInput
+  location?: Prisma.LocationCreateNestedOneWithoutStepsInput
 }
 
 export type ItineraryStepUncheckedCreateInput = {
@@ -375,7 +375,7 @@ export type ItineraryStepUncheckedCreateInput = {
   highlight?: string | null
   durationText: string
   durationMinutes?: number | null
-  locationId: string
+  locationId?: string | null
   images?: Prisma.ItineraryStepCreateimagesInput | string[]
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -393,7 +393,7 @@ export type ItineraryStepUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itinerary?: Prisma.ItineraryUpdateOneRequiredWithoutStepsNestedInput
-  location?: Prisma.LocationUpdateOneRequiredWithoutStepsNestedInput
+  location?: Prisma.LocationUpdateOneWithoutStepsNestedInput
 }
 
 export type ItineraryStepUncheckedUpdateInput = {
@@ -405,7 +405,7 @@ export type ItineraryStepUncheckedUpdateInput = {
   highlight?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationText?: Prisma.StringFieldUpdateOperationsInput | string
   durationMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  locationId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   images?: Prisma.ItineraryStepUpdateimagesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -420,7 +420,7 @@ export type ItineraryStepCreateManyInput = {
   highlight?: string | null
   durationText: string
   durationMinutes?: number | null
-  locationId: string
+  locationId?: string | null
   images?: Prisma.ItineraryStepCreateimagesInput | string[]
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -448,7 +448,7 @@ export type ItineraryStepUncheckedUpdateManyInput = {
   highlight?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationText?: Prisma.StringFieldUpdateOperationsInput | string
   durationMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  locationId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   images?: Prisma.ItineraryStepUpdateimagesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -684,7 +684,7 @@ export type ItineraryStepScalarWhereInput = {
   highlight?: Prisma.StringNullableFilter<"ItineraryStep"> | string | null
   durationText?: Prisma.StringFilter<"ItineraryStep"> | string
   durationMinutes?: Prisma.IntNullableFilter<"ItineraryStep"> | number | null
-  locationId?: Prisma.StringFilter<"ItineraryStep"> | string
+  locationId?: Prisma.StringNullableFilter<"ItineraryStep"> | string | null
   images?: Prisma.StringNullableListFilter<"ItineraryStep">
   createdAt?: Prisma.DateTimeFilter<"ItineraryStep"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ItineraryStep"> | Date | string
@@ -701,7 +701,7 @@ export type ItineraryStepCreateWithoutItineraryInput = {
   images?: Prisma.ItineraryStepCreateimagesInput | string[]
   createdAt?: Date | string
   updatedAt?: Date | string
-  location: Prisma.LocationCreateNestedOneWithoutStepsInput
+  location?: Prisma.LocationCreateNestedOneWithoutStepsInput
 }
 
 export type ItineraryStepUncheckedCreateWithoutItineraryInput = {
@@ -712,7 +712,7 @@ export type ItineraryStepUncheckedCreateWithoutItineraryInput = {
   highlight?: string | null
   durationText: string
   durationMinutes?: number | null
-  locationId: string
+  locationId?: string | null
   images?: Prisma.ItineraryStepCreateimagesInput | string[]
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -808,7 +808,7 @@ export type ItineraryStepCreateManyItineraryInput = {
   highlight?: string | null
   durationText: string
   durationMinutes?: number | null
-  locationId: string
+  locationId?: string | null
   images?: Prisma.ItineraryStepCreateimagesInput | string[]
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -825,7 +825,7 @@ export type ItineraryStepUpdateWithoutItineraryInput = {
   images?: Prisma.ItineraryStepUpdateimagesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  location?: Prisma.LocationUpdateOneRequiredWithoutStepsNestedInput
+  location?: Prisma.LocationUpdateOneWithoutStepsNestedInput
 }
 
 export type ItineraryStepUncheckedUpdateWithoutItineraryInput = {
@@ -836,7 +836,7 @@ export type ItineraryStepUncheckedUpdateWithoutItineraryInput = {
   highlight?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationText?: Prisma.StringFieldUpdateOperationsInput | string
   durationMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  locationId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   images?: Prisma.ItineraryStepUpdateimagesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -850,7 +850,7 @@ export type ItineraryStepUncheckedUpdateManyWithoutItineraryInput = {
   highlight?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationText?: Prisma.StringFieldUpdateOperationsInput | string
   durationMinutes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  locationId?: Prisma.StringFieldUpdateOperationsInput | string
+  locationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   images?: Prisma.ItineraryStepUpdateimagesInput | string[]
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -872,7 +872,7 @@ export type ItineraryStepSelect<ExtArgs extends runtime.Types.Extensions.Interna
   createdAt?: boolean
   updatedAt?: boolean
   itinerary?: boolean | Prisma.ItineraryDefaultArgs<ExtArgs>
-  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.ItineraryStep$locationArgs<ExtArgs>
 }, ExtArgs["result"]["itineraryStep"]>
 
 export type ItineraryStepSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -889,7 +889,7 @@ export type ItineraryStepSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   createdAt?: boolean
   updatedAt?: boolean
   itinerary?: boolean | Prisma.ItineraryDefaultArgs<ExtArgs>
-  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.ItineraryStep$locationArgs<ExtArgs>
 }, ExtArgs["result"]["itineraryStep"]>
 
 export type ItineraryStepSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -906,7 +906,7 @@ export type ItineraryStepSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   createdAt?: boolean
   updatedAt?: boolean
   itinerary?: boolean | Prisma.ItineraryDefaultArgs<ExtArgs>
-  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.ItineraryStep$locationArgs<ExtArgs>
 }, ExtArgs["result"]["itineraryStep"]>
 
 export type ItineraryStepSelectScalar = {
@@ -927,22 +927,22 @@ export type ItineraryStepSelectScalar = {
 export type ItineraryStepOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "itineraryId" | "stepNumber" | "title" | "description" | "highlight" | "durationText" | "durationMinutes" | "locationId" | "images" | "createdAt" | "updatedAt", ExtArgs["result"]["itineraryStep"]>
 export type ItineraryStepInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   itinerary?: boolean | Prisma.ItineraryDefaultArgs<ExtArgs>
-  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.ItineraryStep$locationArgs<ExtArgs>
 }
 export type ItineraryStepIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   itinerary?: boolean | Prisma.ItineraryDefaultArgs<ExtArgs>
-  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.ItineraryStep$locationArgs<ExtArgs>
 }
 export type ItineraryStepIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   itinerary?: boolean | Prisma.ItineraryDefaultArgs<ExtArgs>
-  location?: boolean | Prisma.LocationDefaultArgs<ExtArgs>
+  location?: boolean | Prisma.ItineraryStep$locationArgs<ExtArgs>
 }
 
 export type $ItineraryStepPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ItineraryStep"
   objects: {
     itinerary: Prisma.$ItineraryPayload<ExtArgs>
-    location: Prisma.$LocationPayload<ExtArgs>
+    location: Prisma.$LocationPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -953,7 +953,7 @@ export type $ItineraryStepPayload<ExtArgs extends runtime.Types.Extensions.Inter
     highlight: string | null
     durationText: string
     durationMinutes: number | null
-    locationId: string
+    locationId: string | null
     images: string[]
     createdAt: Date
     updatedAt: Date
@@ -1352,7 +1352,7 @@ readonly fields: ItineraryStepFieldRefs;
 export interface Prisma__ItineraryStepClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   itinerary<T extends Prisma.ItineraryDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ItineraryDefaultArgs<ExtArgs>>): Prisma.Prisma__ItineraryClient<runtime.Types.Result.GetResult<Prisma.$ItineraryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  location<T extends Prisma.LocationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LocationDefaultArgs<ExtArgs>>): Prisma.Prisma__LocationClient<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  location<T extends Prisma.ItineraryStep$locationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ItineraryStep$locationArgs<ExtArgs>>): Prisma.Prisma__LocationClient<runtime.Types.Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1792,6 +1792,25 @@ export type ItineraryStepDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many ItinerarySteps to delete.
    */
   limit?: number
+}
+
+/**
+ * ItineraryStep.location
+ */
+export type ItineraryStep$locationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Location
+   */
+  select?: Prisma.LocationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Location
+   */
+  omit?: Prisma.LocationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LocationInclude<ExtArgs> | null
+  where?: Prisma.LocationWhereInput
 }
 
 /**
