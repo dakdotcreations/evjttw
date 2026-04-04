@@ -3,7 +3,8 @@ import { zod4 } from 'sveltekit-superforms/adapters';
 import { z } from 'zod';
 import { error, redirect } from '@sveltejs/kit';
 import prisma from '$lib/server/prisma';
-import { itinerarySchema } from '../new/+page.server';
+import { itinerarySchema } from '$lib/schemas/itinerary';
+import { uploadImageFile } from '$lib/server/azure';
 import type { Actions, PageServerLoad } from './$types';
 
 const stepSchema = z.object({
@@ -13,8 +14,8 @@ const stepSchema = z.object({
 	highlight: z.string().optional(),
 	durationText: z.string().min(1, 'Duration is required'),
 	durationMinutes: z.coerce.number().int().positive().optional(),
-	locationId: z.string().min(1, 'Please select a location'),
-	images: z.string().default('')
+	locationId: z.string().optional(),
+	image: z.string().optional().default('')
 });
 
 const updateStepSchema = stepSchema.extend({ id: z.string() });
@@ -60,7 +61,11 @@ export const load: PageServerLoad = async ({ params }) => {
 		]);
 
 	return {
-		itinerary,
+		itinerary: {
+			...itinerary,
+			fixedPrice: itinerary.fixedPrice ? Number(itinerary.fixedPrice) : null,
+			pricePerPerson: itinerary.pricePerPerson ? Number(itinerary.pricePerPerson) : null
+		},
 		locations,
 		enquiryCount: itinerary._count.enquiries,
 		itineraryForm,
@@ -73,7 +78,8 @@ export const load: PageServerLoad = async ({ params }) => {
 
 export const actions: Actions = {
 	updateItinerary: async ({ request, params }) => {
-		const form = await superValidate(request, zod4(itinerarySchema), { id: 'update-itinerary' });
+		const formData = await request.formData();
+		const form = await superValidate(formData, zod4(itinerarySchema), { id: 'update-itinerary' });
 		if (!form.valid) return fail(400, { itineraryForm: form });
 
 		const bestSeasons = form.data.bestSeasons
@@ -82,6 +88,12 @@ export const actions: Actions = {
 		const images = form.data.images
 			? form.data.images.split('\n').map((s) => s.trim()).filter(Boolean)
 			: [];
+
+		const coverImageFile = formData.get('coverImage_file');
+		let coverImageUrl = form.data.coverImage || null;
+		if (coverImageFile instanceof File && coverImageFile.size > 0) {
+			coverImageUrl = await uploadImageFile(coverImageFile);
+		}
 
 		await prisma.itinerary.update({
 			where: { id: params.id },
@@ -94,7 +106,7 @@ export const actions: Actions = {
 				currency: form.data.currency,
 				durationDays: form.data.durationDays,
 				bestSeasons,
-				coverImage: form.data.coverImage || null,
+				coverImage: coverImageUrl,
 				images,
 				published: form.data.published
 			}
@@ -114,7 +126,8 @@ export const actions: Actions = {
 	},
 
 	createStep: async ({ request, params }) => {
-		const form = await superValidate(request, zod4(stepSchema), { id: 'add-step' });
+		const formData = await request.formData();
+		const form = await superValidate(formData, zod4(stepSchema), { id: 'add-step' });
 		if (!form.valid) return fail(400, { addStepForm: form });
 
 		const maxStep = await prisma.itineraryStep.aggregate({
@@ -122,21 +135,26 @@ export const actions: Actions = {
 			_max: { stepNumber: true }
 		});
 		const stepNumber = form.data.stepNumber || (maxStep._max.stepNumber ?? 0) + 1;
-		const images = form.data.images
-			? form.data.images.split('\n').map((s) => s.trim()).filter(Boolean)
-			: [];
+
+		const imageFile = formData.get('image_file');
+		let imageUrl = form.data.image || null;
+		if (imageFile instanceof File && imageFile.size > 0) {
+			imageUrl = await uploadImageFile(imageFile);
+		}
 
 		await prisma.itineraryStep.create({
 			data: {
-				itineraryId: params.id,
+				itinerary: { connect: { id: params.id } },
 				stepNumber,
 				title: form.data.title,
 				description: form.data.description,
 				highlight: form.data.highlight || null,
 				durationText: form.data.durationText,
 				durationMinutes: form.data.durationMinutes ?? null,
-				locationId: form.data.locationId,
-				images
+				...(form.data.locationId
+					? { location: { connect: { id: form.data.locationId } } }
+					: {}),
+				images: imageUrl ? [imageUrl] : []
 			}
 		});
 
@@ -144,12 +162,15 @@ export const actions: Actions = {
 	},
 
 	updateStep: async ({ request }) => {
-		const form = await superValidate(request, zod4(updateStepSchema), { id: 'update-step' });
+		const formData = await request.formData();
+		const form = await superValidate(formData, zod4(updateStepSchema), { id: 'update-step' });
 		if (!form.valid) return fail(400, { updateStepForm: form });
 
-		const images = form.data.images
-			? form.data.images.split('\n').map((s) => s.trim()).filter(Boolean)
-			: [];
+		const imageFile = formData.get('image_file');
+		let imageUrl = form.data.image || null;
+		if (imageFile instanceof File && imageFile.size > 0) {
+			imageUrl = await uploadImageFile(imageFile);
+		}
 
 		await prisma.itineraryStep.update({
 			where: { id: form.data.id },
@@ -160,8 +181,10 @@ export const actions: Actions = {
 				highlight: form.data.highlight || null,
 				durationText: form.data.durationText,
 				durationMinutes: form.data.durationMinutes ?? null,
-				locationId: form.data.locationId,
-				images
+				location: form.data.locationId
+					? { connect: { id: form.data.locationId } }
+					: { disconnect: true },
+				images: imageUrl ? [imageUrl] : []
 			}
 		});
 

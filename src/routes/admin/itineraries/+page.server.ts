@@ -15,7 +15,9 @@ export const load: PageServerLoad = async () => {
 	const rows = itineraries.map((it) => {
 		const countryMap = new Map<string, string>();
 		for (const step of it.steps) {
-			countryMap.set(step.location.country.id, step.location.country.name);
+			if (step.location) {
+				countryMap.set(step.location.country.id, step.location.country.name);
+			}
 		}
 		return {
 			id: it.id,

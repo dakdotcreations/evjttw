@@ -1,23 +1,10 @@
 import { superValidate, fail } from 'sveltekit-superforms';
 import { zod4 } from 'sveltekit-superforms/adapters';
-import { z } from 'zod';
 import { redirect } from '@sveltejs/kit';
 import prisma from '$lib/server/prisma';
+import { itinerarySchema } from '$lib/schemas/itinerary';
+import { uploadImageFile } from '$lib/server/azure';
 import type { Actions, PageServerLoad } from './$types';
-
-export const itinerarySchema = z.object({
-	title: z.string().min(3, 'Title must be at least 3 characters'),
-	summary: z.string().min(10, 'Summary must be at least 10 characters'),
-	description: z.string().min(20, 'Description must be at least 20 characters'),
-	fixedPrice: z.coerce.number().positive().optional(),
-	pricePerPerson: z.coerce.number().positive().optional(),
-	currency: z.string().default('USD'),
-	durationDays: z.coerce.number().int().min(1, 'Must be at least 1 day'),
-	bestSeasons: z.string().default(''),
-	coverImage: z.string().optional(),
-	images: z.string().default(''),
-	published: z.boolean().default(false)
-});
 
 export const load: PageServerLoad = async () => {
 	const form = await superValidate(zod4(itinerarySchema));
@@ -26,7 +13,8 @@ export const load: PageServerLoad = async () => {
 
 export const actions: Actions = {
 	createItinerary: async ({ request }) => {
-		const form = await superValidate(request, zod4(itinerarySchema));
+		const formData = await request.formData();
+		const form = await superValidate(formData, zod4(itinerarySchema));
 		if (!form.valid) return fail(400, { form });
 
 		const bestSeasons = form.data.bestSeasons
@@ -35,6 +23,13 @@ export const actions: Actions = {
 		const images = form.data.images
 			? form.data.images.split('\n').map((s) => s.trim()).filter(Boolean)
 			: [];
+
+		// Upload cover image to Azure if a new file was submitted
+		const coverImageFile = formData.get('coverImage_file');
+		let coverImageUrl = form.data.coverImage || null;
+		if (coverImageFile instanceof File && coverImageFile.size > 0) {
+			coverImageUrl = await uploadImageFile(coverImageFile);
+		}
 
 		const itinerary = await prisma.itinerary.create({
 			data: {
@@ -46,7 +41,7 @@ export const actions: Actions = {
 				currency: form.data.currency,
 				durationDays: form.data.durationDays,
 				bestSeasons,
-				coverImage: form.data.coverImage || null,
+				coverImage: coverImageUrl,
 				images,
 				published: form.data.published
 			}
