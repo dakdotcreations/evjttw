@@ -3,7 +3,7 @@ import { zod4 } from 'sveltekit-superforms/adapters';
 import { z } from 'zod';
 import { error, redirect } from '@sveltejs/kit';
 import prisma from '$lib/server/prisma';
-import { locationSchema } from '../new/+page.server';
+import { locationSchema } from '$lib/schemas/location';
 import type { Actions, PageServerLoad } from './$types';
 
 const deleteLocationSchema = z.object({ id: z.string() });
