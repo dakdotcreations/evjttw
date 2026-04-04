@@ -1,3 +1,14 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+@theme {
+    --color-primary: #391000;
+    --color-accent: #ffac00;
+    --color-white: #fbfaf9;
+    --color-black: #151313;
+}
+
+body {
+    @apply bg-white text-black;
+}
