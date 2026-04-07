@@ -103,3 +103,34 @@ export async function sendBookingEnquiryEmail(
 		`
 	});
 }
+
+type ContactMessage = {
+	name: string;
+	email: string;
+	phone?: string | null;
+	subject?: string | null;
+	message: string;
+};
+
+export async function sendContactEmail(data: ContactMessage): Promise<void> {
+	await sendMail({
+		from: SMTP_FROM,
+		to: ADMIN_EMAIL,
+		subject: `Contact Form: ${data.subject ?? 'General Enquiry'} — ${data.name}`,
+		html: `
+			<!DOCTYPE html>
+			<html>
+			<body style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 32px 16px; color: #111;">
+				<h1 style="font-size: 20px; margin-bottom: 4px;">New Contact Form Message</h1>
+				<table style="width: 100%; border-collapse: collapse; font-size: 15px; margin-top: 16px;">
+					<tr><td style="padding: 8px 0; color: #555; width: 100px;">Name</td><td style="padding: 8px 0; font-weight: 600;">${data.name}</td></tr>
+					<tr><td style="padding: 8px 0; color: #555;">Email</td><td style="padding: 8px 0;"><a href="mailto:${data.email}" style="color: #2563eb;">${data.email}</a></td></tr>
+					<tr><td style="padding: 8px 0; color: #555;">Phone</td><td style="padding: 8px 0;">${data.phone ?? '—'}</td></tr>
+					<tr><td style="padding: 8px 0; color: #555;">Subject</td><td style="padding: 8px 0;">${data.subject ?? '—'}</td></tr>
+					<tr><td style="padding: 8px 0; color: #555; vertical-align: top;">Message</td><td style="padding: 8px 0; white-space: pre-wrap;">${data.message}</td></tr>
+				</table>
+			</body>
+			</html>
+		`
+	});
+}
