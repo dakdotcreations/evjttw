@@ -3,10 +3,16 @@
 declare global {
 	namespace App {
 		// interface Error {}
-		// interface Locals {}
+		interface Locals {
+			user: import('$generated/prisma/client').User | null;
+			session: import('$generated/prisma/client').Session | null;
+		}
 		// interface PageData {}
 		// interface PageState {}
 		// interface Platform {}
+	}
+	namespace Superforms {
+		type Message = { success?: string };
 	}
 }
 
