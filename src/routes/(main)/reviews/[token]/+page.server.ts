@@ -1,16 +1,9 @@
 import { error, fail } from '@sveltejs/kit';
 import { superValidate, message } from 'sveltekit-superforms';
-import { zod4, zod4Client } from 'sveltekit-superforms/adapters';
-import { z } from 'zod';
+import { zod4 } from 'sveltekit-superforms/adapters';
 import prisma from '$lib/server/prisma';
+import { reviewSchema } from '$lib/schemas/review';
 import type { PageServerLoad, Actions } from './$types';
-
-export const reviewSchema = z.object({
-	clientName: z.string().min(2, 'Name must be at least 2 characters'),
-	country: z.string().optional(),
-	rating: z.coerce.number().int().min(1).max(5),
-	quote: z.string().min(10, 'Please write at least 10 characters'),
-});
 
 export const load: PageServerLoad = async ({ params }) => {
 	const invite = await prisma.reviewInvite.findUnique({

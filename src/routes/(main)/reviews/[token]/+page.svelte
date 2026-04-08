@@ -2,7 +2,7 @@
 	import type { PageData } from './$types';
 	import { superForm } from 'sveltekit-superforms';
 	import { zod4Client } from 'sveltekit-superforms/adapters';
-	import { reviewSchema } from './+page.server';
+	import { reviewSchema } from '$lib/schemas/review';
 	import HeadlineReveal from '$lib/components/HeadlineReveal.svelte';
 	import Btn from '$lib/components/ui/Btn.svelte';
 	import { Star } from 'lucide-svelte';
