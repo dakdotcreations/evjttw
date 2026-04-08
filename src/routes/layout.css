@@ -7,8 +7,51 @@
     --color-accent: #ffac00;
     --color-white: #fbfaf9;
     --color-black: #151313;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Inter', sans-serif;
 }
 
 body {
     @apply bg-white text-black;
+    font-family: var(--font-body);
 }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: 0.03em;
+}
+
+/* ── Page transitions (View Transitions API) ───────────────────── */
+@keyframes vt-fade-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes vt-fade-out {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+::view-transition-old(root) {
+    animation: 150ms ease-in vt-fade-out;
+}
+::view-transition-new(root) {
+    animation: 200ms ease-out vt-fade-in;
+}
+
+/* ── GSAP ScrollSmoother wrapper ───────────────────────────────── */
+#smooth-wrapper {
+    overflow: hidden;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    will-change: transform;
+}
+#smooth-content {
+    overflow: visible;
+    width: 100%;
+}
+
+/* ── Utility ────────────────────────────────────────────────────── */
+.scrollbar-hide { scrollbar-width: none; -ms-overflow-style: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }

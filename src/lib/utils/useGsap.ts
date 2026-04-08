@@ -7,8 +7,9 @@ export function loadGsap() {
             const gsap = (await import('gsap')).default;
             const ScrollTrigger = (await import('gsap/dist/ScrollTrigger')).default;
             const SplitText = (await import('gsap/dist/SplitText')).default;
-            gsap.registerPlugin(ScrollTrigger, SplitText);
-            return { gsap, ScrollTrigger, SplitText };
+            const ScrollSmoother = (await import('gsap/dist/ScrollSmoother')).default;
+            gsap.registerPlugin(ScrollTrigger, SplitText, ScrollSmoother);
+            return { gsap, ScrollTrigger, SplitText, ScrollSmoother };
         })();
     }
     return gsapPromise!;
