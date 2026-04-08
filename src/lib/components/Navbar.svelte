@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { Menu, X } from 'lucide-svelte';
+	import { Menu, X, ArrowRight } from 'lucide-svelte';
 
 	let scrolled = $state(false);
 	let hidden = $state(false);
 	let mobileOpen = $state(false);
+	let entering = $state(false);
 
 	$effect(() => {
 		let lastY = window.scrollY;
@@ -25,6 +26,21 @@
 		return () => window.removeEventListener('scroll', onScroll);
 	});
 
+	$effect(() => {
+		if (mobileOpen) {
+			requestAnimationFrame(() => requestAnimationFrame(() => (entering = true)));
+			document.body.style.overflow = 'hidden';
+		} else {
+			entering = false;
+			document.body.style.overflow = '';
+		}
+	});
+
+	$effect(() => {
+		page.url.pathname;
+		mobileOpen = false;
+	});
+
 	const links = [
 		{ href: '/tours', label: 'Tours' },
 		{ href: '/destinations', label: 'Destinations' },
@@ -33,6 +49,10 @@
 
 	function isActive(href: string) {
 		return page.url.pathname === href || page.url.pathname.startsWith(href + '/');
+	}
+
+	function closeMenu() {
+		mobileOpen = false;
 	}
 </script>
 
@@ -112,44 +132,100 @@
 			<img
 				src="/images/logo.svg"
 				alt="Evajo Tours & Travel"
-				class="h-9 w-auto transition-all duration-300 {scrolled || mobileOpen ? '' : 'brightness-0 invert'}"
+				class="h-9 w-auto transition-all duration-300 {scrolled ? '' : 'brightness-0 invert'}"
 			/>
 		</a>
 		<button
 			onclick={() => (mobileOpen = !mobileOpen)}
-			class="p-2 transition-colors {scrolled || mobileOpen ? 'text-black' : 'text-white'}"
-			aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+			class="p-2 transition-colors {scrolled ? 'text-black' : 'text-white'}"
+			aria-label="Open menu"
 		>
-			{#if mobileOpen}
-				<X size={22} />
-			{:else}
-				<Menu size={22} />
-			{/if}
+			<Menu size={22} />
+		</button>
+	</div>
+</header>
+
+<!-- Full-screen mobile menu overlay -->
+<div
+	class="fixed inset-0 z-[55] flex flex-col overflow-hidden bg-neutral-950 md:hidden"
+	style:transform={mobileOpen ? 'translateY(0)' : 'translateY(-100%)'}
+	style:transition="transform 0.65s cubic-bezier(0.76, 0, 0.24, 1)"
+	style:pointer-events={mobileOpen ? 'auto' : 'none'}
+	aria-hidden={!mobileOpen}
+>
+	<!-- Decorative blobs -->
+	<div class="pointer-events-none absolute inset-0 overflow-hidden">
+		<div class="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-accent/10 blur-3xl"></div>
+		<div class="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-accent/5 blur-2xl"></div>
+	</div>
+
+	<!-- Overlay top bar -->
+	<div class="relative flex items-center justify-between px-6 pb-4 pt-5">
+		<a href="/" onclick={closeMenu}>
+			<img src="/images/logo.svg" alt="Evajo Tours & Travel" class="h-8 w-auto brightness-0 invert" />
+		</a>
+		<button
+			onclick={closeMenu}
+			class="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors duration-200 hover:bg-white/20"
+			aria-label="Close menu"
+		>
+			<X size={20} />
 		</button>
 	</div>
 
-	<!-- Mobile menu -->
-	{#if mobileOpen}
-		<div class="border-t border-black/10 bg-white px-6 pb-6 md:hidden">
-			<div class="flex flex-col gap-1 pt-4">
-				{#each links as link (link.href)}
-					<a
-						href={link.href}
-						onclick={() => (mobileOpen = false)}
-						class="py-3 text-base font-semibold tracking-wide transition-colors
-						{isActive(link.href) ? 'text-accent' : 'text-black hover:text-accent'}"
-					>
-						{link.label}
-					</a>
-				{/each}
+	<!-- Top divider -->
+	<div
+		class="mx-6 h-px bg-white/10"
+		style:opacity={entering ? '1' : '0'}
+		style:transition="opacity 0.4s ease"
+		style:transition-delay={entering ? '80ms' : '0ms'}
+	></div>
+
+	<!-- Nav links -->
+	<nav class="relative flex flex-1 flex-col justify-center px-8">
+		{#each links as link, i (link.href)}
+			<div
+				style:opacity={entering ? '1' : '0'}
+				style:transform={entering ? 'translateY(0)' : 'translateY(28px)'}
+				style:transition="opacity 0.55s ease, transform 0.55s cubic-bezier(0.33, 1, 0.68, 1)"
+				style:transition-delay={entering ? `${i * 90 + 150}ms` : '0ms'}
+			>
 				<a
-					href="/contact"
-					onclick={() => (mobileOpen = false)}
-					class="mt-4 block bg-accent px-5 py-3 text-center text-sm font-semibold text-black"
+					href={link.href}
+					onclick={closeMenu}
+					class="group flex items-center justify-between py-6 text-5xl font-bold leading-none tracking-tight transition-colors duration-300
+					{isActive(link.href) ? 'text-accent' : 'text-white/80 hover:text-white'}"
 				>
-					Plan My Trip
+					<span>{link.label}</span>
+					<ArrowRight
+						size={24}
+						class="transition-all duration-300 {isActive(link.href)
+							? 'translate-x-0 opacity-100 text-accent'
+							: '-translate-x-1 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 text-white'}"
+					/>
 				</a>
+				{#if i < links.length - 1}
+					<div class="h-px bg-white/10"></div>
+				{/if}
 			</div>
-		</div>
-	{/if}
-</header>
+		{/each}
+	</nav>
+
+	<!-- CTA -->
+	<div
+		class="relative px-8 pb-12"
+		style:opacity={entering ? '1' : '0'}
+		style:transform={entering ? 'translateY(0)' : 'translateY(20px)'}
+		style:transition="opacity 0.55s ease, transform 0.55s cubic-bezier(0.33, 1, 0.68, 1)"
+		style:transition-delay={entering ? `${links.length * 90 + 150}ms` : '0ms'}
+	>
+		<a
+			href="/contact"
+			onclick={closeMenu}
+			class="flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-4 text-sm font-bold text-black transition-all duration-300 hover:gap-3"
+		>
+			Plan My Trip
+			<ArrowRight size={16} />
+		</a>
+	</div>
+</div>
