@@ -77,3 +77,13 @@ export type Feature = Prisma.FeatureModel
  * 
  */
 export type FeatureItem = Prisma.FeatureItemModel
+/**
+ * Model Tag
+ * 
+ */
+export type Tag = Prisma.TagModel
+/**
+ * Model ItineraryTag
+ * 
+ */
+export type ItineraryTag = Prisma.ItineraryTagModel
