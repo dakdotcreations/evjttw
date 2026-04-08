@@ -11,26 +11,88 @@
 
 	let { data }: { data: PageData } = $props()
 
+	// --- Hero element refs ---
 	let heroTagline: HTMLElement
 	let heroHeadEl: HTMLElement
-	let heroPills: HTMLElement = $state() as HTMLElement
 	let heroCtas: HTMLElement = $state() as HTMLElement
+	let formEl: HTMLElement = $state() as HTMLElement
+	let formTriggerEl: HTMLElement = $state() as HTMLElement
 
-	onMount(async () => {
+	// --- Search form state ---
+	let formOpen = $state(false)
+	let selectedTag = $state("")
+	let selectedCountry = $state("")
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	let openTl: any = null
+
+	async function openForm() {
+		if (formOpen) return
+		formOpen = true
 		const { gsap } = await loadGsap()
+		openTl = gsap.timeline({ defaults: { ease: "power3.out" } })
+		openTl
+			.to(heroHeadEl, { scale: 0.62, y: -16, opacity: 0.45, duration: 0.45 })
+			.to(heroTagline, { opacity: 0, y: -8, duration: 0.3 }, "<")
+			.to(formTriggerEl, { opacity: 0, y: -8, duration: 0.25, pointerEvents: "none" }, "<")
+			.fromTo(
+				formEl,
+				{ opacity: 0, y: 36, display: "block" },
+				{ opacity: 1, y: 0, duration: 0.45 },
+				"-=0.1",
+			)
+	}
+
+	async function closeForm() {
+		if (!formOpen) return
+		const { gsap } = await loadGsap()
+		await gsap
+			.timeline({ defaults: { ease: "power2.inOut" } })
+			.to(formEl, { opacity: 0, y: 20, duration: 0.3 })
+			.to(heroHeadEl, { scale: 1, y: 0, opacity: 1, duration: 0.4 }, "-=0.1")
+			.to(heroTagline, { opacity: 1, y: 0, duration: 0.3 }, "-=0.25")
+			.to(formTriggerEl, { opacity: 1, y: 0, duration: 0.25, pointerEvents: "auto" }, "-=0.2")
+		formOpen = false
+		selectedTag = ""
+		selectedCountry = ""
+	}
+
+	// Build the GET query string for the form action
+	const searchHref = $derived(() => {
+		const params = new URLSearchParams()
+		if (selectedTag) params.set("tag", selectedTag)
+		if (selectedCountry) params.set("country", selectedCountry)
+		const qs = params.toString()
+		return qs ? `/tours?${qs}` : "/tours"
+	})
+
+	// --- Entrance animation ---
+	onMount(async () => {
+		const { gsap, SplitText } = await loadGsap()
+		const split = new SplitText(heroHeadEl.querySelector("h1"), {
+			type: "chars,words",
+			charsClass: "hero-char",
+		})
 		const tl = gsap.timeline({ defaults: { ease: "power3.out" } })
 		tl.from(heroTagline, { opacity: 0, y: 10, duration: 0.5, delay: 0.3 })
 			.from(
-				heroHeadEl.querySelectorAll(".hero-word"),
-				{ y: "110%", duration: 0.75, stagger: 0.08 },
+				split.chars,
+				{
+					y: "120%",
+					scale: 0.6,
+					opacity: 0,
+					duration: 0.6,
+					stagger: 0.025,
+					ease: "back.out(1.4)",
+				},
 				"-=0.1",
 			)
-			.from(heroPills?.children, { opacity: 0, y: 12, stagger: 0.06, duration: 0.4 }, "-=0.2")
 			.from(
 				heroCtas?.children,
 				{ opacity: 0, scale: 0.92, stagger: 0.08, duration: 0.4 },
-				"-=0.15",
+				"-=0.2",
 			)
+			.from(formTriggerEl, { opacity: 0, y: 10, duration: 0.35 }, "-=0.1")
 	})
 
 	let statsEl: HTMLElement
@@ -100,7 +162,7 @@
 		return () => observers.forEach((o) => o.disconnect())
 	})
 
-	const heroBgImage = $derived(data.countries[0]?.imageUrl ?? null)
+	const heroBgImage = "/images/hero.webp"
 </script>
 
 <svelte:head>
@@ -125,35 +187,158 @@
 		{/if}
 		<div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70"></div>
 	</div>
+
 	<div class="relative z-10 mx-auto max-w-5xl px-6 pt-28 text-center">
+		<!-- Tagline -->
 		<p
 			bind:this={heroTagline}
 			class="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-accent">
 			Uganda · Kenya · Tanzania · Rwanda
 		</p>
+
+		<!-- Headline (scales down when form opens) -->
 		<div bind:this={heroHeadEl} class="overflow-hidden">
 			<h1
 				class="font-display text-[clamp(3.5rem,9vw,8rem)] leading-[0.95] tracking-wide text-white">
-				{#each "Where the Wild Calls You".split(" ") as word, i (i)}
-					<span class="hero-word mr-[0.18em] inline-block last:mr-0">{word}</span>
-				{/each}
+				Where the Wild Calls You
 			</h1>
 		</div>
-		{#if data.tags.length > 0}
-			<div bind:this={heroPills} class="mt-8 flex flex-wrap justify-center gap-2">
-				{#each data.tags as tag (tag.id)}
-					<a
-						href="/tours?tag={tag.slug}"
-						class="border border-white/30 px-4 py-1.5 text-xs font-semibold tracking-wide text-white/80 backdrop-blur-sm transition-all duration-200 hover:border-accent hover:bg-accent hover:text-black"
-						>{tag.name}</a>
-				{/each}
-			</div>
-		{/if}
+
+		<!-- CTAs -->
 		<div bind:this={heroCtas} class="mt-10 flex flex-wrap justify-center gap-4">
 			<Btn href="/tours" variant="primary" size="lg">Explore Tours</Btn>
 			<Btn href="/contact" variant="outline" size="lg">Plan My Trip</Btn>
 		</div>
+
+		<!-- "Find Your Adventure" trigger -->
+		<div bind:this={formTriggerEl} class="mt-6">
+			<button
+				type="button"
+				onclick={openForm}
+				class="inline-flex items-center gap-2 border border-white/40 px-6 py-2.5 text-sm font-semibold tracking-wide text-white/80 backdrop-blur-sm transition-all duration-200 hover:border-accent hover:text-accent">
+				<svg
+					width="14"
+					height="14"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2.5"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					aria-hidden="true"
+					><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+				Find Your Adventure
+			</button>
+		</div>
+
+		<!-- Glass search form (hidden by GSAP, display toggled) -->
+		<div
+			bind:this={formEl}
+			style="display:none;"
+			class="relative mt-6 rounded-2xl border border-white/20 bg-white/10 px-6 py-6 text-left backdrop-blur-md sm:px-8">
+			<!-- Close button -->
+			<button
+				type="button"
+				onclick={closeForm}
+				aria-label="Close search"
+				class="absolute right-4 top-4 text-white/60 transition-colors hover:text-white">
+				<svg
+					width="18"
+					height="18"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2.5"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+			</button>
+
+			<form action="/tours" method="GET">
+				<!-- Hidden inputs reflect reactive state -->
+				{#if selectedTag}<input type="hidden" name="tag" value={selectedTag} />{/if}
+				{#if selectedCountry}<input
+						type="hidden"
+						name="country"
+						value={selectedCountry} />{/if}
+
+				<div class="space-y-5">
+					<!-- Activity / Tag -->
+					{#if data.tags.length > 0}
+						<div>
+							<p
+								class="mb-2.5 text-xs font-semibold uppercase tracking-widest text-white/50">
+								Activity
+							</p>
+							<div class="flex flex-wrap gap-2">
+								<button
+									type="button"
+									onclick={() => (selectedTag = "")}
+									class="px-4 py-1.5 text-xs font-semibold tracking-wide transition-all duration-150
+									{selectedTag === ''
+										? 'bg-accent text-black'
+										: 'border border-white/30 text-white/70 hover:border-white/60 hover:text-white'}">
+									All
+								</button>
+								{#each data.tags as tag (tag.id)}
+									<button
+										type="button"
+										onclick={() => (selectedTag = tag.slug)}
+										class="px-4 py-1.5 text-xs font-semibold tracking-wide transition-all duration-150
+										{selectedTag === tag.slug
+											? 'bg-accent text-black'
+											: 'border border-white/30 text-white/70 hover:border-white/60 hover:text-white'}">
+										{tag.name}
+									</button>
+								{/each}
+							</div>
+						</div>
+					{/if}
+
+					<!-- Destination / Country -->
+					{#if data.countries.length > 0}
+						<div>
+							<p
+								class="mb-2.5 text-xs font-semibold uppercase tracking-widest text-white/50">
+								Destination
+							</p>
+							<select
+								bind:value={selectedCountry}
+								class="w-full rounded-lg border border-white/25 bg-white/15 px-4 py-2.5 text-sm font-medium text-white backdrop-blur-sm focus:border-accent focus:outline-none sm:w-64"
+								style="color-scheme: dark;">
+								<option value="" class="bg-primary text-white"
+									>Any destination</option>
+								{#each data.countries as country (country.id)}
+									<option value={country.id} class="bg-primary text-white"
+										>{country.name}</option>
+								{/each}
+							</select>
+						</div>
+					{/if}
+
+					<!-- Submit -->
+					<div class="pt-1">
+						<a
+							href={searchHref()}
+							class="inline-flex items-center gap-2 bg-accent px-8 py-3 text-sm font-semibold text-black transition-colors hover:bg-accent/85">
+							Search Tours
+							<svg
+								width="14"
+								height="14"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.5"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+						</a>
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
+
 	<div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
 		<div class="h-10 w-px bg-white/30"></div>
 	</div>
