@@ -291,6 +291,7 @@ export type ItineraryWhereInput = {
   steps?: Prisma.ItineraryStepListRelationFilter
   enquiries?: Prisma.BookingEnquiryListRelationFilter
   features?: Prisma.FeatureItemListRelationFilter
+  tags?: Prisma.ItineraryTagListRelationFilter
 }
 
 export type ItineraryOrderByWithRelationInput = {
@@ -311,6 +312,7 @@ export type ItineraryOrderByWithRelationInput = {
   steps?: Prisma.ItineraryStepOrderByRelationAggregateInput
   enquiries?: Prisma.BookingEnquiryOrderByRelationAggregateInput
   features?: Prisma.FeatureItemOrderByRelationAggregateInput
+  tags?: Prisma.ItineraryTagOrderByRelationAggregateInput
 }
 
 export type ItineraryWhereUniqueInput = Prisma.AtLeast<{
@@ -334,6 +336,7 @@ export type ItineraryWhereUniqueInput = Prisma.AtLeast<{
   steps?: Prisma.ItineraryStepListRelationFilter
   enquiries?: Prisma.BookingEnquiryListRelationFilter
   features?: Prisma.FeatureItemListRelationFilter
+  tags?: Prisma.ItineraryTagListRelationFilter
 }, "id">
 
 export type ItineraryOrderByWithAggregationInput = {
@@ -396,6 +399,7 @@ export type ItineraryCreateInput = {
   steps?: Prisma.ItineraryStepCreateNestedManyWithoutItineraryInput
   enquiries?: Prisma.BookingEnquiryCreateNestedManyWithoutItineraryInput
   features?: Prisma.FeatureItemCreateNestedManyWithoutItineraryInput
+  tags?: Prisma.ItineraryTagCreateNestedManyWithoutItineraryInput
 }
 
 export type ItineraryUncheckedCreateInput = {
@@ -416,6 +420,7 @@ export type ItineraryUncheckedCreateInput = {
   steps?: Prisma.ItineraryStepUncheckedCreateNestedManyWithoutItineraryInput
   enquiries?: Prisma.BookingEnquiryUncheckedCreateNestedManyWithoutItineraryInput
   features?: Prisma.FeatureItemUncheckedCreateNestedManyWithoutItineraryInput
+  tags?: Prisma.ItineraryTagUncheckedCreateNestedManyWithoutItineraryInput
 }
 
 export type ItineraryUpdateInput = {
@@ -436,6 +441,7 @@ export type ItineraryUpdateInput = {
   steps?: Prisma.ItineraryStepUpdateManyWithoutItineraryNestedInput
   enquiries?: Prisma.BookingEnquiryUpdateManyWithoutItineraryNestedInput
   features?: Prisma.FeatureItemUpdateManyWithoutItineraryNestedInput
+  tags?: Prisma.ItineraryTagUpdateManyWithoutItineraryNestedInput
 }
 
 export type ItineraryUncheckedUpdateInput = {
@@ -456,6 +462,7 @@ export type ItineraryUncheckedUpdateInput = {
   steps?: Prisma.ItineraryStepUncheckedUpdateManyWithoutItineraryNestedInput
   enquiries?: Prisma.BookingEnquiryUncheckedUpdateManyWithoutItineraryNestedInput
   features?: Prisma.FeatureItemUncheckedUpdateManyWithoutItineraryNestedInput
+  tags?: Prisma.ItineraryTagUncheckedUpdateManyWithoutItineraryNestedInput
 }
 
 export type ItineraryCreateManyInput = {
@@ -657,6 +664,20 @@ export type ItineraryUpdateOneRequiredWithoutFeaturesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ItineraryUpdateToOneWithWhereWithoutFeaturesInput, Prisma.ItineraryUpdateWithoutFeaturesInput>, Prisma.ItineraryUncheckedUpdateWithoutFeaturesInput>
 }
 
+export type ItineraryCreateNestedOneWithoutTagsInput = {
+  create?: Prisma.XOR<Prisma.ItineraryCreateWithoutTagsInput, Prisma.ItineraryUncheckedCreateWithoutTagsInput>
+  connectOrCreate?: Prisma.ItineraryCreateOrConnectWithoutTagsInput
+  connect?: Prisma.ItineraryWhereUniqueInput
+}
+
+export type ItineraryUpdateOneRequiredWithoutTagsNestedInput = {
+  create?: Prisma.XOR<Prisma.ItineraryCreateWithoutTagsInput, Prisma.ItineraryUncheckedCreateWithoutTagsInput>
+  connectOrCreate?: Prisma.ItineraryCreateOrConnectWithoutTagsInput
+  upsert?: Prisma.ItineraryUpsertWithoutTagsInput
+  connect?: Prisma.ItineraryWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ItineraryUpdateToOneWithWhereWithoutTagsInput, Prisma.ItineraryUpdateWithoutTagsInput>, Prisma.ItineraryUncheckedUpdateWithoutTagsInput>
+}
+
 export type ItineraryCreateWithoutStepsInput = {
   id?: string
   title: string
@@ -674,6 +695,7 @@ export type ItineraryCreateWithoutStepsInput = {
   updatedAt?: Date | string
   enquiries?: Prisma.BookingEnquiryCreateNestedManyWithoutItineraryInput
   features?: Prisma.FeatureItemCreateNestedManyWithoutItineraryInput
+  tags?: Prisma.ItineraryTagCreateNestedManyWithoutItineraryInput
 }
 
 export type ItineraryUncheckedCreateWithoutStepsInput = {
@@ -693,6 +715,7 @@ export type ItineraryUncheckedCreateWithoutStepsInput = {
   updatedAt?: Date | string
   enquiries?: Prisma.BookingEnquiryUncheckedCreateNestedManyWithoutItineraryInput
   features?: Prisma.FeatureItemUncheckedCreateNestedManyWithoutItineraryInput
+  tags?: Prisma.ItineraryTagUncheckedCreateNestedManyWithoutItineraryInput
 }
 
 export type ItineraryCreateOrConnectWithoutStepsInput = {
@@ -728,6 +751,7 @@ export type ItineraryUpdateWithoutStepsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enquiries?: Prisma.BookingEnquiryUpdateManyWithoutItineraryNestedInput
   features?: Prisma.FeatureItemUpdateManyWithoutItineraryNestedInput
+  tags?: Prisma.ItineraryTagUpdateManyWithoutItineraryNestedInput
 }
 
 export type ItineraryUncheckedUpdateWithoutStepsInput = {
@@ -747,6 +771,7 @@ export type ItineraryUncheckedUpdateWithoutStepsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enquiries?: Prisma.BookingEnquiryUncheckedUpdateManyWithoutItineraryNestedInput
   features?: Prisma.FeatureItemUncheckedUpdateManyWithoutItineraryNestedInput
+  tags?: Prisma.ItineraryTagUncheckedUpdateManyWithoutItineraryNestedInput
 }
 
 export type ItineraryCreateWithoutEnquiriesInput = {
@@ -766,6 +791,7 @@ export type ItineraryCreateWithoutEnquiriesInput = {
   updatedAt?: Date | string
   steps?: Prisma.ItineraryStepCreateNestedManyWithoutItineraryInput
   features?: Prisma.FeatureItemCreateNestedManyWithoutItineraryInput
+  tags?: Prisma.ItineraryTagCreateNestedManyWithoutItineraryInput
 }
 
 export type ItineraryUncheckedCreateWithoutEnquiriesInput = {
@@ -785,6 +811,7 @@ export type ItineraryUncheckedCreateWithoutEnquiriesInput = {
   updatedAt?: Date | string
   steps?: Prisma.ItineraryStepUncheckedCreateNestedManyWithoutItineraryInput
   features?: Prisma.FeatureItemUncheckedCreateNestedManyWithoutItineraryInput
+  tags?: Prisma.ItineraryTagUncheckedCreateNestedManyWithoutItineraryInput
 }
 
 export type ItineraryCreateOrConnectWithoutEnquiriesInput = {
@@ -820,6 +847,7 @@ export type ItineraryUpdateWithoutEnquiriesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   steps?: Prisma.ItineraryStepUpdateManyWithoutItineraryNestedInput
   features?: Prisma.FeatureItemUpdateManyWithoutItineraryNestedInput
+  tags?: Prisma.ItineraryTagUpdateManyWithoutItineraryNestedInput
 }
 
 export type ItineraryUncheckedUpdateWithoutEnquiriesInput = {
@@ -839,6 +867,7 @@ export type ItineraryUncheckedUpdateWithoutEnquiriesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   steps?: Prisma.ItineraryStepUncheckedUpdateManyWithoutItineraryNestedInput
   features?: Prisma.FeatureItemUncheckedUpdateManyWithoutItineraryNestedInput
+  tags?: Prisma.ItineraryTagUncheckedUpdateManyWithoutItineraryNestedInput
 }
 
 export type ItineraryCreateWithoutFeaturesInput = {
@@ -858,6 +887,7 @@ export type ItineraryCreateWithoutFeaturesInput = {
   updatedAt?: Date | string
   steps?: Prisma.ItineraryStepCreateNestedManyWithoutItineraryInput
   enquiries?: Prisma.BookingEnquiryCreateNestedManyWithoutItineraryInput
+  tags?: Prisma.ItineraryTagCreateNestedManyWithoutItineraryInput
 }
 
 export type ItineraryUncheckedCreateWithoutFeaturesInput = {
@@ -877,6 +907,7 @@ export type ItineraryUncheckedCreateWithoutFeaturesInput = {
   updatedAt?: Date | string
   steps?: Prisma.ItineraryStepUncheckedCreateNestedManyWithoutItineraryInput
   enquiries?: Prisma.BookingEnquiryUncheckedCreateNestedManyWithoutItineraryInput
+  tags?: Prisma.ItineraryTagUncheckedCreateNestedManyWithoutItineraryInput
 }
 
 export type ItineraryCreateOrConnectWithoutFeaturesInput = {
@@ -912,6 +943,7 @@ export type ItineraryUpdateWithoutFeaturesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   steps?: Prisma.ItineraryStepUpdateManyWithoutItineraryNestedInput
   enquiries?: Prisma.BookingEnquiryUpdateManyWithoutItineraryNestedInput
+  tags?: Prisma.ItineraryTagUpdateManyWithoutItineraryNestedInput
 }
 
 export type ItineraryUncheckedUpdateWithoutFeaturesInput = {
@@ -931,6 +963,103 @@ export type ItineraryUncheckedUpdateWithoutFeaturesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   steps?: Prisma.ItineraryStepUncheckedUpdateManyWithoutItineraryNestedInput
   enquiries?: Prisma.BookingEnquiryUncheckedUpdateManyWithoutItineraryNestedInput
+  tags?: Prisma.ItineraryTagUncheckedUpdateManyWithoutItineraryNestedInput
+}
+
+export type ItineraryCreateWithoutTagsInput = {
+  id?: string
+  title: string
+  summary: string
+  description: string
+  fixedPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  pricePerPerson?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currency?: string
+  durationDays: number
+  bestSeasons?: Prisma.ItineraryCreatebestSeasonsInput | string[]
+  coverImage?: string | null
+  images?: Prisma.ItineraryCreateimagesInput | string[]
+  published?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  steps?: Prisma.ItineraryStepCreateNestedManyWithoutItineraryInput
+  enquiries?: Prisma.BookingEnquiryCreateNestedManyWithoutItineraryInput
+  features?: Prisma.FeatureItemCreateNestedManyWithoutItineraryInput
+}
+
+export type ItineraryUncheckedCreateWithoutTagsInput = {
+  id?: string
+  title: string
+  summary: string
+  description: string
+  fixedPrice?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  pricePerPerson?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currency?: string
+  durationDays: number
+  bestSeasons?: Prisma.ItineraryCreatebestSeasonsInput | string[]
+  coverImage?: string | null
+  images?: Prisma.ItineraryCreateimagesInput | string[]
+  published?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  steps?: Prisma.ItineraryStepUncheckedCreateNestedManyWithoutItineraryInput
+  enquiries?: Prisma.BookingEnquiryUncheckedCreateNestedManyWithoutItineraryInput
+  features?: Prisma.FeatureItemUncheckedCreateNestedManyWithoutItineraryInput
+}
+
+export type ItineraryCreateOrConnectWithoutTagsInput = {
+  where: Prisma.ItineraryWhereUniqueInput
+  create: Prisma.XOR<Prisma.ItineraryCreateWithoutTagsInput, Prisma.ItineraryUncheckedCreateWithoutTagsInput>
+}
+
+export type ItineraryUpsertWithoutTagsInput = {
+  update: Prisma.XOR<Prisma.ItineraryUpdateWithoutTagsInput, Prisma.ItineraryUncheckedUpdateWithoutTagsInput>
+  create: Prisma.XOR<Prisma.ItineraryCreateWithoutTagsInput, Prisma.ItineraryUncheckedCreateWithoutTagsInput>
+  where?: Prisma.ItineraryWhereInput
+}
+
+export type ItineraryUpdateToOneWithWhereWithoutTagsInput = {
+  where?: Prisma.ItineraryWhereInput
+  data: Prisma.XOR<Prisma.ItineraryUpdateWithoutTagsInput, Prisma.ItineraryUncheckedUpdateWithoutTagsInput>
+}
+
+export type ItineraryUpdateWithoutTagsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  summary?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  fixedPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  pricePerPerson?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  durationDays?: Prisma.IntFieldUpdateOperationsInput | number
+  bestSeasons?: Prisma.ItineraryUpdatebestSeasonsInput | string[]
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  images?: Prisma.ItineraryUpdateimagesInput | string[]
+  published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steps?: Prisma.ItineraryStepUpdateManyWithoutItineraryNestedInput
+  enquiries?: Prisma.BookingEnquiryUpdateManyWithoutItineraryNestedInput
+  features?: Prisma.FeatureItemUpdateManyWithoutItineraryNestedInput
+}
+
+export type ItineraryUncheckedUpdateWithoutTagsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  summary?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  fixedPrice?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  pricePerPerson?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  durationDays?: Prisma.IntFieldUpdateOperationsInput | number
+  bestSeasons?: Prisma.ItineraryUpdatebestSeasonsInput | string[]
+  coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  images?: Prisma.ItineraryUpdateimagesInput | string[]
+  published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  steps?: Prisma.ItineraryStepUncheckedUpdateManyWithoutItineraryNestedInput
+  enquiries?: Prisma.BookingEnquiryUncheckedUpdateManyWithoutItineraryNestedInput
+  features?: Prisma.FeatureItemUncheckedUpdateManyWithoutItineraryNestedInput
 }
 
 
@@ -942,12 +1071,14 @@ export type ItineraryCountOutputType = {
   steps: number
   enquiries: number
   features: number
+  tags: number
 }
 
 export type ItineraryCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   steps?: boolean | ItineraryCountOutputTypeCountStepsArgs
   enquiries?: boolean | ItineraryCountOutputTypeCountEnquiriesArgs
   features?: boolean | ItineraryCountOutputTypeCountFeaturesArgs
+  tags?: boolean | ItineraryCountOutputTypeCountTagsArgs
 }
 
 /**
@@ -981,6 +1112,13 @@ export type ItineraryCountOutputTypeCountFeaturesArgs<ExtArgs extends runtime.Ty
   where?: Prisma.FeatureItemWhereInput
 }
 
+/**
+ * ItineraryCountOutputType without action
+ */
+export type ItineraryCountOutputTypeCountTagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ItineraryTagWhereInput
+}
+
 
 export type ItinerarySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1000,6 +1138,7 @@ export type ItinerarySelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   steps?: boolean | Prisma.Itinerary$stepsArgs<ExtArgs>
   enquiries?: boolean | Prisma.Itinerary$enquiriesArgs<ExtArgs>
   features?: boolean | Prisma.Itinerary$featuresArgs<ExtArgs>
+  tags?: boolean | Prisma.Itinerary$tagsArgs<ExtArgs>
   _count?: boolean | Prisma.ItineraryCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["itinerary"]>
 
@@ -1059,6 +1198,7 @@ export type ItineraryInclude<ExtArgs extends runtime.Types.Extensions.InternalAr
   steps?: boolean | Prisma.Itinerary$stepsArgs<ExtArgs>
   enquiries?: boolean | Prisma.Itinerary$enquiriesArgs<ExtArgs>
   features?: boolean | Prisma.Itinerary$featuresArgs<ExtArgs>
+  tags?: boolean | Prisma.Itinerary$tagsArgs<ExtArgs>
   _count?: boolean | Prisma.ItineraryCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ItineraryIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1070,6 +1210,7 @@ export type $ItineraryPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     steps: Prisma.$ItineraryStepPayload<ExtArgs>[]
     enquiries: Prisma.$BookingEnquiryPayload<ExtArgs>[]
     features: Prisma.$FeatureItemPayload<ExtArgs>[]
+    tags: Prisma.$ItineraryTagPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1483,6 +1624,7 @@ export interface Prisma__ItineraryClient<T, Null = never, ExtArgs extends runtim
   steps<T extends Prisma.Itinerary$stepsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Itinerary$stepsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ItineraryStepPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   enquiries<T extends Prisma.Itinerary$enquiriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Itinerary$enquiriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BookingEnquiryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   features<T extends Prisma.Itinerary$featuresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Itinerary$featuresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FeatureItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tags<T extends Prisma.Itinerary$tagsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Itinerary$tagsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ItineraryTagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1988,6 +2130,30 @@ export type Itinerary$featuresArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.FeatureItemScalarFieldEnum | Prisma.FeatureItemScalarFieldEnum[]
+}
+
+/**
+ * Itinerary.tags
+ */
+export type Itinerary$tagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ItineraryTag
+   */
+  select?: Prisma.ItineraryTagSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ItineraryTag
+   */
+  omit?: Prisma.ItineraryTagOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ItineraryTagInclude<ExtArgs> | null
+  where?: Prisma.ItineraryTagWhereInput
+  orderBy?: Prisma.ItineraryTagOrderByWithRelationInput | Prisma.ItineraryTagOrderByWithRelationInput[]
+  cursor?: Prisma.ItineraryTagWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ItineraryTagScalarFieldEnum | Prisma.ItineraryTagScalarFieldEnum[]
 }
 
 /**

@@ -17,6 +17,7 @@ export const load: PageServerLoad = async ({ params }) => {
 						location: { include: { country: true } },
 					},
 				},
+				tags: { include: { tag: true } },
 			},
 		}),
 		superValidate(zod4(bookingEnquirySchema)),
@@ -32,13 +33,49 @@ export const load: PageServerLoad = async ({ params }) => {
 		),
 	];
 
+	// Related tours sharing same countries (simple approach)
+	const relatedRaw = await prisma.itinerary.findMany({
+		where: {
+			published: true,
+			id: { not: params.id },
+			steps: {
+				some: {
+					location: {
+						country: { name: { in: countries } },
+					},
+				},
+			},
+		},
+		take: 4,
+		include: {
+			steps: {
+				include: { location: { include: { country: true } } },
+			},
+			tags: { include: { tag: true } },
+		},
+	});
+
+	const related = relatedRaw.map((it) => ({
+		id: it.id,
+		title: it.title,
+		coverImage: it.coverImage,
+		durationDays: it.durationDays,
+		fixedPrice: it.fixedPrice ? Number(it.fixedPrice) : null,
+		pricePerPerson: it.pricePerPerson ? Number(it.pricePerPerson) : null,
+		currency: it.currency,
+		countries: [...new Set(it.steps.filter((s) => s.location?.country).map((s) => s.location!.country!.name))],
+		tags: it.tags.map((t) => ({ name: t.tag.name, slug: t.tag.slug })),
+	}));
+
 	return {
 		itinerary: {
 			...itinerary,
 			fixedPrice: itinerary.fixedPrice ? Number(itinerary.fixedPrice) : null,
 			pricePerPerson: itinerary.pricePerPerson ? Number(itinerary.pricePerPerson) : null,
+			tags: itinerary.tags.map((t) => ({ name: t.tag.name, slug: t.tag.slug })),
 		},
 		countries,
+		related,
 		enquiryForm,
 	};
 };

@@ -1,0 +1,81 @@
+<script lang="ts">
+	import type { PageData } from './$types';
+	import ContactForm from '$lib/components/ContactForm.svelte';
+	import HeadlineReveal from '$lib/components/HeadlineReveal.svelte';
+	import ParaFade from '$lib/components/ParaFade.svelte';
+	import { Mail, Phone, MapPin } from 'lucide-svelte';
+
+	let { data }: { data: PageData } = $props();
+</script>
+
+<svelte:head>
+	<title>Contact Us — Evajo Tours & Travel</title>
+	<meta
+		name="description"
+		content="Get in touch with Evajo Tours & Travel to plan your East Africa safari or trek."
+	/>
+</svelte:head>
+
+<!-- HERO -->
+<div class="bg-primary pb-20 pt-36">
+	<div class="mx-auto max-w-5xl px-6 lg:px-8">
+		<p class="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-accent">Let's Talk</p>
+		<HeadlineReveal>
+			<h1 class="font-display text-[clamp(3rem,7vw,6rem)] leading-none tracking-wide text-white">
+				Plan Your Adventure
+			</h1>
+		</HeadlineReveal>
+		<ParaFade delay={0.3}>
+			<p class="mt-5 max-w-xl text-sm leading-relaxed text-white/60">
+				Whether you have a specific destination in mind or just a dream, we'll turn it into
+				the trip of a lifetime.
+			</p>
+		</ParaFade>
+	</div>
+</div>
+
+<!-- SPLIT LAYOUT -->
+<section class="bg-white">
+	<div class="mx-auto grid max-w-7xl gap-0 lg:grid-cols-[38%_62%]">
+		<!-- Left info panel -->
+		<div class="bg-[#f5f3f0] px-8 py-16 lg:px-12 lg:py-20">
+			<p class="mb-2 text-xs font-semibold uppercase tracking-widest text-accent">Find Us</p>
+			<h2 class="mb-8 font-display text-3xl tracking-wide text-black">Get In Touch</h2>
+
+			<div class="space-y-6 text-sm text-gray-700">
+				<div class="flex items-start gap-3">
+					<MapPin size={18} class="mt-0.5 shrink-0 text-accent" />
+					<div>
+						<p class="font-semibold">Kampala, Uganda</p>
+						<p class="text-gray-500">Serving all of East Africa</p>
+					</div>
+				</div>
+				<div class="flex items-center gap-3">
+					<Phone size={18} class="shrink-0 text-accent" />
+					<a href="tel:+256700000000" class="hover:text-primary">+256 700 000 000</a>
+				</div>
+				<div class="flex items-center gap-3">
+					<Mail size={18} class="shrink-0 text-accent" />
+					<a href="mailto:info@evajotours.com" class="hover:text-primary">info@evajotours.com</a>
+				</div>
+			</div>
+
+			<div class="mt-10 border-t border-black/10 pt-8">
+				<p class="mb-3 text-xs font-semibold uppercase tracking-widest text-gray-400">
+					Response time
+				</p>
+				<p class="text-sm text-gray-600">
+					We reply to all enquiries within <strong class="text-black">24 hours</strong>. For urgent
+					matters reach us via WhatsApp.
+				</p>
+			</div>
+		</div>
+
+		<!-- Right form -->
+		<div class="px-8 py-16 lg:px-16 lg:py-20">
+			<p class="mb-2 text-xs font-semibold uppercase tracking-widest text-accent">Send a Message</p>
+			<h2 class="mb-8 font-display text-3xl tracking-wide text-black">Tell Us Your Dream</h2>
+			<ContactForm formData={data.form} />
+		</div>
+	</div>
+</section>

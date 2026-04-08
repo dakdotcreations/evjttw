@@ -62,7 +62,9 @@ export const ModelName = {
   Testimonial: 'Testimonial',
   ReviewInvite: 'ReviewInvite',
   Feature: 'Feature',
-  FeatureItem: 'FeatureItem'
+  FeatureItem: 'FeatureItem',
+  Tag: 'Tag',
+  ItineraryTag: 'ItineraryTag'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -246,6 +248,24 @@ export const FeatureItemScalarFieldEnum = {
 } as const
 
 export type FeatureItemScalarFieldEnum = (typeof FeatureItemScalarFieldEnum)[keyof typeof FeatureItemScalarFieldEnum]
+
+
+export const TagScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  createdAt: 'createdAt'
+} as const
+
+export type TagScalarFieldEnum = (typeof TagScalarFieldEnum)[keyof typeof TagScalarFieldEnum]
+
+
+export const ItineraryTagScalarFieldEnum = {
+  itineraryId: 'itineraryId',
+  tagId: 'tagId'
+} as const
+
+export type ItineraryTagScalarFieldEnum = (typeof ItineraryTagScalarFieldEnum)[keyof typeof ItineraryTagScalarFieldEnum]
 
 
 export const SortOrder = {

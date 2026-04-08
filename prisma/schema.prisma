@@ -90,6 +90,7 @@ model Itinerary {
   steps          ItineraryStep[]
   enquiries      BookingEnquiry[]
   features       FeatureItem[]
+  tags           ItineraryTag[]
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @updatedAt
 }
@@ -181,4 +182,21 @@ model FeatureItem {
   @@unique([featureId, itineraryId])
   @@index([featureId])
   @@index([itineraryId])
+}
+
+model Tag {
+  id          String         @id @default(cuid())
+  name        String         @unique
+  slug        String         @unique
+  itineraries ItineraryTag[]
+  createdAt   DateTime       @default(now())
+}
+
+model ItineraryTag {
+  itinerary   Itinerary @relation(fields: [itineraryId], references: [id], onDelete: Cascade)
+  itineraryId String
+  tag         Tag       @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  tagId       String
+
+  @@id([itineraryId, tagId])
 }
