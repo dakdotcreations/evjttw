@@ -2,7 +2,7 @@ import prisma from '$lib/server/prisma';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
-	const [features, testimonials, countries] = await Promise.all([
+	const [features, testimonials, countries, tags] = await Promise.all([
 		prisma.feature.findMany({
 			where: { isActive: true },
 			orderBy: { sortOrder: 'asc' },
@@ -20,6 +20,7 @@ export const load: PageServerLoad = async () => {
 										location: { include: { country: true } },
 									},
 								},
+								tags: { include: { tag: true } },
 							},
 						},
 					},
@@ -29,7 +30,7 @@ export const load: PageServerLoad = async () => {
 		prisma.testimonial.findMany({
 			where: { published: true },
 			orderBy: { createdAt: 'desc' },
-			take: 3,
+			take: 6,
 		}),
 		prisma.country.findMany({
 			orderBy: { name: 'asc' },
@@ -40,7 +41,13 @@ export const load: PageServerLoad = async () => {
 				name: true,
 				flagEmoji: true,
 				imageUrl: true,
+				videoUrl: true,
 			},
+		}),
+		prisma.tag.findMany({
+			orderBy: { itineraries: { _count: 'desc' } },
+			take: 8,
+			select: { id: true, name: true, slug: true },
 		}),
 	]);
 
@@ -57,6 +64,7 @@ export const load: PageServerLoad = async () => {
 				pricePerPerson: number | null;
 				currency: string;
 				countries: string[];
+				tags: { name: string; slug: string }[];
 			}[]
 		>((acc, item) => {
 			if (acc.some((t) => t.id === item.itinerary.id)) return acc;
@@ -78,20 +86,16 @@ export const load: PageServerLoad = async () => {
 					: null,
 				currency: item.itinerary.currency,
 				countries: derivedCountries,
+				tags: item.itinerary.tags.map((it) => ({ name: it.tag.name, slug: it.tag.slug })),
 			});
 			return acc;
 		}, []);
-
-	// Hero images — add files to static/images/ and update this list
-	const heroImages: string[] = [
-		// '/images/hero-1.jpg',
-		// '/images/hero-2.jpg',
-	];
 
 	return {
 		featuredTours,
 		testimonials,
 		countries,
-		heroImages,
+		features,
+		tags,
 	};
 };
