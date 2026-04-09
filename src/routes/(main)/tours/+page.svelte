@@ -114,6 +114,7 @@ durationDays={tour.durationDays}
 fixedPrice={tour.fixedPrice}
 pricePerPerson={tour.pricePerPerson}
 currency={tour.currency}
+pricingDisabled={tour.pricingDisabled}
 countries={tour.countries.map((c) => c.name)}
 tags={tour.tags}
 />

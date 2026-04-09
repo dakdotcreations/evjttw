@@ -4,10 +4,12 @@ export interface PriceableItem {
 	fixedPrice: number | null;
 	pricePerPerson: number | null;
 	currency: string;
+	pricingDisabled?: boolean;
 }
 
 export function formatPrice(item: PriceableItem): string {
-	const { fixedPrice, pricePerPerson, currency } = item;
+	const { fixedPrice, pricePerPerson, currency, pricingDisabled } = item;
+	if (pricingDisabled) return 'Price on booking';
 	if (fixedPrice != null) {
 		return formatCurrency(fixedPrice, currency);
 	}

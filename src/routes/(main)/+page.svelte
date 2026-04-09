@@ -412,6 +412,7 @@
 								fixedPrice={tour.fixedPrice}
 								pricePerPerson={tour.pricePerPerson}
 								currency={tour.currency}
+								pricingDisabled={tour.pricingDisabled}
 								countries={tour.countries}
 								tags={tour.tags} />
 						{/if}
@@ -457,6 +458,7 @@
 						fixedPrice={tour.fixedPrice}
 						pricePerPerson={tour.pricePerPerson}
 						currency={tour.currency}
+						pricingDisabled={tour.pricingDisabled}
 						countries={tour.countries}
 						tags={tour.tags} />
 				{/each}

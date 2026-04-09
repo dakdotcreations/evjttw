@@ -63,6 +63,7 @@ export const load: PageServerLoad = async () => {
 				fixedPrice: number | null;
 				pricePerPerson: number | null;
 				currency: string;
+				pricingDisabled: boolean;
 				countries: string[];
 				tags: { name: string; slug: string }[];
 			}[]
@@ -85,17 +86,31 @@ export const load: PageServerLoad = async () => {
 					? Number(item.itinerary.pricePerPerson)
 					: null,
 				currency: item.itinerary.currency,
+				pricingDisabled: item.itinerary.pricingDisabled,
 				countries: derivedCountries,
 				tags: item.itinerary.tags.map((it) => ({ name: it.tag.name, slug: it.tag.slug })),
 			});
 			return acc;
 		}, []);
 
+	// Strip non-serializable Decimal fields from nested itineraries in features
+	const serializedFeatures = features.map((f) => ({
+		...f,
+		items: f.items.map((item) => ({
+			...item,
+			itinerary: {
+				...item.itinerary,
+				fixedPrice: item.itinerary.fixedPrice ? Number(item.itinerary.fixedPrice) : null,
+				pricePerPerson: item.itinerary.pricePerPerson ? Number(item.itinerary.pricePerPerson) : null,
+			},
+		})),
+	}));
+
 	return {
 		featuredTours,
 		testimonials,
 		countries,
-		features,
+		features: serializedFeatures,
 		tags,
 	};
 };

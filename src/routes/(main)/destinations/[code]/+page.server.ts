@@ -40,6 +40,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		fixedPrice: it.fixedPrice ? Number(it.fixedPrice) : null,
 		pricePerPerson: it.pricePerPerson ? Number(it.pricePerPerson) : null,
 		currency: it.currency,
+		pricingDisabled: it.pricingDisabled,
 		countries: [
 			...new Set(
 				it.steps

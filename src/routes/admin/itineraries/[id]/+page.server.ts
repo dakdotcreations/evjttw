@@ -12,8 +12,8 @@ const stepSchema = z.object({
 	title: z.string().min(1, 'Title is required'),
 	description: z.string().min(1, 'Description is required'),
 	highlight: z.string().optional(),
-	durationText: z.string().min(1, 'Duration is required'),
-	durationMinutes: z.coerce.number().int().positive().optional(),
+	durationDays: z.coerce.number().int().min(0).optional(),
+	durationHours: z.coerce.number().int().min(0).optional(),
 	locationId: z.string().optional(),
 	image: z.string().optional().default('')
 });
@@ -108,7 +108,8 @@ export const actions: Actions = {
 				bestSeasons,
 				coverImage: coverImageUrl,
 				images,
-				published: form.data.published
+				published: form.data.published,
+				pricingDisabled: form.data.pricingDisabled
 			}
 		});
 
@@ -149,8 +150,8 @@ export const actions: Actions = {
 				title: form.data.title,
 				description: form.data.description,
 				highlight: form.data.highlight || null,
-				durationText: form.data.durationText,
-				durationMinutes: form.data.durationMinutes ?? null,
+				durationDays: form.data.durationDays ?? null,
+				durationHours: form.data.durationHours ?? null,
 				...(form.data.locationId
 					? { location: { connect: { id: form.data.locationId } } }
 					: {}),
@@ -179,8 +180,8 @@ export const actions: Actions = {
 				title: form.data.title,
 				description: form.data.description,
 				highlight: form.data.highlight || null,
-				durationText: form.data.durationText,
-				durationMinutes: form.data.durationMinutes ?? null,
+				durationDays: form.data.durationDays ?? null,
+				durationHours: form.data.durationHours ?? null,
 				location: form.data.locationId
 					? { connect: { id: form.data.locationId } }
 					: { disconnect: true },

@@ -87,6 +87,7 @@ model Itinerary {
   coverImage     String?
   images         String[]
   published      Boolean         @default(false)
+  pricingDisabled Boolean         @default(false)
   steps          ItineraryStep[]
   enquiries      BookingEnquiry[]
   features       FeatureItem[]
@@ -103,8 +104,8 @@ model ItineraryStep {
   title           String
   description     String
   highlight       String?
-  durationText    String
-  durationMinutes Int?
+  durationDays    Int?
+  durationHours   Int?
   locationId      String?
   location        Location? @relation(fields: [locationId], references: [id])
   images          String[]

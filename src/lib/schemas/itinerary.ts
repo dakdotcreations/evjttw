@@ -11,5 +11,6 @@ export const itinerarySchema = z.object({
 	bestSeasons: z.string().default(''),
 	coverImage: z.string().optional().default(''),
 	images: z.string().default(''),
-	published: z.boolean().default(false)
+	published: z.boolean().default(false),
+	pricingDisabled: z.boolean().default(false)
 });

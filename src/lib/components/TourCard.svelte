@@ -10,6 +10,7 @@ durationDays,
 fixedPrice,
 pricePerPerson,
 currency,
+pricingDisabled = false,
 countries,
 tags = []
 }: {
@@ -20,11 +21,12 @@ durationDays: number;
 fixedPrice: number | null;
 pricePerPerson: number | null;
 currency: string;
+pricingDisabled?: boolean;
 countries: string[];
 tags?: { name: string; slug: string }[];
 } = $props();
 
-const price = $derived(formatPrice({ fixedPrice, pricePerPerson, currency }));
+const price = $derived(formatPrice({ fixedPrice, pricePerPerson, currency, pricingDisabled }));
 </script>
 
 <a

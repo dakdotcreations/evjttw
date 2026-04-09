@@ -43,7 +43,8 @@ export const actions: Actions = {
 				bestSeasons,
 				coverImage: coverImageUrl,
 				images,
-				published: form.data.published
+				published: form.data.published,
+				pricingDisabled: form.data.pricingDisabled
 			}
 		});
 
