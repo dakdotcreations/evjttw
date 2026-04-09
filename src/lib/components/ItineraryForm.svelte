@@ -107,6 +107,22 @@
 	<div>
 		<h3 class="mb-1 text-sm font-semibold text-gray-800">Pricing</h3>
 		<p class="mb-4 text-xs text-gray-400">Set a fixed group price OR a per-person price. Fixed price takes precedence. Leave both empty to show "Price on request".</p>
+
+		<div class="mb-4 flex items-start gap-3">
+			<input
+				id="itin-pricingDisabled"
+				name="pricingDisabled"
+				type="checkbox"
+				bind:checked={$form.pricingDisabled}
+				class="mt-0.5 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+			/>
+			<div>
+				<label for="itin-pricingDisabled" class="block text-sm font-medium text-gray-700">Price on booking</label>
+				<p class="text-xs text-gray-400">When enabled, no price is shown. Customers will see "Price on booking" instead.</p>
+			</div>
+		</div>
+
+		{#if !$form.pricingDisabled}
 		<div class="grid grid-cols-2 gap-5">
 			<Input
 				id="itin-fixedPrice"
@@ -131,6 +147,7 @@
 				bind:value={$form.pricePerPerson}
 			/>
 		</div>
+		{/if}
 	</div>
 
 	<div class="grid grid-cols-2 gap-5">

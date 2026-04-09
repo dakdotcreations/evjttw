@@ -48,6 +48,7 @@ export const load: PageServerLoad = async ({ url }) => {
 			fixedPrice: it.fixedPrice ? Number(it.fixedPrice) : null,
 			pricePerPerson: it.pricePerPerson ? Number(it.pricePerPerson) : null,
 			currency: it.currency,
+			pricingDisabled: it.pricingDisabled,
 			countries: [...countryMap.values()],
 			tags: it.tags.map((t) => ({ name: t.tag.name, slug: t.tag.slug })),
 		};

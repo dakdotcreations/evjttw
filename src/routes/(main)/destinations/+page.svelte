@@ -55,7 +55,7 @@
 		{#if data.countries.length > 0}
 			<div
 				bind:this={grid}
-				class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+				class="grid gap-6 grid-cols-[repeat(auto-fit,minmax(280px,1fr))]"
 			>
 				{#each data.countries as country (country.id)}
 					<DestinationCard
