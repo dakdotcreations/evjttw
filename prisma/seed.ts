@@ -1,9 +1,36 @@
 import 'dotenv/config';
 import { PrismaPg } from '@prisma/adapter-pg';
-import { PrismaClient } from '../src/generated/prisma/client/index.js';
+import { PrismaClient } from '../src/generated/prisma/client.js';
 
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! });
 const prisma = new PrismaClient({ adapter });
+
+// Find a country by name, update its fields if found, create if not.
+async function upsertCountry(data: {
+	name: string;
+	code: string;
+	flagEmoji: string;
+	description: string;
+}) {
+	const existing = await prisma.country.findFirst({ where: { name: data.name } });
+	if (existing) {
+		return prisma.country.update({ where: { id: existing.id }, data });
+	}
+	return prisma.country.create({ data });
+}
+
+// Find a location by name, update its fields if found, create if not.
+async function upsertLocation(data: {
+	name: string;
+	description: string;
+	countryId: string;
+}) {
+	const existing = await prisma.location.findFirst({ where: { name: data.name } });
+	if (existing) {
+		return prisma.location.update({ where: { id: existing.id }, data });
+	}
+	return prisma.location.create({ data });
+}
 
 async function main() {
 	console.log('🌱 Seeding database…');
@@ -20,50 +47,76 @@ async function main() {
 	console.log(`✅ Admin user: ${admin.email}`);
 
 	// ── Countries ─────────────────────────────────────────────────────────────
-	const uganda = await prisma.country.upsert({
-		where: { code: 'UG' },
-		update: {},
-		create: { name: 'Uganda', code: 'UG', flagEmoji: '🇺🇬', description: 'The Pearl of Africa — home to mountain gorillas, crater lakes, and the source of the Nile.' }
+	const uganda = await upsertCountry({
+		name: 'Uganda',
+		code: 'UG',
+		flagEmoji: '🇺🇬',
+		description: "Known as the 'Pearl of Africa', Uganda offers a diverse landscape ranging from the snow-capped Rwenzori Mountains to the immense Lake Victoria. It is the premier destination for mountain gorilla trekking and bird watching."
 	});
-	const kenya = await prisma.country.upsert({
-		where: { code: 'KE' },
-		update: {},
-		create: { name: 'Kenya', code: 'KE', flagEmoji: '🇰🇪', description: 'The cradle of humanity — world-class safaris, diverse cultures, and dramatic landscapes.' }
+	const kenya = await upsertCountry({
+		name: 'Kenya',
+		code: 'KE',
+		flagEmoji: '🇰🇪',
+		description: 'The heart of the African safari, Kenya is defined by its vast savannahs, the Great Migration, and a stunning Indian Ocean coastline.'
 	});
-	const tanzania = await prisma.country.upsert({
-		where: { code: 'TZ' },
-		update: {},
-		create: { name: 'Tanzania', code: 'TZ', flagEmoji: '🇹🇿', description: 'Home to Kilimanjaro, the Serengeti, and the spice island of Zanzibar.' }
+	const tanzania = await upsertCountry({
+		name: 'Tanzania',
+		code: 'TZ',
+		flagEmoji: '🇹🇿',
+		description: "Home to Africa's highest peak and its most famous plains, Tanzania offers an unparalleled scale of wildlife and tropical island luxury."
 	});
 	console.log('✅ Countries: Uganda, Kenya, Tanzania');
 
-	// ── Locations ─────────────────────────────────────────────────────────────
-	const bwindi = await prisma.location.upsert({
-		where: { id: 'seed-bwindi' },
-		update: {},
-		create: { id: 'seed-bwindi', name: 'Bwindi Impenetrable Forest', description: 'A UNESCO World Heritage Site and home to half the world\'s mountain gorilla population.', countryId: uganda.id }
-	});
-	const serengeti = await prisma.location.upsert({
-		where: { id: 'seed-serengeti' },
-		update: {},
-		create: { id: 'seed-serengeti', name: 'Serengeti National Park', description: 'The world\'s greatest wildlife spectacle — the Great Migration of over 1.5 million wildebeest.', countryId: tanzania.id }
-	});
-	const masaiMara = await prisma.location.upsert({
-		where: { id: 'seed-masai-mara' },
-		update: {},
-		create: { id: 'seed-masai-mara', name: 'Maasai Mara', description: 'Kenya\'s most famous game reserve, home to the Big Five and the annual wildebeest migration.', countryId: kenya.id }
-	});
-	const zanzibar = await prisma.location.upsert({
-		where: { id: 'seed-zanzibar' },
-		update: {},
-		create: { id: 'seed-zanzibar', name: 'Zanzibar', description: 'A semi-autonomous archipelago off Tanzania\'s coast, known for pristine beaches and historic Stone Town.', countryId: tanzania.id }
-	});
-	const lakeVictoria = await prisma.location.upsert({
-		where: { id: 'seed-lake-victoria' },
-		update: {},
-		create: { id: 'seed-lake-victoria', name: 'Lake Victoria', description: 'Africa\'s largest lake, shared by Uganda, Kenya, and Tanzania.', countryId: uganda.id }
-	});
-	console.log('✅ Locations: Bwindi, Serengeti, Maasai Mara, Zanzibar, Lake Victoria');
+	// ── Locations — Uganda ───────────────────────────────────────────────────
+	const bwindi = await upsertLocation({ name: 'Bwindi Impenetrable National Park', description: 'A UNESCO World Heritage site and home to nearly half of the world\'s remaining mountain gorillas.', countryId: uganda.id });
+	await upsertLocation({ name: 'Murchison Falls National Park', description: 'Witness the Nile squeeze through an 8-meter gorge, creating the world\'s most powerful waterfall.', countryId: uganda.id });
+	await upsertLocation({ name: 'Queen Elizabeth National Park', description: 'Famous for tree-climbing lions and the wildlife-rich Kazinga Channel.', countryId: uganda.id });
+	await upsertLocation({ name: 'Kibale Forest National Park', description: 'The primate capital of the world, boasting the highest density of chimpanzees in Africa.', countryId: uganda.id });
+	await upsertLocation({ name: 'Jinja - Source of the Nile', description: 'The adrenaline capital of East Africa, offering world-class white-water rafting and bungee jumping.', countryId: uganda.id });
+	await upsertLocation({ name: 'Kidepo Valley National Park', description: "A rugged, remote wilderness that offers the most authentic 'Old Africa' safari experience.", countryId: uganda.id });
+	await upsertLocation({ name: 'Lake Bunyonyi', description: 'A serene, highland lake dotted with 29 islands, perfect for canoeing and relaxation.', countryId: uganda.id });
+	await upsertLocation({ name: 'Rwenzori Mountains National Park', description: "The 'Mountains of the Moon,' offering world-class alpine trekking and permanent glaciers.", countryId: uganda.id });
+	await upsertLocation({ name: 'Sipi Falls', description: 'Three spectacular waterfalls located on the edge of Mount Elgon, famous for coffee tours and hiking.', countryId: uganda.id });
+	await upsertLocation({ name: 'Mgahinga Gorilla National Park', description: 'Where gold meets silver; home to both mountain gorillas and the rare golden monkeys.', countryId: uganda.id });
+	await upsertLocation({ name: 'Lake Mburo National Park', description: 'The best place to see Zebras and Elands in Uganda, with beautiful lakeside camping.', countryId: uganda.id });
+	await upsertLocation({ name: 'Semuliki National Park', description: 'Unique hot springs and a true lowland tropical forest experience with Central African bird species.', countryId: uganda.id });
+	await upsertLocation({ name: 'Mount Elgon National Park', description: 'Home to the largest volcanic base in the world and incredible cave exploration.', countryId: uganda.id });
+	await upsertLocation({ name: 'Ssese Islands', description: 'An archipelago of 84 islands on Lake Victoria offering white sand beaches and a tropical vibe.', countryId: uganda.id });
+	await upsertLocation({ name: 'Ziwa Rhino Sanctuary', description: 'The only place in Uganda where you can track wild southern white rhinos on foot.', countryId: uganda.id });
+	await upsertLocation({ name: 'Pian Upe Wildlife Reserve', description: 'A raw, untouched savannah landscape home to cheetahs and ostriches.', countryId: uganda.id });
+	await upsertLocation({ name: 'Kampala Cultural Circuit', description: 'A vibrant tour of the Kasubi Tombs, Bahai Temple, and Namugongo Martyrs Shrine.', countryId: uganda.id });
+	const lakeVictoria = await upsertLocation({ name: 'Entebbe Botanical Gardens', description: 'A lakeside sanctuary perfect for birding and nature walks right by the international airport.', countryId: uganda.id });
+	await upsertLocation({ name: 'Katwe Salt Lake', description: 'A traditional salt mining lake where locals have used the same methods for centuries.', countryId: uganda.id });
+	await upsertLocation({ name: 'Mabira Forest', description: 'A lush rainforest canopy perfect for zip-lining and eco-walks between Kampala and Jinja.', countryId: uganda.id });
+	console.log('✅ Locations — Uganda (20)');
+
+	// ── Locations — Kenya ────────────────────────────────────────────────────
+	const masaiMara = await upsertLocation({ name: 'Maasai Mara National Reserve', description: 'Host to the Great Wildebeest Migration, one of the seven natural wonders of the world.', countryId: kenya.id });
+	await upsertLocation({ name: 'Amboseli National Park', description: 'Famous for large elephant herds and iconic views of Mount Kilimanjaro.', countryId: kenya.id });
+	await upsertLocation({ name: 'Diani Beach', description: 'A world-renowned white-sand beach destination with turquoise waters and coral reefs.', countryId: kenya.id });
+	await upsertLocation({ name: 'Tsavo East & West', description: "Kenya's largest protected area, known for red elephants and Mzima Springs.", countryId: kenya.id });
+	await upsertLocation({ name: 'Lake Nakuru National Park', description: 'A sanctuary for black and white rhinos and millions of pink flamingos.', countryId: kenya.id });
+	await upsertLocation({ name: 'Mount Kenya National Park', description: "Africa's second-highest peak, offering diverse flora and challenging trekking.", countryId: kenya.id });
+	await upsertLocation({ name: 'Samburu National Reserve', description: "Unique northern species including the reticulated giraffe and Grevy's zebra.", countryId: kenya.id });
+	await upsertLocation({ name: 'Ol Pejeta Conservancy', description: 'A leading private conservancy and the last refuge for the Northern White Rhino.', countryId: kenya.id });
+	await upsertLocation({ name: 'Watamu Marine National Park', description: 'A pristine coastal ecosystem perfect for snorkeling and visiting Gede Ruins.', countryId: kenya.id });
+	await upsertLocation({ name: 'Lamu Island', description: 'A UNESCO World Heritage Swahili settlement where time seems to stand still.', countryId: kenya.id });
+	await upsertLocation({ name: "Hell's Gate National Park", description: 'One of the few parks where you can cycle or hike among wildlife and explore deep gorges.', countryId: kenya.id });
+	console.log('✅ Locations — Kenya (11)');
+
+	// ── Locations — Tanzania ─────────────────────────────────────────────────
+	const serengeti = await upsertLocation({ name: 'Serengeti National Park', description: 'The quintessential safari destination with endless plains and massive predator populations.', countryId: tanzania.id });
+	await upsertLocation({ name: 'Ngorongoro Crater', description: "The world's largest intact volcanic caldera, home to over 25,000 large animals.", countryId: tanzania.id });
+	await upsertLocation({ name: 'Mount Kilimanjaro', description: 'The roof of Africa; a bucket-list destination for hikers and adventurers worldwide.', countryId: tanzania.id });
+	const zanzibar = await upsertLocation({ name: 'Zanzibar - Stone Town', description: 'A historic spice island with winding alleys, ancient architecture, and vibrant markets.', countryId: tanzania.id });
+	await upsertLocation({ name: 'Tarangire National Park', description: 'The land of giants, famous for its ancient baobab trees and massive elephant herds.', countryId: tanzania.id });
+	await upsertLocation({ name: 'Lake Manyara National Park', description: 'Known for its groundwater forest, baboon troops, and tree-climbing lions.', countryId: tanzania.id });
+	await upsertLocation({ name: 'Nyerere National Park (Selous)', description: 'One of the largest faunal reserves in the world, offering unique boat safaris.', countryId: tanzania.id });
+	await upsertLocation({ name: 'Mafia Island', description: 'A secluded paradise famous for whale shark sightings and world-class diving.', countryId: tanzania.id });
+	await upsertLocation({ name: 'Ruaha National Park', description: "Tanzania's largest national park, offering rugged scenery and wild dog sightings.", countryId: tanzania.id });
+	await upsertLocation({ name: 'Arusha National Park', description: 'The gateway to the northern circuit, featuring Mount Meru and Momella Lakes.', countryId: tanzania.id });
+	await upsertLocation({ name: 'Pemba Island', description: "Known as the 'Green Island,' offering some of the best untouched coral reefs in the Indian Ocean.", countryId: tanzania.id });
+	console.log('✅ Locations — Tanzania (11)');
 
 	// ── Itineraries ───────────────────────────────────────────────────────────
 	const gorillaTrek = await prisma.itinerary.upsert({
