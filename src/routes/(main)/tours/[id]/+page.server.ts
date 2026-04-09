@@ -63,6 +63,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		fixedPrice: it.fixedPrice ? Number(it.fixedPrice) : null,
 		pricePerPerson: it.pricePerPerson ? Number(it.pricePerPerson) : null,
 		currency: it.currency,
+		pricingDisabled: it.pricingDisabled,
 		countries: [...new Set(it.steps.filter((s) => s.location?.country).map((s) => s.location!.country!.name))],
 		tags: it.tags.map((t) => ({ name: t.tag.name, slug: t.tag.slug })),
 	}));

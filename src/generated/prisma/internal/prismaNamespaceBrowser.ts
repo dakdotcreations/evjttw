@@ -158,6 +158,7 @@ export const ItineraryScalarFieldEnum = {
   coverImage: 'coverImage',
   images: 'images',
   published: 'published',
+  pricingDisabled: 'pricingDisabled',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -172,8 +173,8 @@ export const ItineraryStepScalarFieldEnum = {
   title: 'title',
   description: 'description',
   highlight: 'highlight',
-  durationText: 'durationText',
-  durationMinutes: 'durationMinutes',
+  durationDays: 'durationDays',
+  durationHours: 'durationHours',
   locationId: 'locationId',
   images: 'images',
   createdAt: 'createdAt',

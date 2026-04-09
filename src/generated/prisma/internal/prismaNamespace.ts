@@ -80,11 +80,11 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.7.0
+ * Prisma Client JS version: 7.6.0
  * Query Engine version: 75cbdc1eb7150937890ad5465d861175c6624711
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.7.0",
+  client: "7.6.0",
   engine: "75cbdc1eb7150937890ad5465d861175c6624711"
 }
 
@@ -1567,6 +1567,7 @@ export const ItineraryScalarFieldEnum = {
   coverImage: 'coverImage',
   images: 'images',
   published: 'published',
+  pricingDisabled: 'pricingDisabled',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1581,8 +1582,8 @@ export const ItineraryStepScalarFieldEnum = {
   title: 'title',
   description: 'description',
   highlight: 'highlight',
-  durationText: 'durationText',
-  durationMinutes: 'durationMinutes',
+  durationDays: 'durationDays',
+  durationHours: 'durationHours',
   locationId: 'locationId',
   images: 'images',
   createdAt: 'createdAt',

@@ -49,6 +49,7 @@ export type ItineraryMinAggregateOutputType = {
   durationDays: number | null
   coverImage: string | null
   published: boolean | null
+  pricingDisabled: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -64,6 +65,7 @@ export type ItineraryMaxAggregateOutputType = {
   durationDays: number | null
   coverImage: string | null
   published: boolean | null
+  pricingDisabled: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -81,6 +83,7 @@ export type ItineraryCountAggregateOutputType = {
   coverImage: number
   images: number
   published: number
+  pricingDisabled: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -110,6 +113,7 @@ export type ItineraryMinAggregateInputType = {
   durationDays?: true
   coverImage?: true
   published?: true
+  pricingDisabled?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -125,6 +129,7 @@ export type ItineraryMaxAggregateInputType = {
   durationDays?: true
   coverImage?: true
   published?: true
+  pricingDisabled?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -142,6 +147,7 @@ export type ItineraryCountAggregateInputType = {
   coverImage?: true
   images?: true
   published?: true
+  pricingDisabled?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -246,6 +252,7 @@ export type ItineraryGroupByOutputType = {
   coverImage: string | null
   images: string[]
   published: boolean
+  pricingDisabled: boolean
   createdAt: Date
   updatedAt: Date
   _count: ItineraryCountAggregateOutputType | null
@@ -286,6 +293,7 @@ export type ItineraryWhereInput = {
   coverImage?: Prisma.StringNullableFilter<"Itinerary"> | string | null
   images?: Prisma.StringNullableListFilter<"Itinerary">
   published?: Prisma.BoolFilter<"Itinerary"> | boolean
+  pricingDisabled?: Prisma.BoolFilter<"Itinerary"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Itinerary"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Itinerary"> | Date | string
   steps?: Prisma.ItineraryStepListRelationFilter
@@ -307,6 +315,7 @@ export type ItineraryOrderByWithRelationInput = {
   coverImage?: Prisma.SortOrderInput | Prisma.SortOrder
   images?: Prisma.SortOrder
   published?: Prisma.SortOrder
+  pricingDisabled?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   steps?: Prisma.ItineraryStepOrderByRelationAggregateInput
@@ -331,6 +340,7 @@ export type ItineraryWhereUniqueInput = Prisma.AtLeast<{
   coverImage?: Prisma.StringNullableFilter<"Itinerary"> | string | null
   images?: Prisma.StringNullableListFilter<"Itinerary">
   published?: Prisma.BoolFilter<"Itinerary"> | boolean
+  pricingDisabled?: Prisma.BoolFilter<"Itinerary"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Itinerary"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Itinerary"> | Date | string
   steps?: Prisma.ItineraryStepListRelationFilter
@@ -352,6 +362,7 @@ export type ItineraryOrderByWithAggregationInput = {
   coverImage?: Prisma.SortOrderInput | Prisma.SortOrder
   images?: Prisma.SortOrder
   published?: Prisma.SortOrder
+  pricingDisabled?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ItineraryCountOrderByAggregateInput
@@ -377,6 +388,7 @@ export type ItineraryScalarWhereWithAggregatesInput = {
   coverImage?: Prisma.StringNullableWithAggregatesFilter<"Itinerary"> | string | null
   images?: Prisma.StringNullableListFilter<"Itinerary">
   published?: Prisma.BoolWithAggregatesFilter<"Itinerary"> | boolean
+  pricingDisabled?: Prisma.BoolWithAggregatesFilter<"Itinerary"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Itinerary"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Itinerary"> | Date | string
 }
@@ -394,6 +406,7 @@ export type ItineraryCreateInput = {
   coverImage?: string | null
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
+  pricingDisabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   steps?: Prisma.ItineraryStepCreateNestedManyWithoutItineraryInput
@@ -415,6 +428,7 @@ export type ItineraryUncheckedCreateInput = {
   coverImage?: string | null
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
+  pricingDisabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   steps?: Prisma.ItineraryStepUncheckedCreateNestedManyWithoutItineraryInput
@@ -436,6 +450,7 @@ export type ItineraryUpdateInput = {
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   steps?: Prisma.ItineraryStepUpdateManyWithoutItineraryNestedInput
@@ -457,6 +472,7 @@ export type ItineraryUncheckedUpdateInput = {
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   steps?: Prisma.ItineraryStepUncheckedUpdateManyWithoutItineraryNestedInput
@@ -478,6 +494,7 @@ export type ItineraryCreateManyInput = {
   coverImage?: string | null
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
+  pricingDisabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -495,6 +512,7 @@ export type ItineraryUpdateManyMutationInput = {
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -512,6 +530,7 @@ export type ItineraryUncheckedUpdateManyInput = {
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -537,6 +556,7 @@ export type ItineraryCountOrderByAggregateInput = {
   coverImage?: Prisma.SortOrder
   images?: Prisma.SortOrder
   published?: Prisma.SortOrder
+  pricingDisabled?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -558,6 +578,7 @@ export type ItineraryMaxOrderByAggregateInput = {
   durationDays?: Prisma.SortOrder
   coverImage?: Prisma.SortOrder
   published?: Prisma.SortOrder
+  pricingDisabled?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -573,6 +594,7 @@ export type ItineraryMinOrderByAggregateInput = {
   durationDays?: Prisma.SortOrder
   coverImage?: Prisma.SortOrder
   published?: Prisma.SortOrder
+  pricingDisabled?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -691,6 +713,7 @@ export type ItineraryCreateWithoutStepsInput = {
   coverImage?: string | null
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
+  pricingDisabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   enquiries?: Prisma.BookingEnquiryCreateNestedManyWithoutItineraryInput
@@ -711,6 +734,7 @@ export type ItineraryUncheckedCreateWithoutStepsInput = {
   coverImage?: string | null
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
+  pricingDisabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   enquiries?: Prisma.BookingEnquiryUncheckedCreateNestedManyWithoutItineraryInput
@@ -747,6 +771,7 @@ export type ItineraryUpdateWithoutStepsInput = {
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enquiries?: Prisma.BookingEnquiryUpdateManyWithoutItineraryNestedInput
@@ -767,6 +792,7 @@ export type ItineraryUncheckedUpdateWithoutStepsInput = {
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enquiries?: Prisma.BookingEnquiryUncheckedUpdateManyWithoutItineraryNestedInput
@@ -787,6 +813,7 @@ export type ItineraryCreateWithoutEnquiriesInput = {
   coverImage?: string | null
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
+  pricingDisabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   steps?: Prisma.ItineraryStepCreateNestedManyWithoutItineraryInput
@@ -807,6 +834,7 @@ export type ItineraryUncheckedCreateWithoutEnquiriesInput = {
   coverImage?: string | null
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
+  pricingDisabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   steps?: Prisma.ItineraryStepUncheckedCreateNestedManyWithoutItineraryInput
@@ -843,6 +871,7 @@ export type ItineraryUpdateWithoutEnquiriesInput = {
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   steps?: Prisma.ItineraryStepUpdateManyWithoutItineraryNestedInput
@@ -863,6 +892,7 @@ export type ItineraryUncheckedUpdateWithoutEnquiriesInput = {
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   steps?: Prisma.ItineraryStepUncheckedUpdateManyWithoutItineraryNestedInput
@@ -883,6 +913,7 @@ export type ItineraryCreateWithoutFeaturesInput = {
   coverImage?: string | null
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
+  pricingDisabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   steps?: Prisma.ItineraryStepCreateNestedManyWithoutItineraryInput
@@ -903,6 +934,7 @@ export type ItineraryUncheckedCreateWithoutFeaturesInput = {
   coverImage?: string | null
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
+  pricingDisabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   steps?: Prisma.ItineraryStepUncheckedCreateNestedManyWithoutItineraryInput
@@ -939,6 +971,7 @@ export type ItineraryUpdateWithoutFeaturesInput = {
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   steps?: Prisma.ItineraryStepUpdateManyWithoutItineraryNestedInput
@@ -959,6 +992,7 @@ export type ItineraryUncheckedUpdateWithoutFeaturesInput = {
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   steps?: Prisma.ItineraryStepUncheckedUpdateManyWithoutItineraryNestedInput
@@ -979,6 +1013,7 @@ export type ItineraryCreateWithoutTagsInput = {
   coverImage?: string | null
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
+  pricingDisabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   steps?: Prisma.ItineraryStepCreateNestedManyWithoutItineraryInput
@@ -999,6 +1034,7 @@ export type ItineraryUncheckedCreateWithoutTagsInput = {
   coverImage?: string | null
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
+  pricingDisabled?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   steps?: Prisma.ItineraryStepUncheckedCreateNestedManyWithoutItineraryInput
@@ -1035,6 +1071,7 @@ export type ItineraryUpdateWithoutTagsInput = {
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   steps?: Prisma.ItineraryStepUpdateManyWithoutItineraryNestedInput
@@ -1055,6 +1092,7 @@ export type ItineraryUncheckedUpdateWithoutTagsInput = {
   coverImage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   steps?: Prisma.ItineraryStepUncheckedUpdateManyWithoutItineraryNestedInput
@@ -1133,6 +1171,7 @@ export type ItinerarySelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   coverImage?: boolean
   images?: boolean
   published?: boolean
+  pricingDisabled?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   steps?: boolean | Prisma.Itinerary$stepsArgs<ExtArgs>
@@ -1155,6 +1194,7 @@ export type ItinerarySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   coverImage?: boolean
   images?: boolean
   published?: boolean
+  pricingDisabled?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["itinerary"]>
@@ -1172,6 +1212,7 @@ export type ItinerarySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   coverImage?: boolean
   images?: boolean
   published?: boolean
+  pricingDisabled?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["itinerary"]>
@@ -1189,11 +1230,12 @@ export type ItinerarySelectScalar = {
   coverImage?: boolean
   images?: boolean
   published?: boolean
+  pricingDisabled?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ItineraryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "summary" | "description" | "fixedPrice" | "pricePerPerson" | "currency" | "durationDays" | "bestSeasons" | "coverImage" | "images" | "published" | "createdAt" | "updatedAt", ExtArgs["result"]["itinerary"]>
+export type ItineraryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "summary" | "description" | "fixedPrice" | "pricePerPerson" | "currency" | "durationDays" | "bestSeasons" | "coverImage" | "images" | "published" | "pricingDisabled" | "createdAt" | "updatedAt", ExtArgs["result"]["itinerary"]>
 export type ItineraryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   steps?: boolean | Prisma.Itinerary$stepsArgs<ExtArgs>
   enquiries?: boolean | Prisma.Itinerary$enquiriesArgs<ExtArgs>
@@ -1225,6 +1267,7 @@ export type $ItineraryPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     coverImage: string | null
     images: string[]
     published: boolean
+    pricingDisabled: boolean
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["itinerary"]>
@@ -1666,6 +1709,7 @@ export interface ItineraryFieldRefs {
   readonly coverImage: Prisma.FieldRef<"Itinerary", 'String'>
   readonly images: Prisma.FieldRef<"Itinerary", 'String[]'>
   readonly published: Prisma.FieldRef<"Itinerary", 'Boolean'>
+  readonly pricingDisabled: Prisma.FieldRef<"Itinerary", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Itinerary", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Itinerary", 'DateTime'>
 }

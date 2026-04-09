@@ -21,8 +21,8 @@
 		title: z.string().min(1),
 		description: z.string().min(1),
 		highlight: z.string().optional(),
-		durationText: z.string().min(1),
-		durationMinutes: z.coerce.number().int().positive().optional(),
+		durationDays: z.coerce.number().int().min(0).optional(),
+		durationHours: z.coerce.number().int().min(0).optional(),
 		locationId: z.string().optional(),
 		image: z.string().optional().default('')
 	});
@@ -36,28 +36,8 @@
 	} = superForm(data.addStepForm, {
 		validators: zod4Client(stepSchema),
 		resetForm: true,
-		onSubmit({ formData }) {
-			console.log('[addStep] onSubmit — form data:', Object.fromEntries(formData));
-			console.log('[addStep] onSubmit — current form state:', $addStepForm);
-		},
 		onResult({ result }) {
-			console.log('[addStep] onResult — result:', result);
-			if (result.type === 'failure') {
-				console.warn('[addStep] Server validation failed. Errors:', (result.data as Record<string, unknown>)?.addStepForm);
-			}
-			if (result.type === 'error') {
-				console.error('[addStep] Server threw an error:', result.error);
-			}
-			if (result.type === 'success') {
-				console.log('[addStep] Success — closing dialog');
-				addStepOpen = false;
-			}
-		},
-		onError({ result }) {
-			console.error('[addStep] onError:', result);
-		},
-		onUpdated({ form }) {
-			console.log('[addStep] onUpdated — valid:', form.valid, 'errors:', form.errors, 'message:', form.message);
+			if (result.type === 'success') addStepOpen = false;
 		}
 	});
 
@@ -91,8 +71,8 @@
 		$updateStepForm.title = step.title;
 		$updateStepForm.description = step.description;
 		$updateStepForm.highlight = step.highlight ?? '';
-		$updateStepForm.durationText = step.durationText;
-		$updateStepForm.durationMinutes = step.durationMinutes ?? undefined;
+		$updateStepForm.durationDays = step.durationDays ?? undefined;
+		$updateStepForm.durationHours = step.durationHours ?? undefined;
 		$updateStepForm.locationId = step.locationId ?? '';
 		$updateStepForm.image = step.images[0] ?? '';
 		editStepOpen = true;
@@ -147,7 +127,7 @@
 									<span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-xs font-bold text-indigo-700">{step.stepNumber}</span>
 									<div class="flex-1">
 										<p class="text-sm font-medium text-gray-900">{step.title}</p>
-										<p class="text-xs text-gray-500">{step.location ? `${step.location.name}, ${step.location.country.name}` : 'No location'} · {step.durationText}</p>
+										<p class="text-xs text-gray-500">{step.location ? `${step.location.name}, ${step.location.country.name}` : 'No location'} · {step.durationDays ? `${step.durationDays}d` : ''}{step.durationHours ? ` ${step.durationHours}h` : ''}</p>
 									</div>
 									<button
 										type="button"
@@ -220,15 +200,24 @@
 				required
 			/>
 			<Input
-				id="es-durationText"
-				name="durationText"
-				label="Duration"
-				placeholder="e.g. 2 days"
-				bind:value={$updateStepForm.durationText}
-				error={$updateStepErrors.durationText}
-				required
+				id="es-durationDays"
+				name="durationDays"
+				label="Duration (days)"
+				type="number"
+				min={0}
+				placeholder="e.g. 2"
+				bind:value={$updateStepForm.durationDays}
+				error={$updateStepErrors.durationDays}
 			/>
-			<input type="hidden" name="durationMinutes" bind:value={$updateStepForm.durationMinutes} />
+			<Input
+				id="es-durationHours"
+				name="durationHours"
+				label="Duration (hours, optional)"
+				type="number"
+				min={0}
+				placeholder="e.g. 4"
+				bind:value={$updateStepForm.durationHours}
+			/>
 			<Input
 				id="es-highlight"
 				name="highlight"
@@ -280,15 +269,24 @@
 				required
 			/>
 			<Input
-				id="as-durationText"
-				name="durationText"
-				label="Duration"
-				placeholder="e.g. 2 days"
-				bind:value={$addStepForm.durationText}
-				error={$addStepErrors.durationText}
-				required
+				id="as-durationDays"
+				name="durationDays"
+				label="Duration (days)"
+				type="number"
+				min={0}
+				placeholder="e.g. 2"
+				bind:value={$addStepForm.durationDays}
+				error={$addStepErrors.durationDays}
 			/>
-			<input type="hidden" name="durationMinutes" bind:value={$addStepForm.durationMinutes} />
+			<Input
+				id="as-durationHours"
+				name="durationHours"
+				label="Duration (hours, optional)"
+				type="number"
+				min={0}
+				placeholder="e.g. 4"
+				bind:value={$addStepForm.durationHours}
+			/>
 			<Input
 				id="as-highlight"
 				name="highlight"

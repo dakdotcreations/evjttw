@@ -6,6 +6,7 @@ import BookingEnquiryForm from '$lib/components/BookingEnquiryForm.svelte';
 import TourCard from '$lib/components/TourCard.svelte';
 import CtaBanner from '$lib/components/CtaBanner.svelte';
 import { formatPrice } from '$lib/utils/pricing';
+import { buildStepLabels } from '$lib/utils/stepLabel';
 import { MapPin, Clock, Tag } from 'lucide-svelte';
 
 let { data }: { data: PageData } = $props();
@@ -14,7 +15,10 @@ const price = $derived(formatPrice({
 fixedPrice: data.itinerary.fixedPrice,
 pricePerPerson: data.itinerary.pricePerPerson,
 currency: data.itinerary.currency,
+pricingDisabled: data.itinerary.pricingDisabled,
 }));
+
+const stepLabels = $derived(buildStepLabels(data.itinerary.steps));
 
 let openStep = $state<number | null>(null);
 function toggleStep(n: number) { openStep = openStep === n ? null : n; }
@@ -94,12 +98,12 @@ obs.observe(contentEl);
 {#if data.itinerary.steps.length > 0}
 <h2 class="mb-6 font-display text-3xl tracking-wide text-black">Day-by-Day</h2>
 <div class="mb-12 space-y-0 border-l-2 border-accent/30 pl-6">
-{#each data.itinerary.steps as step (step.id)}
+{#each data.itinerary.steps as step, i (step.id)}
 <div class="step-item relative mb-6 last:mb-0">
 <div class="absolute -left-[1.6rem] top-1 h-3 w-3 rounded-full bg-accent"></div>
 <button onclick={() => toggleStep(step.stepNumber)} class="flex w-full items-start justify-between gap-4 text-left">
 <div>
-<span class="mr-2 text-xs font-semibold uppercase tracking-widest text-accent">Day {step.stepNumber}</span>
+<span class="mr-2 text-xs font-semibold uppercase tracking-widest text-accent">{stepLabels[i].days}{stepLabels[i].hours ? ` · ${stepLabels[i].hours}` : ''}</span>
 <span class="font-semibold text-black">{step.title}</span>
 {#if step.location}
 <span class="ml-2 text-xs text-gray-400">· {step.location.name}</span>
@@ -156,7 +160,7 @@ obs.observe(contentEl);
 </div>
 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
 {#each data.related as tour (tour.id)}
-<TourCard id={tour.id} title={tour.title} coverImage={tour.coverImage} durationDays={tour.durationDays} fixedPrice={tour.fixedPrice} pricePerPerson={tour.pricePerPerson} currency={tour.currency} countries={tour.countries} tags={tour.tags} />
+<TourCard id={tour.id} title={tour.title} coverImage={tour.coverImage} durationDays={tour.durationDays} fixedPrice={tour.fixedPrice} pricePerPerson={tour.pricePerPerson} currency={tour.currency} pricingDisabled={tour.pricingDisabled} countries={tour.countries} tags={tour.tags} />
 {/each}
 </div>
 </div>

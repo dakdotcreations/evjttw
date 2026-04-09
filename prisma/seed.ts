@@ -85,7 +85,7 @@ async function main() {
 						stepNumber: 1,
 						title: 'Arrival in Entebbe',
 						description: 'Arrive at Entebbe International Airport. Transfer to your lakeside hotel for rest and orientation.',
-						durationText: '1 day',
+					durationDays: 1,
 						locationId: lakeVictoria.id
 					},
 					{
@@ -93,21 +93,21 @@ async function main() {
 						title: 'Gorilla Trekking in Bwindi',
 						description: 'Rise early and head into the impenetrable forest with expert guides. Spend an hour observing a habituated gorilla family.',
 						highlight: 'Face-to-face with mountain gorillas',
-						durationText: '2 days',
+					durationDays: 2,
 						locationId: bwindi.id
 					},
 					{
 						stepNumber: 3,
 						title: 'Queen Elizabeth National Park Safari',
 						description: 'Game drives across the savannah in search of lions, elephants, and buffaloes. Evening Kazinga Channel boat cruise.',
-						durationText: '2 days',
+					durationDays: 2,
 						locationId: lakeVictoria.id
 					},
 					{
 						stepNumber: 4,
 						title: 'Return to Entebbe & Departure',
 						description: 'Leisurely morning at Lake Victoria before transfer to the airport for your onward flight.',
-						durationText: '2 days',
+					durationDays: 2,
 						locationId: lakeVictoria.id
 					}
 				]
@@ -135,14 +135,14 @@ async function main() {
 						title: 'Bwindi Gorilla Trek',
 						description: 'Fly into Entebbe and transfer to Bwindi for gorilla trekking in the heart of Uganda.',
 						highlight: 'Gorilla trekking permit included',
-						durationText: '3 days',
+					durationDays: 3,
 						locationId: bwindi.id
 					},
 					{
 						stepNumber: 2,
 						title: 'Maasai Mara Safari',
 						description: 'Fly into Nairobi and drive south into the world-famous Maasai Mara for Big Five game drives and cultural Maasai village visits.',
-						durationText: '3 days',
+					durationDays: 3,
 						locationId: masaiMara.id
 					},
 					{
@@ -150,21 +150,21 @@ async function main() {
 						title: 'Serengeti National Park',
 						description: 'Cross into Tanzania. Experience the endless plains of the Serengeti and witness the Great Migration if in season.',
 						highlight: 'Great Migration (July–October)',
-						durationText: '3 days',
+					durationDays: 3,
 						locationId: serengeti.id
 					},
 					{
 						stepNumber: 4,
 						title: 'Zanzibar Beach Escape',
 						description: 'Fly to Zanzibar for pristine beaches, spice tours, and the historic Stone Town.',
-						durationText: '3 days',
+					durationDays: 3,
 						locationId: zanzibar.id
 					},
 					{
 						stepNumber: 5,
 						title: 'Departure from Zanzibar',
 						description: 'Final morning at leisure before your international flight home.',
-						durationText: '2 days',
+					durationDays: 2,
 						locationId: zanzibar.id
 					}
 				]
