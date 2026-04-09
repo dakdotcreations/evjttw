@@ -93,11 +93,24 @@ export const load: PageServerLoad = async () => {
 			return acc;
 		}, []);
 
+	// Strip non-serializable Decimal fields from nested itineraries in features
+	const serializedFeatures = features.map((f) => ({
+		...f,
+		items: f.items.map((item) => ({
+			...item,
+			itinerary: {
+				...item.itinerary,
+				fixedPrice: item.itinerary.fixedPrice ? Number(item.itinerary.fixedPrice) : null,
+				pricePerPerson: item.itinerary.pricePerPerson ? Number(item.itinerary.pricePerPerson) : null,
+			},
+		})),
+	}));
+
 	return {
 		featuredTours,
 		testimonials,
 		countries,
-		features,
+		features: serializedFeatures,
 		tags,
 	};
 };
