@@ -1,7 +1,7 @@
-const MAX_BYTES = 400_000; // 400 KB
+const MAX_BYTES = 600_000; // 600 KB
 
 /**
- * Compresses an image file to under 400 KB using Canvas.
+ * Compresses an image file to under 600 KB using Canvas.
  * First tries reducing JPEG quality, then reduces dimensions if needed.
  * Returns the original file if already under the limit.
  */
