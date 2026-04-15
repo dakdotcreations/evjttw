@@ -49,6 +49,31 @@
 			addSeason();
 		}
 	}
+
+	// FAQ dynamic list
+	type Faq = { question: string; answer: string };
+	let faqList = $state<Faq[]>(
+		(() => { try { return JSON.parse($form.faqs || '[]'); } catch { return []; } })()
+	);
+	function syncFaqs() {
+		$form.faqs = JSON.stringify(faqList);
+	}
+	function addFaq() {
+		faqList = [...faqList, { question: '', answer: '' }];
+		syncFaqs();
+	}
+	function removeFaq(i: number) {
+		faqList = faqList.filter((_, j) => j !== i);
+		syncFaqs();
+	}
+	function updateFaqQuestion(i: number, val: string) {
+		faqList[i] = { ...faqList[i], question: val };
+		syncFaqs();
+	}
+	function updateFaqAnswer(i: number, val: string) {
+		faqList[i] = { ...faqList[i], answer: val };
+		syncFaqs();
+	}
 </script>
 
 {#if ($message as { success?: string } | undefined)?.success}
@@ -221,6 +246,127 @@
 			<label for="itin-published" class="block text-sm font-medium text-gray-700">Publish this tour</label>
 			<p class="text-xs text-gray-400">When enabled, this tour will be visible to the public on the website.</p>
 		</div>
+	</div>
+
+	<hr class="border-gray-100" />
+
+	<!-- Logistics & Info -->
+	<div>
+		<h3 class="mb-1 text-sm font-semibold text-gray-800">Logistics & Info</h3>
+		<p class="mb-4 text-xs text-gray-400">Displayed on the public tour page to help travellers prepare.</p>
+
+		<div class="grid grid-cols-2 gap-5 mb-5">
+			<Input
+				id="itin-pickup"
+				name="pickup"
+				label="Pickup Location"
+				hint="Where participants are collected from."
+				placeholder="e.g. Entebbe International Airport"
+				bind:value={$form.pickup}
+			/>
+			<Input
+				id="itin-meetingPoint"
+				name="meetingPoint"
+				label="Meeting Point"
+				hint="Where participants should gather if different from pickup."
+				placeholder="e.g. Airport or Hotel"
+				bind:value={$form.meetingPoint}
+			/>
+		</div>
+
+		<div class="grid grid-cols-3 gap-5">
+			<Textarea
+				id="itin-includes"
+				name="includes"
+				label="What's Included"
+				hint="One item per line."
+				placeholder={"Park entrance fees\nProfessional guide\nFull board accommodation"}
+				rows={5}
+				bind:value={$form.includes}
+			/>
+			<Textarea
+				id="itin-excludes"
+				name="excludes"
+				label="What's Excluded"
+				hint="One item per line."
+				placeholder={"International flights\nVisa fees\nPersonal expenses"}
+				rows={5}
+				bind:value={$form.excludes}
+			/>
+			<Textarea
+				id="itin-complementaries"
+				name="complementaries"
+				label="Complimentaries"
+				hint="One item per line."
+				placeholder={"T-Shirt\nEntrance Fees"}
+				rows={5}
+				bind:value={$form.complementaries}
+			/>
+		</div>
+	</div>
+
+	<hr class="border-gray-100" />
+
+	<!-- FAQs -->
+	<div>
+		<div class="mb-3 flex items-center justify-between">
+			<div>
+				<h3 class="text-sm font-semibold text-gray-800">FAQs</h3>
+				<p class="text-xs text-gray-400">Frequently asked questions shown on the tour page.</p>
+			</div>
+			<button
+				type="button"
+				onclick={addFaq}
+				class="flex items-center gap-1.5 rounded-md border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-xs font-medium text-indigo-700 hover:bg-indigo-100"
+			>
+				<X class="h-3 w-3 rotate-45" /> Add FAQ
+			</button>
+		</div>
+		<input type="hidden" name="faqs" bind:value={$form.faqs} />
+		{#if faqList.length === 0}
+			<p class="text-xs text-gray-400 italic">No FAQs added yet.</p>
+		{:else}
+			<div class="space-y-4">
+				{#each faqList as faq, i}
+					<div class="rounded-md border border-gray-200 p-4">
+						<div class="mb-3 flex items-center justify-between">
+							<span class="text-xs font-semibold text-gray-500 uppercase tracking-wide">FAQ {i + 1}</span>
+							<button
+								type="button"
+								onclick={() => removeFaq(i)}
+								class="text-gray-400 hover:text-red-500"
+							>
+								<X class="h-4 w-4" />
+							</button>
+						</div>
+						<div class="space-y-3">
+							<div>
+							<label for="faq-q-{i}" class="mb-1 block text-xs font-medium text-gray-700">Question</label>
+							<input
+								id="faq-q-{i}"
+								type="text"
+								value={faq.question}
+								oninput={(e) => updateFaqQuestion(i, (e.target as HTMLInputElement).value)}
+								placeholder="e.g. What should I pack?"
+								class="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:ring-indigo-500"
+							/>
+						</div>
+						<div>
+							<label for="faq-a-{i}" class="mb-1 block text-xs font-medium text-gray-700">Answer</label>
+							<textarea
+								id="faq-a-{i}"
+									value={faq.answer}
+									oninput={(e) => updateFaqAnswer(i, (e.target as HTMLTextAreaElement).value)}
+									placeholder="e.g. Bring sturdy hiking boots, sunscreen, and a camera."
+									rows={3}
+									class="block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:ring-indigo-500"
+								></textarea>
+							</div>
+						</div>
+					</div>
+				{/each}
+			</div>
+		{/if}
 	</div>
 
 	<div class="pt-2">

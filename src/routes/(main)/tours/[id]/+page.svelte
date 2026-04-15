@@ -7,7 +7,7 @@
 	import CtaBanner from "$lib/components/CtaBanner.svelte"
 	import { formatPrice } from "$lib/utils/pricing"
 	import { buildStepLabels } from "$lib/utils/stepLabel"
-	import { MapPin, Clock, Tag } from "lucide-svelte"
+	import { MapPin, Clock, Tag, CheckCircle2, XCircle, Gift, ChevronDown, ChevronUp } from "lucide-svelte"
 
 	let { data }: { data: PageData } = $props()
 
@@ -21,6 +21,15 @@
 	)
 
 	const stepLabels = $derived(buildStepLabels(data.itinerary.steps))
+
+	type Faq = { question: string; answer: string }
+	const faqs = $derived(
+		Array.isArray(data.itinerary.faqs)
+			? (data.itinerary.faqs as unknown as Faq[])
+			: []
+	)
+	let openFaq = $state<number | null>(null)
+	function toggleFaq(i: number) { openFaq = openFaq === i ? null : i }
 
 	let heroEl: HTMLElement
 	let stepsListEl: HTMLElement = $state(null as unknown as HTMLElement)
@@ -268,6 +277,118 @@
 								loading="lazy"
 									class="aspect-4/3 w-full object-cover" />
 						{/each}
+					</div>
+				{/if}
+
+				<!-- INCLUDES / EXCLUDES / COMPLEMENTARIES -->
+				{#if data.itinerary.includes.length > 0 || data.itinerary.excludes.length > 0 || data.itinerary.complementaries.length > 0}
+					<div class="mb-12">
+						<h2 class="mb-6 font-display text-3xl tracking-wide text-black">What's Included</h2>
+						<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+							{#if data.itinerary.includes.length > 0}
+								<div>
+									<p class="mb-3 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-accent">
+										<CheckCircle2 size={14} /> Included
+									</p>
+									<ul class="space-y-2">
+										{#each data.itinerary.includes as item}
+											<li class="flex items-start gap-2 text-sm text-gray-700">
+												<CheckCircle2 size={15} class="mt-0.5 shrink-0 text-green-500" />
+												{item}
+											</li>
+										{/each}
+									</ul>
+								</div>
+							{/if}
+							{#if data.itinerary.excludes.length > 0}
+								<div>
+									<p class="mb-3 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-gray-500">
+										<XCircle size={14} /> Not Included
+									</p>
+									<ul class="space-y-2">
+										{#each data.itinerary.excludes as item}
+											<li class="flex items-start gap-2 text-sm text-gray-600">
+												<XCircle size={15} class="mt-0.5 shrink-0 text-red-400" />
+												{item}
+											</li>
+										{/each}
+									</ul>
+								</div>
+							{/if}
+							{#if data.itinerary.complementaries.length > 0}
+								<div>
+									<p class="mb-3 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-primary">
+										<Gift size={14} /> Complimentaries
+									</p>
+									<ul class="space-y-2">
+										{#each data.itinerary.complementaries as item}
+											<li class="flex items-start gap-2 text-sm text-gray-700">
+												<Gift size={15} class="mt-0.5 shrink-0 text-primary" />
+												{item}
+											</li>
+										{/each}
+									</ul>
+								</div>
+							{/if}
+						</div>
+					</div>
+				{/if}
+
+				<!-- PICKUP INFO -->
+				{#if data.itinerary.pickup || data.itinerary.meetingPoint}
+					<div class="mb-12 flex flex-wrap gap-6 rounded bg-[#f8f7f5] p-5 text-sm">
+						{#if data.itinerary.pickup}
+							<div class="flex items-start gap-2">
+								<MapPin size={15} class="mt-0.5 shrink-0 text-accent" />
+								<div>
+									<p class="font-semibold text-black">Departure & Return</p>
+									<p class="text-gray-600">{data.itinerary.pickup}</p>
+								</div>
+							</div>
+						{/if}
+						{#if data.itinerary.meetingPoint}
+							<div class="flex items-start gap-2">
+								<MapPin size={15} class="mt-0.5 shrink-0 text-primary" />
+								<div>
+									<p class="font-semibold text-black">Meeting Point</p>
+									<p class="text-gray-600">{data.itinerary.meetingPoint}</p>
+								</div>
+							</div>
+						{/if}
+					</div>
+				{/if}
+
+				<!-- FAQs -->
+				{#if faqs.length > 0}
+					<div class="mb-12">
+						<h2 class="mb-6 font-display text-3xl tracking-wide text-black">
+							Frequently Asked Questions
+						</h2>
+						<dl class="divide-y divide-black/10">
+							{#each faqs as faq, i}
+								<div class="py-4">
+									<button
+										type="button"
+										class="flex w-full items-start justify-between gap-4 text-left"
+										onclick={() => toggleFaq(i)}
+									>
+										<dt class="text-sm font-semibold text-black">{faq.question}</dt>
+										<span class="mt-0.5 shrink-0 text-gray-400">
+											{#if openFaq === i}
+												<ChevronUp size={16} />
+											{:else}
+												<ChevronDown size={16} />
+											{/if}
+										</span>
+									</button>
+									{#if openFaq === i}
+										<dd class="mt-3 text-sm leading-relaxed text-gray-600 whitespace-pre-line">
+											{faq.answer}
+										</dd>
+									{/if}
+								</div>
+							{/each}
+						</dl>
 					</div>
 				{/if}
 			</div>

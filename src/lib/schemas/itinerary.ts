@@ -12,5 +12,16 @@ export const itinerarySchema = z.object({
 	coverImage: z.string().optional().default(''),
 	images: z.string().default(''),
 	published: z.boolean().default(false),
-	pricingDisabled: z.boolean().default(false)
+	pricingDisabled: z.boolean().default(false),
+	// Logistics & info
+	pickup: z.string().optional().default(''),
+	meetingPoint: z.string().optional().default(''),
+	/** Newline-separated list */
+	includes: z.string().default(''),
+	/** Newline-separated list */
+	excludes: z.string().default(''),
+	/** Newline-separated list */
+	complementaries: z.string().default(''),
+	/** JSON-encoded array of { question, answer } */
+	faqs: z.string().default('[]')
 });
