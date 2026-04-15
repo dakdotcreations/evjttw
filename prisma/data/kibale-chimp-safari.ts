@@ -11,7 +11,7 @@ const data: SeedData = {
 		title: '3 Day Kibale Forest Chimpanzee Safari',
 		summary:
 			'Track wild chimpanzees in the primate capital of the world, hike volcanic crater landscapes, and explore Bigodi Wetland on this action-packed 3-day Uganda safari.',
-		description: `Kibale Forest National Park is a reward to primate lovers because of the exceptional concentration of primates thriving in this dense tropical rainforest. It holds the highest percentage of chimpanzee sightings in the wild of any location in Africa or the world. But Kibale is more than primates — the region's volcanic heritage has carved out authentic crater lakes, sweeping farmland, and lush tea estates that make it an unforgettable destination for eco-travellers and nature lovers alike.
+		description: `Kibale Forest National Park is a reward to primate lovers because of the exceptional concentration of primates thriving in this dense tropical rainforest. It holds the highest percentage of chimpanzee sightings in the wild of any location in Africa or the world. But Kibale is more than primates — the region\'s volcanic heritage has carved out authentic crater lakes, sweeping farmland, and lush tea estates that make it an unforgettable destination for eco-travellers and nature lovers alike.
 
 The safari starts and ends in Kampala, with an optional extension to Murchison Falls, Queen Elizabeth National Park, or Bwindi Impenetrable Forest for mountain gorilla trekking.
 
@@ -89,14 +89,14 @@ Activities include chimpanzee trekking, guided birding, a Bigodi Wetland boardwa
 
 		faqs: [
 			{
-				question: "I'm a solo traveller, is there a single supplement?",
+				question: "I\'m a solo traveller, is there a single supplement?",
 				answer:
 					'Single supplements apply when occupying a double/twin room alone. Please contact us for the current single supplement rate for this itinerary, as it varies by season and camp.',
 			},
 			{
 				question: 'Should I book pre/post tour accommodation?',
 				answer:
-					"We recommend arriving in Entebbe the night before departure so you are rested and ready for the early morning drive. Post-tour accommodation in Kampala or Entebbe is not included but can be arranged. Get in touch and we'll help you find the right option.",
+					"We recommend arriving in Entebbe the night before departure so you are rested and ready for the early morning drive. Post-tour accommodation in Kampala or Entebbe is not included but can be arranged. Get in touch and we\'ll help you find the right option.",
 			},
 			{
 				question: 'What is the cancellation policy?',

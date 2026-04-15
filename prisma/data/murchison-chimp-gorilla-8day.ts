@@ -14,14 +14,14 @@ const data: SeedData = {
 		id: 'seed-murchison-chimp-gorilla-8day',
 		title: '8 Days Murchison Falls, Chimp & Gorilla Trekking Safari',
 		summary:
-			'A private 8-day journey through four of Uganda's finest reserves — rhino tracking at Ziwa, game drives and a Nile boat trip at Murchison Falls, chimpanzee trekking at Kibale, tree-climbing lions at Ishasha, and mountain gorilla trekking at Bwindi.',
-		description: `This eight-day private safari covers the full breadth of Uganda's wildlife offering across four protected reserves, delivering an extraordinary variety of experiences in a single seamless itinerary.
+			'A private 8-day journey through four of Uganda\'s finest reserves — rhino tracking at Ziwa, game drives and a Nile boat trip at Murchison Falls, chimpanzee trekking at Kibale, tree-climbing lions at Ishasha, and mountain gorilla trekking at Bwindi.',
+		description: `This eight-day private safari covers the full breadth of Uganda\'s wildlife offering across four protected reserves, delivering an extraordinary variety of experiences in a single seamless itinerary.
 
-The journey begins with an en-route stop at Ziwa Rhino Sanctuary — the only place in Uganda where you can track wild white rhinos on foot — before continuing north to Murchison Falls National Park, Uganda's largest reserve. Two days here deliver morning savannah game drives and a 3-hour boat trip up the Victoria Nile to the base of the world's most powerful waterfall.
+The journey begins with an en-route stop at Ziwa Rhino Sanctuary — the only place in Uganda where you can track wild white rhinos on foot — before continuing north to Murchison Falls National Park, Uganda\'s largest reserve. Two days here deliver morning savannah game drives and a 3-hour boat trip up the Victoria Nile to the base of the world\'s most powerful waterfall.
 
 A top-of-the-falls walk marks the departure from Murchison before the route swings south to Kibale Forest National Park — the primate capital of the world — for chimpanzee trekking in a forest that supports the highest density of chimps anywhere in Africa.
 
-From Kibale the safari sweeps across to Queen Elizabeth National Park for game drives and a Kazinga Channel boat cruise, then passes through the Ishasha sector — home to Uganda's famous tree-climbing lions — on the way to Bwindi Impenetrable National Park for gorilla trekking. The adventure concludes with a relaxed afternoon at the serene highland waters of Lake Bunyonyi before the return drive to Entebbe.`,
+From Kibale the safari sweeps across to Queen Elizabeth National Park for game drives and a Kazinga Channel boat cruise, then passes through the Ishasha sector — home to Uganda\'s famous tree-climbing lions — on the way to Bwindi Impenetrable National Park for gorilla trekking. The adventure concludes with a relaxed afternoon at the serene highland waters of Lake Bunyonyi before the return drive to Entebbe.`,
 		durationDays: 8,
 		currency: 'USD',
 		fixedPrice: null,
@@ -72,8 +72,8 @@ From Kibale the safari sweeps across to Queen Elizabeth National Park for game d
 			stepNumber: 5,
 			title: 'Morning Game Drive & Kazinga Channel Boat Cruise — Queen Elizabeth',
 			description:
-				'Early morning game drive across the Kasenyi Plains scanning for lions, leopards, elephants, buffaloes, Uganda kob, hyenas, and a diversity of savannah birds. Queen Elizabeth National Park\'s mosaic of habitats — grassy plains, crater lakes, tropical forest fringe, and river wetlands — delivers exceptional wildlife variety throughout the day. Return to the lodge for lunch, then board a launch boat for an afternoon cruise along the Kazinga Channel connecting Lake Edward and Lake George. Drift past hippo pods, Nile crocodiles, elephants bathing at the water's edge, and hundreds of bird species including African skimmers and pink-backed pelicans. Dinner and overnight at the lodge. Meal plan: Full Board.',
-			highlight: 'Kazinga Channel boat cruise — one of East Africa's finest water safari experiences',
+				'Early morning game drive across the Kasenyi Plains scanning for lions, leopards, elephants, buffaloes, Uganda kob, hyenas, and a diversity of savannah birds. Queen Elizabeth National Park\'s mosaic of habitats — grassy plains, crater lakes, tropical forest fringe, and river wetlands — delivers exceptional wildlife variety throughout the day. Return to the lodge for lunch, then board a launch boat for an afternoon cruise along the Kazinga Channel connecting Lake Edward and Lake George. Drift past hippo pods, Nile crocodiles, elephants bathing at the water\'s edge, and hundreds of bird species including African skimmers and pink-backed pelicans. Dinner and overnight at the lodge. Meal plan: Full Board.',
+			highlight: 'Kazinga Channel boat cruise — one of East Africa\'s finest water safari experiences',
 			durationDays: 1,
 			locationName: 'Queen Elizabeth National Park',
 		},

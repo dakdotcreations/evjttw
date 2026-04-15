@@ -16,14 +16,14 @@ const data: SeedData = {
 		id: 'seed-kenya-exclusive-safari-7day',
 		title: '7 Day Kenya Exclusive Safari',
 		summary:
-			"Seven days exploring Kenya's finest — elephant-filled Amboseli beneath Kilimanjaro, the flamingo-lined shores of Lake Nakuru, two full days of Big Five action in the Maasai Mara, and a final boat ride on Lake Naivasha.",
-		description: `This seven-day exclusive safari guides you through Kenya's most celebrated wildlife destinations, from the iconic elephant herds of Amboseli to the dramatic plains of the Maasai Mara.
+			"Seven days exploring Kenya\'s finest — elephant-filled Amboseli beneath Kilimanjaro, the flamingo-lined shores of Lake Nakuru, two full days of Big Five action in the Maasai Mara, and a final boat ride on Lake Naivasha.",
+		description: `This seven-day exclusive safari guides you through Kenya\'s most celebrated wildlife destinations, from the iconic elephant herds of Amboseli to the dramatic plains of the Maasai Mara.
 
-Amboseli National Park embodies five distinct wildlife habitats — open plains, acacia woodland, lava thorn-bush, swamps, and marshes — all set against the magnificent backdrop of Mount Kilimanjaro. It is Kenya's most photogenic park and home to some of the largest elephant herds on the continent, alongside lions, cheetahs, zebras, and wildebeest.
+Amboseli National Park embodies five distinct wildlife habitats — open plains, acacia woodland, lava thorn-bush, swamps, and marshes — all set against the magnificent backdrop of Mount Kilimanjaro. It is Kenya\'s most photogenic park and home to some of the largest elephant herds on the continent, alongside lions, cheetahs, zebras, and wildebeest.
 
-Lake Nakuru National Park is one of East Africa's great birding destinations, famous for its roseate flamingos and over 400 bird species. The park also shelters both white and black rhinos, warthogs, waterbucks, buffaloes, reedbucks, and the occasional leopard — all within a compact 180 sq km reserve.
+Lake Nakuru National Park is one of East Africa\'s great birding destinations, famous for its roseate flamingos and over 400 bird species. The park also shelters both white and black rhinos, warthogs, waterbucks, buffaloes, reedbucks, and the occasional leopard — all within a compact 180 sq km reserve.
 
-The Maasai Mara needs little introduction. At 1,510 sq km of open savannah and riverine woodland, it offers Africa's most reliable Big Five sightings year-round. The ultimate spectacle is the Great Wildebeest Migration — millions of wildebeest crossing north from the Serengeti in July and August before returning south in October. Even outside migration season, game viewing in the Mara is exceptional.
+The Maasai Mara needs little introduction. At 1,510 sq km of open savannah and riverine woodland, it offers Africa\'s most reliable Big Five sightings year-round. The ultimate spectacle is the Great Wildebeest Migration — millions of wildebeest crossing north from the Serengeti in July and August before returning south in October. Even outside migration season, game viewing in the Mara is exceptional.
 
 The safari ends with a boat ride on the papyrus-fringed shores of Lake Naivasha before returning to Nairobi for your international flight.`,
 		durationDays: 7,
@@ -41,7 +41,7 @@ The safari ends with a boat ride on the papyrus-fringed shores of Lake Naivasha 
 			title: 'Nairobi → Amboseli National Park — Afternoon Game Drive',
 			description:
 				'Pick up from Nairobi airport or hotel and transfer south to Amboseli National Park, arriving in time for a hot lunch at Kibo Safari Camp. Amboseli is Kenya\'s most iconic park — five contrasting wildlife habitats converging at the foot of Africa\'s highest peak. In the afternoon, head out for your first game drive across the dry lake-bed plains, scanning for Amboseli\'s famous large elephant herds, lions, cheetahs, Maasai giraffe, zebras, and wildebeest with Kilimanjaro dominating the horizon. Dinner and overnight at Kibo Safari Camp. Meal plan: Full Board.',
-			highlight: 'Amboseli elephant herds with Mount Kilimanjaro as backdrop — Kenya's most iconic view',
+			highlight: 'Amboseli elephant herds with Mount Kilimanjaro as backdrop — Kenya\'s most iconic view',
 			durationDays: 1,
 			locationName: 'Amboseli National Park',
 		},

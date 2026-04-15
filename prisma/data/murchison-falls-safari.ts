@@ -10,10 +10,10 @@ const data: SeedData = {
 		id: 'seed-murchison-falls-safari',
 		title: '3 Day Murchison Falls Safari',
 		summary:
-			"Track wild rhinos at Ziwa Sanctuary then explore Uganda's largest national park — home to four of the Big Five, the world's most powerful waterfall, and a spectacular Nile boat cruise.",
-		description: `Murchison Falls National Park is Uganda's largest and most visited national park, covering over 3,800 sq km of savannah, woodland, and riverine forest along the Nile. The park is home to four of the Big Five — lions, buffaloes, leopards, and elephants — as well as giraffes, Nile crocodiles, hippos, and an incredible diversity of birdlife.
+			"Track wild rhinos at Ziwa Sanctuary then explore Uganda\'s largest national park — home to four of the Big Five, the world\'s most powerful waterfall, and a spectacular Nile boat cruise.",
+		description: `Murchison Falls National Park is Uganda\'s largest and most visited national park, covering over 3,800 sq km of savannah, woodland, and riverine forest along the Nile. The park is home to four of the Big Five — lions, buffaloes, leopards, and elephants — as well as giraffes, Nile crocodiles, hippos, and an incredible diversity of birdlife.
 
-The centrepiece of the park is Murchison Falls itself, where the entire volume of the Nile is forced through a narrow 8-metre gorge, creating the most powerful waterfall on earth. A boat cruise up the Nile to the base of the falls — through channels thick with hippos and crocodiles — is one of East Africa's great safari experiences.
+The centrepiece of the park is Murchison Falls itself, where the entire volume of the Nile is forced through a narrow 8-metre gorge, creating the most powerful waterfall on earth. A boat cruise up the Nile to the base of the falls — through channels thick with hippos and crocodiles — is one of East Africa\'s great safari experiences.
 
 Before entering the park, the itinerary includes a stop at Ziwa Rhino Sanctuary in Masindi, the only place in Uganda where you can track wild southern white rhinos on foot. Rhinos were previously extinct in Uganda and are now being reintroduced and bred here ahead of eventual release into the wild.
 
@@ -83,7 +83,7 @@ The safari starts and ends in Kampala or Entebbe, with pickup at Entebbe Interna
 
 		faqs: [
 			{
-				question: "I'm a solo traveller, is that ok?",
+				question: "I\'m a solo traveller, is that ok?",
 				answer:
 					'Absolutely. Many of our travellers join because they are travelling solo and want to meet and share experiences with like-minded people. As a responsible tour operator, we strive to create a safe and inclusive environment for everyone.',
 			},

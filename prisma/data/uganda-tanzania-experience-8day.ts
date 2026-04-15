@@ -19,16 +19,16 @@ const data: SeedData = {
 		id: 'seed-uganda-tanzania-experience-8day',
 		title: '8 Days Uganda – Tanzania Experience',
 		summary:
-			'Gorilla trekking at Bwindi plus Tanzania's northern circuit — Tarangire elephant herds, the endless Serengeti plains, and the Ngorongoro Crater — all in a single seamless 8-day East Africa adventure.',
-		description: `This eight-day cross-border safari combines the two highlights that define East Africa: mountain gorilla trekking in Uganda's Bwindi Impenetrable National Park, followed by a domestic flight into Tanzania for an immersive northern circuit safari.
+			'Gorilla trekking at Bwindi plus Tanzania\'s northern circuit — Tarangire elephant herds, the endless Serengeti plains, and the Ngorongoro Crater — all in a single seamless 8-day East Africa adventure.',
+		description: `This eight-day cross-border safari combines the two highlights that define East Africa: mountain gorilla trekking in Uganda\'s Bwindi Impenetrable National Park, followed by a domestic flight into Tanzania for an immersive northern circuit safari.
 
-The journey opens with two days at Bwindi — widely regarded as Africa's most rewarding primate destination. Around 460 mountain gorillas (roughly half the world's entire population) live in Bwindi's misty highland rainforest. Trekking through the undergrowth to spend an hour with a habituated family group is an encounter that consistently tops travellers' most memorable experiences.
+The journey opens with two days at Bwindi — widely regarded as Africa\'s most rewarding primate destination. Around 460 mountain gorillas (roughly half the world\'s entire population) live in Bwindi\'s misty highland rainforest. Trekking through the undergrowth to spend an hour with a habituated family group is an encounter that consistently tops travellers\' most memorable experiences.
 
-A short domestic flight then transfers you south to Arusha, the gateway to Tanzania's legendary northern circuit. Tarangire National Park welcomes you with its ancient baobab silhouettes and elephant herds that number in the hundreds during the dry season — the largest concentration anywhere in northern Tanzania. En route to the Serengeti, the historic Olduvai Gorge provides a compelling window into human evolution before the endless plains open up around you.
+A short domestic flight then transfers you south to Arusha, the gateway to Tanzania\'s legendary northern circuit. Tarangire National Park welcomes you with its ancient baobab silhouettes and elephant herds that number in the hundreds during the dry season — the largest concentration anywhere in northern Tanzania. En route to the Serengeti, the historic Olduvai Gorge provides a compelling window into human evolution before the endless plains open up around you.
 
 Two full days in the Serengeti offer unparalleled wildlife density — three million animals call this ecosystem home. Lion prides, leopards, cheetahs, and vast herds of wildebeest, zebra, and buffalo are daily sightings. Optional hot-air balloon flights deliver a dawn aerial perspective over the plains that is simply incomparable.
 
-The circuit concludes at the Ngorongoro Crater — the world's largest intact volcanic caldera and a UNESCO World Heritage Site. A descent into the 260 sq km crater floor delivers one of Africa's most concentrated Big Five environments, with resident black rhinos, prides of lions, and flamingo-fringed Lake Magadi all within a single breathtaking bowl.`,
+The circuit concludes at the Ngorongoro Crater — the world\'s largest intact volcanic caldera and a UNESCO World Heritage Site. A descent into the 260 sq km crater floor delivers one of Africa\'s most concentrated Big Five environments, with resident black rhinos, prides of lions, and flamingo-fringed Lake Magadi all within a single breathtaking bowl.`,
 		durationDays: 8,
 		currency: 'USD',
 		fixedPrice: null,

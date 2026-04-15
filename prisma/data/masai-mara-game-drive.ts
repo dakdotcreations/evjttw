@@ -9,8 +9,8 @@ const data: SeedData = {
 		id: 'seed-masai-mara-game-drive',
 		title: '3 Day Masai Mara Game Drive',
 		summary:
-			'Three days of pure safari magic in Kenya's most iconic wildlife reserve — home to the Big Five, the Great Migration, and endless open savannah.',
-		description: `The Maasai Mara National Reserve is Kenya's premier wildlife destination and one of the most celebrated safari areas on the planet. This 3-day game drive puts you in the heart of the action — whether it's lions basking on the plains, cheetahs cutting across the grasslands, or the thundering hooves of the annual wildebeest migration.
+			'Three days of pure safari magic in Kenya\'s most iconic wildlife reserve — home to the Big Five, the Great Migration, and endless open savannah.',
+		description: `The Maasai Mara National Reserve is Kenya\'s premier wildlife destination and one of the most celebrated safari areas on the planet. This 3-day game drive puts you in the heart of the action — whether it\'s lions basking on the plains, cheetahs cutting across the grasslands, or the thundering hooves of the annual wildebeest migration.
 
 The ultimate spectacle is the Great Wildebeest Migration: every July and August, millions of wildebeest move north from the Serengeti in search of lusher pastures before turning south again in October. Witnessing a river crossing is a bucket-list moment that very few places on earth can match.
 
@@ -92,14 +92,14 @@ The safari starts and ends in Nairobi, with airport pickup at Jomo Kenyatta Inte
 					'Game drives typically last between 3 and 5 hours. Full-day drives with a picnic lunch in the bush are also available. Let us know your preferences and we will tailor the schedule accordingly.',
 			},
 			{
-				question: "I'm a solo traveller, is there a single supplement?",
+				question: "I\'m a solo traveller, is there a single supplement?",
 				answer:
 					'Yes, a single supplement applies when occupying a double or twin room alone. Please contact us for the current rate, which varies by season and camp.',
 			},
 			{
 				question: 'Should I book pre/post tour accommodation?',
 				answer:
-					"We recommend arriving in Nairobi the night before departure so you are rested and ready for the early morning drive to the Mara. Post-tour accommodation in Nairobi is not included but can be arranged — get in touch and we'll find the right option for you.",
+					"We recommend arriving in Nairobi the night before departure so you are rested and ready for the early morning drive to the Mara. Post-tour accommodation in Nairobi is not included but can be arranged — get in touch and we\'ll find the right option for you.",
 			},
 			{
 				question: 'What is the cancellation policy?',

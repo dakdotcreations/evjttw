@@ -65,7 +65,13 @@ async function main() {
 		flagEmoji: '🇹🇿',
 		description: "Home to Africa's highest peak and its most famous plains, Tanzania offers an unparalleled scale of wildlife and tropical island luxury."
 	});
-	console.log('✅ Countries: Uganda, Kenya, Tanzania');
+	const rwanda = await upsertCountry({
+		name: 'Rwanda',
+		code: 'RW',
+		flagEmoji: '🇷🇼',
+		description: "The Land of a Thousand Hills, Rwanda is a conservation success story and home to more than half the world's remaining mountain gorillas."
+	});
+	console.log('✅ Countries: Uganda, Kenya, Tanzania, Rwanda');
 
 	// ── Locations — Uganda ───────────────────────────────────────────────────
 	const bwindi = await upsertLocation({ name: 'Bwindi Impenetrable National Park', description: 'A UNESCO World Heritage site and home to nearly half of the world\'s remaining mountain gorillas.', countryId: uganda.id });
@@ -116,7 +122,14 @@ async function main() {
 	await upsertLocation({ name: 'Ruaha National Park', description: "Tanzania's largest national park, offering rugged scenery and wild dog sightings.", countryId: tanzania.id });
 	await upsertLocation({ name: 'Arusha National Park', description: 'The gateway to the northern circuit, featuring Mount Meru and Momella Lakes.', countryId: tanzania.id });
 	await upsertLocation({ name: 'Pemba Island', description: "Known as the 'Green Island,' offering some of the best untouched coral reefs in the Indian Ocean.", countryId: tanzania.id });
-	console.log('✅ Locations — Tanzania (11)');
+	await upsertLocation({ name: 'Lake Naivasha', description: 'A freshwater Rift Valley lake ringed by yellow-fever acacia woodland, famous for hippos and boat safaris.', countryId: kenya.id });
+	console.log('✅ Locations — Tanzania (11) + Lake Naivasha (Kenya)');
+
+	// ── Locations — Rwanda ───────────────────────────────────────────────────
+	await upsertLocation({ name: 'Akagera National Park', description: "Rwanda's only Big Five savannah park, reintroduced with lions and rhinos and bordering Lake Ihema.", countryId: rwanda.id });
+	await upsertLocation({ name: 'Volcanoes National Park', description: 'The premier destination for mountain gorilla trekking in Rwanda, set in the Virunga Mountains.', countryId: rwanda.id });
+	await upsertLocation({ name: 'Nyungwe Forest National Park', description: 'A montane rainforest spanning 970 sq km, rich in chimpanzees and over 300 bird species.', countryId: rwanda.id });
+	console.log('✅ Locations — Rwanda (3)');
 
 	// ── Itineraries ───────────────────────────────────────────────────────────
 	const gorillaTrek = await prisma.itinerary.upsert({

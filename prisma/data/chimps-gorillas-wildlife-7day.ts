@@ -14,15 +14,15 @@ const data: SeedData = {
 		title: '7 Day Chimps, Gorilla Trekking and Wildlife Experience',
 		summary:
 			'Seven days covering the very best of Uganda — chimpanzee trekking at Kibale, game drives and a Kazinga Channel boat cruise at Queen Elizabeth, mountain gorilla trekking at Bwindi, and a walking safari at Lake Mburo.',
-		description: `This seven-day safari threads together Uganda's most iconic wildlife experiences in one fluid journey, moving from the primate capital of the world through the Big Five savannah of Queen Elizabeth to the ancient gorilla forests of Bwindi and the zebra-dotted shores of Lake Mburo.
+		description: `This seven-day safari threads together Uganda\'s most iconic wildlife experiences in one fluid journey, moving from the primate capital of the world through the Big Five savannah of Queen Elizabeth to the ancient gorilla forests of Bwindi and the zebra-dotted shores of Lake Mburo.
 
 Kibale Forest National Park is home to an estimated 1,500 chimpanzees — the highest density of chimps anywhere in Africa. Four communities are fully habituated, allowing close encounters in the rainforest. A Bigodi Wetland nature walk on arrival adds red colobus monkeys, grey-cheeked mangabeys, and over 200 bird species to the opening day.
 
-Queen Elizabeth National Park delivers savannah game drives across the Kasenyi Plains and a boat cruise along the Kazinga Channel — one of East Africa's finest water safari routes — with hippos, Nile crocodiles, and elephants lining the banks.
+Queen Elizabeth National Park delivers savannah game drives across the Kasenyi Plains and a boat cruise along the Kazinga Channel — one of East Africa\'s finest water safari routes — with hippos, Nile crocodiles, and elephants lining the banks.
 
-Bwindi Impenetrable National Park holds over 400 mountain gorillas, roughly half the world's entire population. A full hour with a habituated gorilla family, reached after a 1–8 hour forest trek, is the emotional high point of the safari.
+Bwindi Impenetrable National Park holds over 400 mountain gorillas, roughly half the world\'s entire population. A full hour with a habituated gorilla family, reached after a 1–8 hour forest trek, is the emotional high point of the safari.
 
-The journey ends at Lake Mburo National Park — Uganda's smallest savannah park but home to unique species including zebras, impalas, elands, and hippos — with an on-foot guided nature walk alongside an armed ranger guide.
+The journey ends at Lake Mburo National Park — Uganda\'s smallest savannah park but home to unique species including zebras, impalas, elands, and hippos — with an on-foot guided nature walk alongside an armed ranger guide.
 
 The safari starts and ends at Entebbe International Airport.`,
 		durationDays: 7,

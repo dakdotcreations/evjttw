@@ -11,11 +11,11 @@ const data: SeedData = {
 		title: '3 Days Gorilla Tracking & Canoe Ride at Lake Bunyonyi',
 		summary:
 			'Track rare mountain gorillas deep in the forests of southwest Uganda, then unwind with a scenic canoe ride on the tranquil island-dotted waters of Lake Bunyonyi.',
-		description: `This three-day private tour combines two of Uganda's most iconic experiences: mountain gorilla trekking in Bwindi Impenetrable National Park and a canoe ride on the serene, highland waters of Lake Bunyonyi.
+		description: `This three-day private tour combines two of Uganda\'s most iconic experiences: mountain gorilla trekking in Bwindi Impenetrable National Park and a canoe ride on the serene, highland waters of Lake Bunyonyi.
 
-Bwindi Impenetrable National Park is a UNESCO World Heritage Site sheltering over 400 mountain gorillas — roughly half of the world's entire surviving population. Gorilla tracking takes you deep into one of Africa's oldest and most biodiverse rainforests in search of a habituated family, delivering one of wildlife's most profound close encounters.
+Bwindi Impenetrable National Park is a UNESCO World Heritage Site sheltering over 400 mountain gorillas — roughly half of the world\'s entire surviving population. Gorilla tracking takes you deep into one of Africa\'s oldest and most biodiverse rainforests in search of a habituated family, delivering one of wildlife\'s most profound close encounters.
 
-Lake Bunyonyi lies just north of Bwindi in the highlands of Kigezi. Dotted with 29 islands and ringed by terraced hills, it is one of Uganda's most scenic landscapes and one of the few lakes in East Africa free of bilharzia — making it perfect for canoeing. The lake is also a birder's paradise, with the haunting call of the African fish eagle echoing across the water.
+Lake Bunyonyi lies just north of Bwindi in the highlands of Kigezi. Dotted with 29 islands and ringed by terraced hills, it is one of Uganda\'s most scenic landscapes and one of the few lakes in East Africa free of bilharzia — making it perfect for canoeing. The lake is also a birder\'s paradise, with the haunting call of the African fish eagle echoing across the water.
 
 The tour starts and ends at Entebbe International Airport, with pickup and drop-off included.`,
 		durationDays: 3,
@@ -32,7 +32,7 @@ The tour starts and ends at Entebbe International Airport, with pickup and drop-
 			stepNumber: 1,
 			title: 'Entebbe / Kampala → Bwindi Impenetrable National Park',
 			description:
-				'Your guide will meet you at Entebbe International Airport or your Kampala hotel and begin the drive southwest to Bwindi Impenetrable National Park. The journey takes approximately 7–9 hours through Uganda's lush countryside, passing the equator for a photo stop and continuing through Mbarara for lunch. Arrive at the park in the evening, check in to your lodge, and rest up ahead of the early start for gorilla tracking the following morning. Dinner and overnight at the lodge.',
+				'Your guide will meet you at Entebbe International Airport or your Kampala hotel and begin the drive southwest to Bwindi Impenetrable National Park. The journey takes approximately 7–9 hours through Uganda\'s lush countryside, passing the equator for a photo stop and continuing through Mbarara for lunch. Arrive at the park in the evening, check in to your lodge, and rest up ahead of the early start for gorilla tracking the following morning. Dinner and overnight at the lodge.',
 			highlight: null,
 			durationDays: 1,
 			locationName: 'Bwindi Impenetrable National Park',
@@ -50,7 +50,7 @@ The tour starts and ends at Entebbe International Airport, with pickup and drop-
 			stepNumber: 3,
 			title: 'Lake Bunyonyi Canoe Ride → Entebbe International Airport',
 			description:
-				'After breakfast, check out of the lodge and make the short drive to Lake Bunyonyi — one of Uganda's most breathtaking highland landscapes. Board a traditional dugout canoe and paddle across the glassy waters past several of the lake's 29 islands, taking in the terraced hills of Kigezi and the calls of birds echoing across the water. Lake Bunyonyi is one of the few lakes in East Africa free of bilharzia, making it ideal for a relaxed paddle. After the canoe experience, continue the drive north through the scenic Kigezi countryside and on to Entebbe International Airport for your onward flight home.',
+				'After breakfast, check out of the lodge and make the short drive to Lake Bunyonyi — one of Uganda\'s most breathtaking highland landscapes. Board a traditional dugout canoe and paddle across the glassy waters past several of the lake\'s 29 islands, taking in the terraced hills of Kigezi and the calls of birds echoing across the water. Lake Bunyonyi is one of the few lakes in East Africa free of bilharzia, making it ideal for a relaxed paddle. After the canoe experience, continue the drive north through the scenic Kigezi countryside and on to Entebbe International Airport for your onward flight home.',
 			highlight: 'Dugout canoe ride across the island-studded waters of Lake Bunyonyi',
 			durationDays: 1,
 			locationName: 'Lake Bunyonyi',

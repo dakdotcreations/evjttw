@@ -11,11 +11,11 @@ const data: SeedData = {
 		title: '5 Day Gorilla and Wildlife Safari',
 		summary:
 			'Track mountain gorillas in Bwindi, encounter tree-climbing lions in Ishasha, cruise the hippo-lined Kazinga Channel, and track chimpanzees in Kyambura Gorge — the ultimate 5-day Uganda primate and wildlife experience.',
-		description: `This five-day safari distils the very best of Uganda into one unforgettable journey. It combines three of the country's most iconic wildlife encounters — mountain gorilla trekking, tree-climbing lion tracking, and chimpanzee tracking — with a Kazinga Channel boat cruise and authentic community cultural experiences.
+		description: `This five-day safari distils the very best of Uganda into one unforgettable journey. It combines three of the country\'s most iconic wildlife encounters — mountain gorilla trekking, tree-climbing lion tracking, and chimpanzee tracking — with a Kazinga Channel boat cruise and authentic community cultural experiences.
 
-Bwindi Impenetrable National Park, a UNESCO World Heritage Site in southwestern Uganda, shelters over 400 mountain gorillas — roughly half the world's entire population. Tracking a habituated gorilla family through the ancient forest is one of the most profound wildlife encounters on earth.
+Bwindi Impenetrable National Park, a UNESCO World Heritage Site in southwestern Uganda, shelters over 400 mountain gorillas — roughly half the world\'s entire population. Tracking a habituated gorilla family through the ancient forest is one of the most profound wildlife encounters on earth.
 
-Queen Elizabeth National Park brings an entirely different dimension: open savannah game drives across the Kasenyi Plains, the famous tree-climbing lions of the Ishasha sector, and an afternoon boat cruise along the Kazinga Channel — one of East Africa's finest hippo and crocodile habitats. Kyambura Gorge, carved into the park's eastern edge, harbours a habituated chimpanzee community and is known as the "Valley of Apes."
+Queen Elizabeth National Park brings an entirely different dimension: open savannah game drives across the Kasenyi Plains, the famous tree-climbing lions of the Ishasha sector, and an afternoon boat cruise along the Kazinga Channel — one of East Africa\'s finest hippo and crocodile habitats. Kyambura Gorge, carved into the park\'s eastern edge, harbours a habituated chimpanzee community and is known as the "Valley of Apes."
 
 The safari is suitable for both first-time visitors and seasoned safari goers. It starts and ends in Kampala or Entebbe, with pickup at Entebbe International Airport.`,
 		durationDays: 5,

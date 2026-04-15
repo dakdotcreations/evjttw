@@ -9,10 +9,10 @@ const data: SeedData = {
 		id: 'seed-bwindi-gorilla-tour',
 		title: '3 Days Bwindi Gorilla Tour',
 		summary:
-			'Come face-to-face with endangered mountain gorillas in their natural habitat at Bwindi Impenetrable Forest — home to nearly half the world's surviving mountain gorilla population.',
-		description: `Bwindi Impenetrable National Park is a UNESCO World Heritage Site and one of the most biodiverse forests in Africa. Nestled in the Kabale district of southwestern Uganda, the park is home to over 400 mountain gorillas — roughly half of the world's entire surviving population. A gorilla trekking permit grants one magical, permitted hour in close proximity to a habituated gorilla family, an encounter widely regarded as one of the most profound wildlife experiences on earth.
+			'Come face-to-face with endangered mountain gorillas in their natural habitat at Bwindi Impenetrable Forest — home to nearly half the world\'s surviving mountain gorilla population.',
+		description: `Bwindi Impenetrable National Park is a UNESCO World Heritage Site and one of the most biodiverse forests in Africa. Nestled in the Kabale district of southwestern Uganda, the park is home to over 400 mountain gorillas — roughly half of the world\'s entire surviving population. A gorilla trekking permit grants one magical, permitted hour in close proximity to a habituated gorilla family, an encounter widely regarded as one of the most profound wildlife experiences on earth.
 
-Beyond gorillas, Bwindi's ancient rainforest shelters a remarkable variety of primates including black-and-white colobus monkeys, red-tailed monkeys, olive baboons, and L'Hoest's monkeys. The park also supports over 350 bird species, making it a premier birding destination.
+Beyond gorillas, Bwindi\'s ancient rainforest shelters a remarkable variety of primates including black-and-white colobus monkeys, red-tailed monkeys, olive baboons, and L\'Hoest\'s monkeys. The park also supports over 350 bird species, making it a premier birding destination.
 
 The surrounding community is equally rich in culture. The Batwa pygmies — the original forest dwellers — offer authentic cultural performances and traditional walks that bring their centuries-old way of life to vivid life.
 
