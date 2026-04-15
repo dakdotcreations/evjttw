@@ -31,7 +31,7 @@
 
 <a
 	href="/tours/{id}"
-	class="group block overflow-hidden bg-white transition-all duration-300 hover:-translate-y-1">
+	class="group block overflow-hidden transition-all duration-300 hover:-translate-y-1">
 	<!-- Image -->
 	<div class="relative aspect-[4/3] overflow-hidden bg-gray-100">
 		{#if coverImage}
