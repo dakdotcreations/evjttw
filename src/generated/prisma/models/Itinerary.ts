@@ -50,6 +50,8 @@ export type ItineraryMinAggregateOutputType = {
   coverImage: string | null
   published: boolean | null
   pricingDisabled: boolean | null
+  pickup: string | null
+  meetingPoint: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -66,6 +68,8 @@ export type ItineraryMaxAggregateOutputType = {
   coverImage: string | null
   published: boolean | null
   pricingDisabled: boolean | null
+  pickup: string | null
+  meetingPoint: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -84,6 +88,12 @@ export type ItineraryCountAggregateOutputType = {
   images: number
   published: number
   pricingDisabled: number
+  pickup: number
+  meetingPoint: number
+  includes: number
+  excludes: number
+  complementaries: number
+  faqs: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -114,6 +124,8 @@ export type ItineraryMinAggregateInputType = {
   coverImage?: true
   published?: true
   pricingDisabled?: true
+  pickup?: true
+  meetingPoint?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -130,6 +142,8 @@ export type ItineraryMaxAggregateInputType = {
   coverImage?: true
   published?: true
   pricingDisabled?: true
+  pickup?: true
+  meetingPoint?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -148,6 +162,12 @@ export type ItineraryCountAggregateInputType = {
   images?: true
   published?: true
   pricingDisabled?: true
+  pickup?: true
+  meetingPoint?: true
+  includes?: true
+  excludes?: true
+  complementaries?: true
+  faqs?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -253,6 +273,12 @@ export type ItineraryGroupByOutputType = {
   images: string[]
   published: boolean
   pricingDisabled: boolean
+  pickup: string | null
+  meetingPoint: string | null
+  includes: string[]
+  excludes: string[]
+  complementaries: string[]
+  faqs: runtime.JsonValue | null
   createdAt: Date
   updatedAt: Date
   _count: ItineraryCountAggregateOutputType | null
@@ -294,6 +320,12 @@ export type ItineraryWhereInput = {
   images?: Prisma.StringNullableListFilter<"Itinerary">
   published?: Prisma.BoolFilter<"Itinerary"> | boolean
   pricingDisabled?: Prisma.BoolFilter<"Itinerary"> | boolean
+  pickup?: Prisma.StringNullableFilter<"Itinerary"> | string | null
+  meetingPoint?: Prisma.StringNullableFilter<"Itinerary"> | string | null
+  includes?: Prisma.StringNullableListFilter<"Itinerary">
+  excludes?: Prisma.StringNullableListFilter<"Itinerary">
+  complementaries?: Prisma.StringNullableListFilter<"Itinerary">
+  faqs?: Prisma.JsonNullableFilter<"Itinerary">
   createdAt?: Prisma.DateTimeFilter<"Itinerary"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Itinerary"> | Date | string
   steps?: Prisma.ItineraryStepListRelationFilter
@@ -316,6 +348,12 @@ export type ItineraryOrderByWithRelationInput = {
   images?: Prisma.SortOrder
   published?: Prisma.SortOrder
   pricingDisabled?: Prisma.SortOrder
+  pickup?: Prisma.SortOrderInput | Prisma.SortOrder
+  meetingPoint?: Prisma.SortOrderInput | Prisma.SortOrder
+  includes?: Prisma.SortOrder
+  excludes?: Prisma.SortOrder
+  complementaries?: Prisma.SortOrder
+  faqs?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   steps?: Prisma.ItineraryStepOrderByRelationAggregateInput
@@ -341,6 +379,12 @@ export type ItineraryWhereUniqueInput = Prisma.AtLeast<{
   images?: Prisma.StringNullableListFilter<"Itinerary">
   published?: Prisma.BoolFilter<"Itinerary"> | boolean
   pricingDisabled?: Prisma.BoolFilter<"Itinerary"> | boolean
+  pickup?: Prisma.StringNullableFilter<"Itinerary"> | string | null
+  meetingPoint?: Prisma.StringNullableFilter<"Itinerary"> | string | null
+  includes?: Prisma.StringNullableListFilter<"Itinerary">
+  excludes?: Prisma.StringNullableListFilter<"Itinerary">
+  complementaries?: Prisma.StringNullableListFilter<"Itinerary">
+  faqs?: Prisma.JsonNullableFilter<"Itinerary">
   createdAt?: Prisma.DateTimeFilter<"Itinerary"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Itinerary"> | Date | string
   steps?: Prisma.ItineraryStepListRelationFilter
@@ -363,6 +407,12 @@ export type ItineraryOrderByWithAggregationInput = {
   images?: Prisma.SortOrder
   published?: Prisma.SortOrder
   pricingDisabled?: Prisma.SortOrder
+  pickup?: Prisma.SortOrderInput | Prisma.SortOrder
+  meetingPoint?: Prisma.SortOrderInput | Prisma.SortOrder
+  includes?: Prisma.SortOrder
+  excludes?: Prisma.SortOrder
+  complementaries?: Prisma.SortOrder
+  faqs?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ItineraryCountOrderByAggregateInput
@@ -389,6 +439,12 @@ export type ItineraryScalarWhereWithAggregatesInput = {
   images?: Prisma.StringNullableListFilter<"Itinerary">
   published?: Prisma.BoolWithAggregatesFilter<"Itinerary"> | boolean
   pricingDisabled?: Prisma.BoolWithAggregatesFilter<"Itinerary"> | boolean
+  pickup?: Prisma.StringNullableWithAggregatesFilter<"Itinerary"> | string | null
+  meetingPoint?: Prisma.StringNullableWithAggregatesFilter<"Itinerary"> | string | null
+  includes?: Prisma.StringNullableListFilter<"Itinerary">
+  excludes?: Prisma.StringNullableListFilter<"Itinerary">
+  complementaries?: Prisma.StringNullableListFilter<"Itinerary">
+  faqs?: Prisma.JsonNullableWithAggregatesFilter<"Itinerary">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Itinerary"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Itinerary"> | Date | string
 }
@@ -407,6 +463,12 @@ export type ItineraryCreateInput = {
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
   pricingDisabled?: boolean
+  pickup?: string | null
+  meetingPoint?: string | null
+  includes?: Prisma.ItineraryCreateincludesInput | string[]
+  excludes?: Prisma.ItineraryCreateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryCreatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   steps?: Prisma.ItineraryStepCreateNestedManyWithoutItineraryInput
@@ -429,6 +491,12 @@ export type ItineraryUncheckedCreateInput = {
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
   pricingDisabled?: boolean
+  pickup?: string | null
+  meetingPoint?: string | null
+  includes?: Prisma.ItineraryCreateincludesInput | string[]
+  excludes?: Prisma.ItineraryCreateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryCreatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   steps?: Prisma.ItineraryStepUncheckedCreateNestedManyWithoutItineraryInput
@@ -451,6 +519,12 @@ export type ItineraryUpdateInput = {
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pickup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meetingPoint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  includes?: Prisma.ItineraryUpdateincludesInput | string[]
+  excludes?: Prisma.ItineraryUpdateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryUpdatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   steps?: Prisma.ItineraryStepUpdateManyWithoutItineraryNestedInput
@@ -473,6 +547,12 @@ export type ItineraryUncheckedUpdateInput = {
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pickup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meetingPoint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  includes?: Prisma.ItineraryUpdateincludesInput | string[]
+  excludes?: Prisma.ItineraryUpdateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryUpdatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   steps?: Prisma.ItineraryStepUncheckedUpdateManyWithoutItineraryNestedInput
@@ -495,6 +575,12 @@ export type ItineraryCreateManyInput = {
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
   pricingDisabled?: boolean
+  pickup?: string | null
+  meetingPoint?: string | null
+  includes?: Prisma.ItineraryCreateincludesInput | string[]
+  excludes?: Prisma.ItineraryCreateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryCreatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -513,6 +599,12 @@ export type ItineraryUpdateManyMutationInput = {
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pickup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meetingPoint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  includes?: Prisma.ItineraryUpdateincludesInput | string[]
+  excludes?: Prisma.ItineraryUpdateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryUpdatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -531,6 +623,12 @@ export type ItineraryUncheckedUpdateManyInput = {
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pickup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meetingPoint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  includes?: Prisma.ItineraryUpdateincludesInput | string[]
+  excludes?: Prisma.ItineraryUpdateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryUpdatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -557,6 +655,12 @@ export type ItineraryCountOrderByAggregateInput = {
   images?: Prisma.SortOrder
   published?: Prisma.SortOrder
   pricingDisabled?: Prisma.SortOrder
+  pickup?: Prisma.SortOrder
+  meetingPoint?: Prisma.SortOrder
+  includes?: Prisma.SortOrder
+  excludes?: Prisma.SortOrder
+  complementaries?: Prisma.SortOrder
+  faqs?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -579,6 +683,8 @@ export type ItineraryMaxOrderByAggregateInput = {
   coverImage?: Prisma.SortOrder
   published?: Prisma.SortOrder
   pricingDisabled?: Prisma.SortOrder
+  pickup?: Prisma.SortOrder
+  meetingPoint?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -595,6 +701,8 @@ export type ItineraryMinOrderByAggregateInput = {
   coverImage?: Prisma.SortOrder
   published?: Prisma.SortOrder
   pricingDisabled?: Prisma.SortOrder
+  pickup?: Prisma.SortOrder
+  meetingPoint?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -615,6 +723,18 @@ export type ItineraryCreatebestSeasonsInput = {
 }
 
 export type ItineraryCreateimagesInput = {
+  set: string[]
+}
+
+export type ItineraryCreateincludesInput = {
+  set: string[]
+}
+
+export type ItineraryCreateexcludesInput = {
+  set: string[]
+}
+
+export type ItineraryCreatecomplementariesInput = {
   set: string[]
 }
 
@@ -640,6 +760,21 @@ export type ItineraryUpdatebestSeasonsInput = {
 }
 
 export type ItineraryUpdateimagesInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
+export type ItineraryUpdateincludesInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
+export type ItineraryUpdateexcludesInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
+export type ItineraryUpdatecomplementariesInput = {
   set?: string[]
   push?: string | string[]
 }
@@ -714,6 +849,12 @@ export type ItineraryCreateWithoutStepsInput = {
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
   pricingDisabled?: boolean
+  pickup?: string | null
+  meetingPoint?: string | null
+  includes?: Prisma.ItineraryCreateincludesInput | string[]
+  excludes?: Prisma.ItineraryCreateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryCreatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   enquiries?: Prisma.BookingEnquiryCreateNestedManyWithoutItineraryInput
@@ -735,6 +876,12 @@ export type ItineraryUncheckedCreateWithoutStepsInput = {
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
   pricingDisabled?: boolean
+  pickup?: string | null
+  meetingPoint?: string | null
+  includes?: Prisma.ItineraryCreateincludesInput | string[]
+  excludes?: Prisma.ItineraryCreateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryCreatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   enquiries?: Prisma.BookingEnquiryUncheckedCreateNestedManyWithoutItineraryInput
@@ -772,6 +919,12 @@ export type ItineraryUpdateWithoutStepsInput = {
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pickup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meetingPoint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  includes?: Prisma.ItineraryUpdateincludesInput | string[]
+  excludes?: Prisma.ItineraryUpdateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryUpdatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enquiries?: Prisma.BookingEnquiryUpdateManyWithoutItineraryNestedInput
@@ -793,6 +946,12 @@ export type ItineraryUncheckedUpdateWithoutStepsInput = {
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pickup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meetingPoint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  includes?: Prisma.ItineraryUpdateincludesInput | string[]
+  excludes?: Prisma.ItineraryUpdateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryUpdatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   enquiries?: Prisma.BookingEnquiryUncheckedUpdateManyWithoutItineraryNestedInput
@@ -814,6 +973,12 @@ export type ItineraryCreateWithoutEnquiriesInput = {
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
   pricingDisabled?: boolean
+  pickup?: string | null
+  meetingPoint?: string | null
+  includes?: Prisma.ItineraryCreateincludesInput | string[]
+  excludes?: Prisma.ItineraryCreateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryCreatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   steps?: Prisma.ItineraryStepCreateNestedManyWithoutItineraryInput
@@ -835,6 +1000,12 @@ export type ItineraryUncheckedCreateWithoutEnquiriesInput = {
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
   pricingDisabled?: boolean
+  pickup?: string | null
+  meetingPoint?: string | null
+  includes?: Prisma.ItineraryCreateincludesInput | string[]
+  excludes?: Prisma.ItineraryCreateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryCreatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   steps?: Prisma.ItineraryStepUncheckedCreateNestedManyWithoutItineraryInput
@@ -872,6 +1043,12 @@ export type ItineraryUpdateWithoutEnquiriesInput = {
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pickup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meetingPoint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  includes?: Prisma.ItineraryUpdateincludesInput | string[]
+  excludes?: Prisma.ItineraryUpdateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryUpdatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   steps?: Prisma.ItineraryStepUpdateManyWithoutItineraryNestedInput
@@ -893,6 +1070,12 @@ export type ItineraryUncheckedUpdateWithoutEnquiriesInput = {
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pickup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meetingPoint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  includes?: Prisma.ItineraryUpdateincludesInput | string[]
+  excludes?: Prisma.ItineraryUpdateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryUpdatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   steps?: Prisma.ItineraryStepUncheckedUpdateManyWithoutItineraryNestedInput
@@ -914,6 +1097,12 @@ export type ItineraryCreateWithoutFeaturesInput = {
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
   pricingDisabled?: boolean
+  pickup?: string | null
+  meetingPoint?: string | null
+  includes?: Prisma.ItineraryCreateincludesInput | string[]
+  excludes?: Prisma.ItineraryCreateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryCreatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   steps?: Prisma.ItineraryStepCreateNestedManyWithoutItineraryInput
@@ -935,6 +1124,12 @@ export type ItineraryUncheckedCreateWithoutFeaturesInput = {
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
   pricingDisabled?: boolean
+  pickup?: string | null
+  meetingPoint?: string | null
+  includes?: Prisma.ItineraryCreateincludesInput | string[]
+  excludes?: Prisma.ItineraryCreateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryCreatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   steps?: Prisma.ItineraryStepUncheckedCreateNestedManyWithoutItineraryInput
@@ -972,6 +1167,12 @@ export type ItineraryUpdateWithoutFeaturesInput = {
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pickup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meetingPoint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  includes?: Prisma.ItineraryUpdateincludesInput | string[]
+  excludes?: Prisma.ItineraryUpdateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryUpdatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   steps?: Prisma.ItineraryStepUpdateManyWithoutItineraryNestedInput
@@ -993,6 +1194,12 @@ export type ItineraryUncheckedUpdateWithoutFeaturesInput = {
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pickup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meetingPoint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  includes?: Prisma.ItineraryUpdateincludesInput | string[]
+  excludes?: Prisma.ItineraryUpdateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryUpdatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   steps?: Prisma.ItineraryStepUncheckedUpdateManyWithoutItineraryNestedInput
@@ -1014,6 +1221,12 @@ export type ItineraryCreateWithoutTagsInput = {
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
   pricingDisabled?: boolean
+  pickup?: string | null
+  meetingPoint?: string | null
+  includes?: Prisma.ItineraryCreateincludesInput | string[]
+  excludes?: Prisma.ItineraryCreateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryCreatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   steps?: Prisma.ItineraryStepCreateNestedManyWithoutItineraryInput
@@ -1035,6 +1248,12 @@ export type ItineraryUncheckedCreateWithoutTagsInput = {
   images?: Prisma.ItineraryCreateimagesInput | string[]
   published?: boolean
   pricingDisabled?: boolean
+  pickup?: string | null
+  meetingPoint?: string | null
+  includes?: Prisma.ItineraryCreateincludesInput | string[]
+  excludes?: Prisma.ItineraryCreateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryCreatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   steps?: Prisma.ItineraryStepUncheckedCreateNestedManyWithoutItineraryInput
@@ -1072,6 +1291,12 @@ export type ItineraryUpdateWithoutTagsInput = {
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pickup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meetingPoint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  includes?: Prisma.ItineraryUpdateincludesInput | string[]
+  excludes?: Prisma.ItineraryUpdateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryUpdatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   steps?: Prisma.ItineraryStepUpdateManyWithoutItineraryNestedInput
@@ -1093,6 +1318,12 @@ export type ItineraryUncheckedUpdateWithoutTagsInput = {
   images?: Prisma.ItineraryUpdateimagesInput | string[]
   published?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pricingDisabled?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  pickup?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meetingPoint?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  includes?: Prisma.ItineraryUpdateincludesInput | string[]
+  excludes?: Prisma.ItineraryUpdateexcludesInput | string[]
+  complementaries?: Prisma.ItineraryUpdatecomplementariesInput | string[]
+  faqs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   steps?: Prisma.ItineraryStepUncheckedUpdateManyWithoutItineraryNestedInput
@@ -1172,6 +1403,12 @@ export type ItinerarySelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   images?: boolean
   published?: boolean
   pricingDisabled?: boolean
+  pickup?: boolean
+  meetingPoint?: boolean
+  includes?: boolean
+  excludes?: boolean
+  complementaries?: boolean
+  faqs?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   steps?: boolean | Prisma.Itinerary$stepsArgs<ExtArgs>
@@ -1195,6 +1432,12 @@ export type ItinerarySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   images?: boolean
   published?: boolean
   pricingDisabled?: boolean
+  pickup?: boolean
+  meetingPoint?: boolean
+  includes?: boolean
+  excludes?: boolean
+  complementaries?: boolean
+  faqs?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["itinerary"]>
@@ -1213,6 +1456,12 @@ export type ItinerarySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   images?: boolean
   published?: boolean
   pricingDisabled?: boolean
+  pickup?: boolean
+  meetingPoint?: boolean
+  includes?: boolean
+  excludes?: boolean
+  complementaries?: boolean
+  faqs?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["itinerary"]>
@@ -1231,11 +1480,17 @@ export type ItinerarySelectScalar = {
   images?: boolean
   published?: boolean
   pricingDisabled?: boolean
+  pickup?: boolean
+  meetingPoint?: boolean
+  includes?: boolean
+  excludes?: boolean
+  complementaries?: boolean
+  faqs?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ItineraryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "summary" | "description" | "fixedPrice" | "pricePerPerson" | "currency" | "durationDays" | "bestSeasons" | "coverImage" | "images" | "published" | "pricingDisabled" | "createdAt" | "updatedAt", ExtArgs["result"]["itinerary"]>
+export type ItineraryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "summary" | "description" | "fixedPrice" | "pricePerPerson" | "currency" | "durationDays" | "bestSeasons" | "coverImage" | "images" | "published" | "pricingDisabled" | "pickup" | "meetingPoint" | "includes" | "excludes" | "complementaries" | "faqs" | "createdAt" | "updatedAt", ExtArgs["result"]["itinerary"]>
 export type ItineraryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   steps?: boolean | Prisma.Itinerary$stepsArgs<ExtArgs>
   enquiries?: boolean | Prisma.Itinerary$enquiriesArgs<ExtArgs>
@@ -1268,6 +1523,12 @@ export type $ItineraryPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     images: string[]
     published: boolean
     pricingDisabled: boolean
+    pickup: string | null
+    meetingPoint: string | null
+    includes: string[]
+    excludes: string[]
+    complementaries: string[]
+    faqs: runtime.JsonValue | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["itinerary"]>
@@ -1710,6 +1971,12 @@ export interface ItineraryFieldRefs {
   readonly images: Prisma.FieldRef<"Itinerary", 'String[]'>
   readonly published: Prisma.FieldRef<"Itinerary", 'Boolean'>
   readonly pricingDisabled: Prisma.FieldRef<"Itinerary", 'Boolean'>
+  readonly pickup: Prisma.FieldRef<"Itinerary", 'String'>
+  readonly meetingPoint: Prisma.FieldRef<"Itinerary", 'String'>
+  readonly includes: Prisma.FieldRef<"Itinerary", 'String[]'>
+  readonly excludes: Prisma.FieldRef<"Itinerary", 'String[]'>
+  readonly complementaries: Prisma.FieldRef<"Itinerary", 'String[]'>
+  readonly faqs: Prisma.FieldRef<"Itinerary", 'Json'>
   readonly createdAt: Prisma.FieldRef<"Itinerary", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Itinerary", 'DateTime'>
 }

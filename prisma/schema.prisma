@@ -86,9 +86,15 @@ model Itinerary {
   bestSeasons    String[]
   coverImage     String?
   images         String[]
-  published      Boolean         @default(false)
-  pricingDisabled Boolean         @default(false)
-  steps          ItineraryStep[]
+  published        Boolean         @default(false)
+  pricingDisabled  Boolean         @default(false)
+  pickup           String?
+  meetingPoint     String?
+  includes         String[]
+  excludes         String[]
+  complementaries  String[]
+  faqs             Json?
+  steps            ItineraryStep[]
   enquiries      BookingEnquiry[]
   features       FeatureItem[]
   tags           ItineraryTag[]
