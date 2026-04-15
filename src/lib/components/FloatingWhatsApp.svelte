@@ -21,7 +21,7 @@
 </script>
 
 <a
-	href="https://wa.me/256760971269"
+	href="https://wa.me/256703879666"
 	target="_blank"
 	rel="noopener noreferrer"
 	aria-label="Chat with us on WhatsApp"

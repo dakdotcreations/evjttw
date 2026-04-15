@@ -32,14 +32,17 @@
 			<div class="md:col-span-3">
 				<h4 class="mb-5 text-xs font-semibold uppercase tracking-widest text-accent">Contact</h4>
 				<div class="space-y-2.5">
-					<a href="tel:+256760971269" class="flex items-center gap-2.5 text-sm text-white/55 transition-colors hover:text-accent">
-						<Phone size={14} class="shrink-0 text-accent" />+256 760 971 269
+					<a href="tel:+256708506649" class="flex items-center gap-2.5 text-sm text-white/55 transition-colors hover:text-accent">
+						<Phone size={14} class="shrink-0 text-accent" />+256 708 506 649
+					</a>
+					<a href="tel:+256780379017" class="flex items-center gap-2.5 text-sm text-white/55 transition-colors hover:text-accent">
+						<Phone size={14} class="shrink-0 text-accent" />+256 780 379 017
 					</a>
 					<a href="mailto:info@evajotours.com" class="flex items-center gap-2.5 text-sm text-white/55 transition-colors hover:text-accent">
 						<Mail size={14} class="shrink-0 text-accent" />info@evajotours.com
 					</a>
 					<div class="flex items-center gap-2.5 text-sm text-white/55">
-						<MapPin size={14} class="shrink-0 text-accent" />Kampala, Uganda
+						<MapPin size={14} class="shrink-0 text-accent" />Seeta Namilyango Rd, Mukono, Kampala
 					</div>
 				</div>
 			</div>
@@ -63,7 +66,7 @@
 				<h4 class="mb-5 text-xs font-semibold uppercase tracking-widest text-accent">Connect</h4>
 				<div class="flex gap-4">
 					<a
-						href="https://wa.me/256760971269"
+						href="https://wa.me/256703879666"
 						target="_blank"
 						rel="noopener noreferrer"
 						aria-label="WhatsApp"

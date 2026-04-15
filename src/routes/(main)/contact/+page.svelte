@@ -46,21 +46,24 @@
 				<div class="flex items-start gap-3">
 					<MapPin size={18} class="mt-0.5 shrink-0 text-accent" />
 					<div>
-						<p class="font-semibold">Kampala, Uganda</p>
-						<p class="text-gray-500">Serving all of East Africa</p>
+							<p class="font-semibold">Seeta Namilyango Road, Mukono</p>
+							<p class="text-gray-500">Kampala–Jinja Highway · P.O.Box 141615, Kampala, Uganda</p>
+						</div>
 					</div>
-				</div>
-				<div class="flex items-center gap-3">
-					<Phone size={18} class="shrink-0 text-accent" />
-					<a href="tel:+256700000000" class="hover:text-primary">+256 700 000 000</a>
-				</div>
-				<div class="flex items-center gap-3">
-					<Mail size={18} class="shrink-0 text-accent" />
-					<a href="mailto:info@evajotours.com" class="hover:text-primary">info@evajotours.com</a>
-				</div>
-			</div>
-
-			<div class="mt-10 border-t border-black/10 pt-8">
+					<div class="flex items-start gap-3">
+						<Phone size={18} class="mt-0.5 shrink-0 text-accent" />
+						<div class="space-y-1">
+							<a href="tel:+256708506649" class="block hover:text-primary">+256 708 506 649 <span class="text-gray-400">(Direct)</span></a>
+							<a href="tel:+256780379017" class="block hover:text-primary">+256 780 379 017</a>
+							<a href="https://wa.me/256703879666" target="_blank" rel="noopener noreferrer" class="block hover:text-primary">+256 703 879 666 <span class="text-gray-400">(WhatsApp)</span></a>
+						</div>
+					</div>
+					<div class="flex items-center gap-3">
+						<Mail size={18} class="shrink-0 text-accent" />
+						<div class="space-y-1">
+							<a href="mailto:info@evajotours.com" class="block hover:text-primary">info@evajotours.com</a>
+							<a href="mailto:evajotoursandtravel@gmail.com" class="block hover:text-primary">evajotoursandtravel@gmail.com</a>
+						</div>
 				<p class="mb-3 text-xs font-semibold uppercase tracking-widest text-gray-400">
 					Response time
 				</p>
