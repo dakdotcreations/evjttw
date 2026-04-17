@@ -11,7 +11,7 @@
 	let heroEl: HTMLElement = $state() as HTMLElement;
 	let toursGrid: HTMLElement = $state() as HTMLElement;
 
-	onMount(async () => {
+	$effect(async () => {
 		const { gsap } = await loadGsap();
 		gsap.from(heroEl.querySelectorAll('.hero-in'), {
 			opacity: 0,
@@ -21,16 +21,6 @@
 			ease: 'power3.out',
 			delay: 0.3
 		});
-
-		const observer = new IntersectionObserver(
-			async ([entry]) => {
-				if (!entry.isIntersecting) return;
-				observer.disconnect();
-				gsap.from(toursGrid?.children, { opacity: 0, y: 24, stagger: 0.08, duration: 0.55, ease: 'power2.out' });
-			},
-			{ threshold: 0.1 }
-		);
-		if (toursGrid) observer.observe(toursGrid);
 	});
 </script>
 

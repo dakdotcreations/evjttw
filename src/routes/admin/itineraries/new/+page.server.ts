@@ -23,6 +23,17 @@ export const actions: Actions = {
 		const images = form.data.images
 			? form.data.images.split('\n').map((s) => s.trim()).filter(Boolean)
 			: [];
+		const includes = form.data.includes
+			? form.data.includes.split('\n').map((s) => s.trim()).filter(Boolean)
+			: [];
+		const excludes = form.data.excludes
+			? form.data.excludes.split('\n').map((s) => s.trim()).filter(Boolean)
+			: [];
+		const complementaries = form.data.complementaries
+			? form.data.complementaries.split('\n').map((s) => s.trim()).filter(Boolean)
+			: [];
+		let faqs: { question: string; answer: string }[] = [];
+		try { faqs = form.data.faqs ? JSON.parse(form.data.faqs) : []; } catch { faqs = []; }
 
 		// Upload cover image to Azure if a new file was submitted
 		const coverImageFile = formData.get('coverImage_file');
@@ -44,7 +55,13 @@ export const actions: Actions = {
 				coverImage: coverImageUrl,
 				images,
 				published: form.data.published,
-				pricingDisabled: form.data.pricingDisabled
+				pricingDisabled: form.data.pricingDisabled,
+				pickup: form.data.pickup || null,
+				meetingPoint: form.data.meetingPoint || null,
+				includes,
+				excludes,
+				complementaries,
+				faqs: faqs.length ? faqs : undefined
 			}
 		});
 
