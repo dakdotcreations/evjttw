@@ -1,43 +1,75 @@
 <script lang="ts">
 	import { onMount } from "svelte"
 	import { loadGsap } from "$lib/utils/useGsap"
+	import { page } from "$app/state"
+	import { defaults } from "sveltekit-superforms"
+	import { zod4 } from "sveltekit-superforms/adapters"
 	import type { PageData } from "./$types"
 	import BookingEnquiryForm from "$lib/components/BookingEnquiryForm.svelte"
 	import TourCard from "$lib/components/TourCard.svelte"
 	import CtaBanner from "$lib/components/CtaBanner.svelte"
 	import { formatPrice } from "$lib/utils/pricing"
 	import { buildStepLabels } from "$lib/utils/stepLabel"
+	import { tourStore } from "$lib/stores/tours.svelte"
+	import { bookingEnquirySchema } from "$lib/schemas/bookingEnquiry"
 	import { MapPin, Clock, Tag, CheckCircle2, XCircle, Gift, ChevronDown, ChevronUp } from "lucide-svelte"
 
 	let { data }: { data: PageData } = $props()
 
+	const tourId = $derived(page.params.id ?? '')
+
+	// Seed store from SSR data on first hydration
+	onMount(() => {
+		if (data.itinerary && tourStore.detailStatus[tourId] !== 'loaded') {
+			tourStore.seedDetail(tourId, {
+				itinerary: data.itinerary,
+				countries: data.countries ?? [],
+				related: data.related ?? [],
+			})
+		}
+	})
+
+	// Source of truth: store when loaded, SSR data as fallback
+	const entry = $derived(tourStore.details[tourId])
+	const itinerary = $derived(entry?.itinerary ?? data.itinerary)
+	const countries = $derived(entry?.countries ?? data.countries ?? [])
+	const related = $derived(entry?.related ?? data.related ?? [])
+	const isLoading = $derived(!itinerary)
+
 	const price = $derived(
-		formatPrice({
-			fixedPrice: data.itinerary.fixedPrice,
-			pricePerPerson: data.itinerary.pricePerPerson,
-			currency: data.itinerary.currency,
-			pricingDisabled: data.itinerary.pricingDisabled,
-		}),
+		itinerary
+			? formatPrice({
+					fixedPrice: itinerary.fixedPrice,
+					pricePerPerson: itinerary.pricePerPerson,
+					currency: itinerary.currency,
+					pricingDisabled: itinerary.pricingDisabled,
+				})
+			: "",
 	)
 
-	const stepLabels = $derived(buildStepLabels(data.itinerary.steps))
+	const stepLabels = $derived(itinerary ? buildStepLabels(itinerary.steps) : [])
 
 	type Faq = { question: string; answer: string }
 	const faqs = $derived(
-		Array.isArray(data.itinerary.faqs)
-			? (data.itinerary.faqs as unknown as Faq[])
+		itinerary && Array.isArray(itinerary.faqs)
+			? (itinerary.faqs as unknown as Faq[])
 			: []
 	)
 	let openFaq = $state<number | null>(null)
 	function toggleFaq(i: number) { openFaq = openFaq === i ? null : i }
 
-	let heroEl: HTMLElement
+	// Client-side superforms initialisation — form actions still POST to the server
+	const enquiryForm = defaults(zod4(bookingEnquirySchema))
+
+	let heroEl: HTMLElement | undefined = $state()
 	let stepsListEl: HTMLElement = $state(null as unknown as HTMLElement)
 	let railEl: HTMLElement = $state(null as unknown as HTMLElement)
 	let blobEl: HTMLElement = $state(null as unknown as HTMLElement)
 
 	onMount(async () => {
 		const { gsap, ScrollTrigger } = await loadGsap()
+
+		if (!heroEl) return
 
 		// Hero entrance
 		gsap.from(heroEl.querySelectorAll(".hero-in"), {
@@ -117,28 +149,40 @@
 </script>
 
 <svelte:head>
-	<title>{data.itinerary.title} — Evajo Tours & Travel</title>
-	<meta name="description" content={data.itinerary.summary ?? ""} />
+	<title>{itinerary ? `${itinerary.title} — Evajo Tours & Travel` : 'Loading… — Evajo Tours & Travel'}</title>
+	<meta name="description" content={itinerary?.summary ?? ""} />
 </svelte:head>
+
+{#if isLoading}
+	<!-- Detail loading skeleton (client-side navigation, store not yet populated) -->
+	<div class="animate-pulse">
+		<div class="bg-primary" style="min-height:65vh;"></div>
+		<div class="mx-auto max-w-5xl px-6 py-14 lg:px-8 space-y-4">
+			<div class="h-6 w-2/3 rounded bg-gray-100"></div>
+			<div class="h-4 w-full rounded bg-gray-100"></div>
+			<div class="h-4 w-5/6 rounded bg-gray-100"></div>
+		</div>
+	</div>
+{:else if itinerary}
 
 <!-- HERO -->
 <div
 	bind:this={heroEl}
 	class="relative flex items-end overflow-hidden bg-primary"
 	style="min-height:65vh;">
-	{#if data.itinerary.coverImage}
+	{#if itinerary.coverImage}
 		<img
 			data-speed="0.5"
-			src={data.itinerary.coverImage}
-			alt={data.itinerary.title}
+			src={itinerary.coverImage}
+			alt={itinerary.title}
 			class="absolute inset-0 h-full w-full scale-110 object-cover" />
 	{/if}
 	<div class="absolute inset-0 bg-linear-to-t from-black/85 via-black/30 to-black/10"></div>
 	<div class="relative z-10 w-full pb-12 pt-28">
 		<div class="mx-auto max-w-5xl px-6 lg:px-8">
-			{#if data.itinerary.tags.length > 0}
+			{#if itinerary.tags.length > 0}
 				<div class="hero-in mb-4 flex flex-wrap gap-2">
-					{#each data.itinerary.tags as tag (tag.slug)}
+					{#each itinerary.tags as tag (tag.slug)}
 						<a
 							href="/tours?tag={tag.slug}"
 							class="flex items-center gap-1 border border-accent/60 px-3 py-1 text-xs font-semibold text-accent hover:bg-accent hover:text-black transition-colors">
@@ -149,15 +193,15 @@
 			{/if}
 			<h1
 				class="hero-in font-display text-[clamp(2.5rem,6vw,5.5rem)] leading-[0.95] tracking-wide text-white">
-				{data.itinerary.title}
+				{itinerary.title}
 			</h1>
 			<div class="hero-in mt-4 flex flex-wrap items-center gap-4 text-sm text-white/70">
 				<span class="flex items-center gap-1.5"
-					><Clock size={14} />{data.itinerary.durationDays}
-					{data.itinerary.durationDays === 1 ? "day" : "days"}</span>
-				{#if data.countries.length > 0}
+					><Clock size={14} />{itinerary.durationDays}
+					{itinerary.durationDays === 1 ? "day" : "days"}</span>
+				{#if countries.length > 0}
 					<span class="flex items-center gap-1.5"
-						><MapPin size={14} />{data.countries.join(", ")}</span>
+						><MapPin size={14} />{countries.join(", ")}</span>
 				{/if}
 				<span class="font-semibold text-accent">{price}</span>
 			</div>
@@ -177,19 +221,19 @@
 		<div class="grid gap-12 lg:grid-cols-[1fr_360px]">
 			<!-- Left column -->
 			<div>
-				{#if data.itinerary.summary}
+				{#if itinerary.summary}
 					<p class="mb-6 text-lg leading-relaxed text-gray-700">
-						{data.itinerary.summary}
+						{itinerary.summary}
 					</p>
 				{/if}
-				{#if data.itinerary.description}
+				{#if itinerary.description}
 					<p class="mb-10 whitespace-pre-line text-sm leading-relaxed text-gray-600">
-						{data.itinerary.description}
+						{itinerary.description}
 					</p>
 				{/if}
 
 			<!-- DAY-BY-DAY -->
-				{#if data.itinerary.steps.length > 0}
+				{#if itinerary.steps.length > 0}
 					<h2 class="mb-10 font-display text-3xl tracking-wide text-black">Day-by-Day</h2>
 
 					<div class="relative mb-16 flex gap-6">
@@ -206,7 +250,7 @@
 
 						<!-- Steps list -->
 						<div bind:this={stepsListEl} class="min-w-0 flex-1 space-y-14">
-							{#each data.itinerary.steps as step, i (step.id)}
+							{#each itinerary.steps as step, i (step.id)}
 								<div class="step-item">
 									<!-- dot (mobile) + label row -->
 									<div class="mb-3 flex items-center gap-3">
@@ -267,10 +311,10 @@
 				{/if}
 
 				<!-- GALLERY -->
-				{#if data.itinerary.images && data.itinerary.images.length > 0}
+				{#if itinerary.images && itinerary.images.length > 0}
 					<h2 class="mb-6 font-display text-3xl tracking-wide text-black">Gallery</h2>
 					<div class="mb-12 grid grid-cols-2 gap-3 sm:grid-cols-3">
-						{#each data.itinerary.images as img (img)}
+						{#each itinerary.images as img (img)}
 							<img
 								src={img}
 								alt=""
@@ -281,17 +325,17 @@
 				{/if}
 
 				<!-- INCLUDES / EXCLUDES / COMPLEMENTARIES -->
-				{#if data.itinerary.includes.length > 0 || data.itinerary.excludes.length > 0 || data.itinerary.complementaries.length > 0}
+				{#if itinerary.includes.length > 0 || itinerary.excludes.length > 0 || itinerary.complementaries.length > 0}
 					<div class="mb-12">
 						<h2 class="mb-6 font-display text-3xl tracking-wide text-black">What's Included</h2>
 						<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-							{#if data.itinerary.includes.length > 0}
+							{#if itinerary.includes.length > 0}
 								<div>
 									<p class="mb-3 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-accent">
 										<CheckCircle2 size={14} /> Included
 									</p>
 									<ul class="space-y-2">
-										{#each data.itinerary.includes as item}
+										{#each itinerary.includes as item}
 											<li class="flex items-start gap-2 text-sm text-gray-700">
 												<CheckCircle2 size={15} class="mt-0.5 shrink-0 text-green-500" />
 												{item}
@@ -300,13 +344,13 @@
 									</ul>
 								</div>
 							{/if}
-							{#if data.itinerary.excludes.length > 0}
+							{#if itinerary.excludes.length > 0}
 								<div>
 									<p class="mb-3 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-gray-500">
 										<XCircle size={14} /> Not Included
 									</p>
 									<ul class="space-y-2">
-										{#each data.itinerary.excludes as item}
+										{#each itinerary.excludes as item}
 											<li class="flex items-start gap-2 text-sm text-gray-600">
 												<XCircle size={15} class="mt-0.5 shrink-0 text-red-400" />
 												{item}
@@ -315,13 +359,13 @@
 									</ul>
 								</div>
 							{/if}
-							{#if data.itinerary.complementaries.length > 0}
+							{#if itinerary.complementaries.length > 0}
 								<div>
 									<p class="mb-3 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-primary">
 										<Gift size={14} /> Complimentaries
 									</p>
 									<ul class="space-y-2">
-										{#each data.itinerary.complementaries as item}
+										{#each itinerary.complementaries as item}
 											<li class="flex items-start gap-2 text-sm text-gray-700">
 												<Gift size={15} class="mt-0.5 shrink-0 text-primary" />
 												{item}
@@ -335,23 +379,23 @@
 				{/if}
 
 				<!-- PICKUP INFO -->
-				{#if data.itinerary.pickup || data.itinerary.meetingPoint}
+				{#if itinerary.pickup || itinerary.meetingPoint}
 					<div class="mb-12 flex flex-wrap gap-6 rounded bg-[#f8f7f5] p-5 text-sm">
-						{#if data.itinerary.pickup}
+						{#if itinerary.pickup}
 							<div class="flex items-start gap-2">
 								<MapPin size={15} class="mt-0.5 shrink-0 text-accent" />
 								<div>
 									<p class="font-semibold text-black">Departure & Return</p>
-									<p class="text-gray-600">{data.itinerary.pickup}</p>
+									<p class="text-gray-600">{itinerary.pickup}</p>
 								</div>
 							</div>
 						{/if}
-						{#if data.itinerary.meetingPoint}
+						{#if itinerary.meetingPoint}
 							<div class="flex items-start gap-2">
 								<MapPin size={15} class="mt-0.5 shrink-0 text-primary" />
 								<div>
 									<p class="font-semibold text-black">Meeting Point</p>
-									<p class="text-gray-600">{data.itinerary.meetingPoint}</p>
+									<p class="text-gray-600">{itinerary.meetingPoint}</p>
 								</div>
 							</div>
 						{/if}
@@ -405,7 +449,7 @@
 					<p class="mb-6 text-sm text-gray-500">
 						Fill in your details and we'll get back to you within 24 hours.
 					</p>
-					<BookingEnquiryForm formData={data.enquiryForm} />
+					<BookingEnquiryForm formData={enquiryForm} />
 				</div>
 			</div>
 		</div>
@@ -414,7 +458,7 @@
 </div>
 
 <!-- RELATED TOURS -->
-{#if data.related.length > 0}
+{#if related.length > 0}
 	<section class="bg-[#f5f3f0] py-16">
 		<div class="mx-auto max-w-7xl px-6 lg:px-8">
 			<div class="mb-10">
@@ -424,7 +468,7 @@
 				<h2 class="font-display text-4xl tracking-wide text-black">Related Tours</h2>
 			</div>
 			<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-				{#each data.related as tour (tour.id)}
+				{#each related as tour (tour.id)}
 					<TourCard
 						id={tour.id}
 						title={tour.title}
@@ -447,3 +491,5 @@
 	subtext="Our team is here to help you plan every detail."
 	btnLabel="Contact Us"
 	href="/contact" />
+
+{/if}
