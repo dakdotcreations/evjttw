@@ -1,16 +1,11 @@
+import { json } from '@sveltejs/kit';
 import prisma from '$lib/server/prisma';
-import type { PageServerLoad } from './$types';
+import type { RequestHandler } from './$types';
 
-export const load: PageServerLoad = async ({ url }) => {
-	const tagSlug = url.searchParams.get('tag') ?? '';
-	const countryId = url.searchParams.get('country') ?? '';
-
+export const GET: RequestHandler = async () => {
 	const [itineraries, allTags] = await Promise.all([
 		prisma.itinerary.findMany({
-			where: {
-				published: true,
-				...(tagSlug ? { tags: { some: { tag: { slug: tagSlug } } } } : {}),
-			},
+			where: { published: true },
 			orderBy: { createdAt: 'desc' },
 			include: {
 				steps: {
@@ -29,7 +24,6 @@ export const load: PageServerLoad = async ({ url }) => {
 
 	const tours = itineraries.map((it) => {
 		const countryMap = new Map<string, { id: string; name: string; code: string }>();
-
 		for (const step of it.steps) {
 			if (step.location?.country) {
 				countryMap.set(step.location.country.id, {
@@ -39,7 +33,6 @@ export const load: PageServerLoad = async ({ url }) => {
 				});
 			}
 		}
-
 		return {
 			id: it.id,
 			title: it.title,
@@ -54,14 +47,9 @@ export const load: PageServerLoad = async ({ url }) => {
 		};
 	});
 
-	// Client-side country filter applied after load (URL param pre-filter only by tag)
-	const filteredByCountry = countryId
-		? tours.filter((t) => t.countries.some((c) => c.id === countryId))
-		: tours;
-
 	const allCountries = [
 		...new Map(tours.flatMap((t) => t.countries).map((c) => [c.id, c])).values(),
 	].sort((a, b) => a.name.localeCompare(b.name));
 
-	return { tours: filteredByCountry, allCountries, allTags, activeTag: tagSlug, activeCountry: countryId };
+	return json({ tours, allTags, allCountries });
 };

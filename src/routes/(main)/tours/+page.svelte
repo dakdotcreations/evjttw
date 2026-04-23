@@ -7,17 +7,41 @@
 	import TagPill from "$lib/components/ui/TagPill.svelte"
 	import HeadlineReveal from "$lib/components/HeadlineReveal.svelte"
 	import CtaBanner from "$lib/components/CtaBanner.svelte"
+	import { tourStore } from "$lib/stores/tours.svelte"
 	import type { PageData } from "./$types"
 
 	let { data }: { data: PageData } = $props()
 
-	let selectedCountry = $state(data.activeCountry)
+	// Seed the store from SSR data on first hydration
+	onMount(() => {
+		if (data.tours?.length && tourStore.listStatus !== 'loaded') {
+			tourStore.seedList({
+				tours: data.tours,
+				allTags: data.allTags ?? [],
+				allCountries: data.allCountries ?? [],
+			})
+		}
+	})
 
-	const filteredTours = $derived(
-		selectedCountry
-			? data.tours.filter((t) => t.countries.some((c) => c.id === selectedCountry))
-			: data.tours,
-	)
+	// Store is the source of truth on client; fall back to SSR data before store is ready
+	const tours = $derived(tourStore.listStatus === 'loaded' ? tourStore.summaries : (data.tours ?? []))
+	const allTags = $derived(tourStore.listStatus === 'loaded' ? tourStore.allTags : (data.allTags ?? []))
+	const allCountries = $derived(tourStore.listStatus === 'loaded' ? tourStore.allCountries : (data.allCountries ?? []))
+
+	// Active tag comes from URL; filter is applied client-side (no server roundtrip)
+	const activeTag = $derived(page.url.searchParams.get("tag") ?? "")
+
+	let selectedCountry = $state("")
+
+	const filteredTours = $derived(() => {
+		let result = activeTag
+			? tours.filter((t) => t.tags.some((tg) => tg.slug === activeTag))
+			: tours
+		if (selectedCountry) {
+			result = result.filter((t) => t.countries.some((c) => c.id === selectedCountry))
+		}
+		return result
+	})
 
 	function setTag(slug: string) {
 		const params = new URLSearchParams(page.url.searchParams)
@@ -26,9 +50,8 @@
 		} else {
 			params.delete("tag")
 		}
-		params.delete("country")
 		selectedCountry = ""
-		goto(`?${params.toString()}`, { replaceState: true, keepFocus: true })
+		goto(`?${params.toString()}`, { replaceState: true, keepFocus: true, noScroll: true })
 	}
 
 	function setCountry(id: string) {
@@ -36,10 +59,6 @@
 	}
 
 	let grid: HTMLElement = $state() as HTMLElement
-
-	$effect(() => {
-		
-	})
 </script>
 
 <svelte:head>
@@ -71,32 +90,32 @@
 	<div class="mx-auto max-w-7xl px-6 py-4 lg:px-8">
 		<div class="flex flex-wrap items-center gap-2">
 			<!-- Tag pills -->
-			<TagPill label="All" active={!data.activeTag} onclick={() => setTag("")} />
-			{#each data.allTags as tag (tag.id)}
+			<TagPill label="All" active={!activeTag} onclick={() => setTag("")} />
+			{#each allTags as tag (tag.id)}
 				<TagPill
 					label={tag.name}
-					active={data.activeTag === tag.slug}
+					active={activeTag === tag.slug}
 					onclick={() => setTag(tag.slug)} />
 			{/each}
 
 			<!-- Country dropdown -->
-			{#if data.allCountries.length > 0}
+			{#if allCountries.length > 0}
 				<div class="ml-auto">
 					<select
 						value={selectedCountry}
 						onchange={(e) => setCountry((e.target as HTMLSelectElement).value)}
 						class="border border-black/15 bg-white px-3 py-2 text-xs font-medium text-black focus:border-primary focus:outline-none">
 						<option value="">All Countries</option>
-						{#each data.allCountries as c (c.id)}
+						{#each allCountries as c (c.id)}
 							<option value={c.id}>{c.name}</option>
 						{/each}
 					</select>
 				</div>
 			{/if}
 
-			<span class="text-xs text-gray-400 {data.allCountries.length > 0 ? '' : 'ml-auto'}">
-				{filteredTours.length}
-				{filteredTours.length === 1 ? "tour" : "tours"}
+			<span class="text-xs text-gray-400 {allCountries.length > 0 ? '' : 'ml-auto'}">
+				{filteredTours().length}
+				{filteredTours().length === 1 ? "tour" : "tours"}
 			</span>
 		</div>
 	</div>
@@ -105,11 +124,22 @@
 <!-- TOUR GRID -->
 <section class="bg-white py-14">
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
-		{#if filteredTours.length > 0}
+		{#if tourStore.listStatus === 'loading' && !data.tours?.length}
+			<!-- Loading skeleton -->
+			<div class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6">
+				{#each { length: 6 } as _}
+					<div class="animate-pulse">
+						<div class="aspect-4/3 w-full bg-gray-100"></div>
+						<div class="mt-3 h-4 w-3/4 rounded bg-gray-100"></div>
+						<div class="mt-2 h-3 w-1/2 rounded bg-gray-100"></div>
+					</div>
+				{/each}
+			</div>
+		{:else if filteredTours().length > 0}
 			<div
 				bind:this={grid}
 				class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6">
-				{#each filteredTours as tour (tour.id)}
+				{#each filteredTours() as tour (tour.id)}
 					<TourCard
 						id={tour.id}
 						title={tour.title}
