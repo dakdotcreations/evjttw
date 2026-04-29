@@ -480,7 +480,7 @@
 					class="text-sm font-semibold text-primary underline-offset-2 hover:underline"
 					>View all →</a>
 			</div>
-			<div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+			<div class="grid gap-4 sm:grid-cols-2">
 				{#each data.countries as country (country.id)}
 					<DestinationCard
 						code={country.code}

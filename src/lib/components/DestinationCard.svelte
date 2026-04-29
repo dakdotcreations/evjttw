@@ -16,7 +16,7 @@
 
 <a
 	href="/destinations/{code}"
-	class="group relative block aspect-[3/4] overflow-hidden bg-gray-100"
+	class="group relative block aspect-square overflow-hidden bg-gray-100"
 >
 	{#if imageUrl}
 		<img
