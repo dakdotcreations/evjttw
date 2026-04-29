@@ -86,7 +86,7 @@
 				{durationDays}
 				{durationDays === 1 ? "day" : "days"}
 			</div>
-			<span class="text-sm font-semibold text-primary">{price}</span>
+			<!-- <span class="text-sm font-semibold text-primary">{price}</span> -->
 		</div>
 	</div>
 </a>

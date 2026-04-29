@@ -16,7 +16,7 @@
 
 <a
 	href="/destinations/{code}"
-	class="group relative block aspect-[3/4] overflow-hidden bg-gray-100"
+	class="group relative block aspect-square overflow-hidden bg-gray-100"
 >
 	{#if imageUrl}
 		<img
@@ -36,14 +36,7 @@
 
 	<!-- Content -->
 	<div class="absolute bottom-0 left-0 right-0 p-5">
-		{#if flagEmoji}
-			<span class="text-2xl">{flagEmoji}</span>
-		{/if}
-		<h3 class="mt-1 font-display text-3xl tracking-wide text-white">{name}</h3>
-		<p class="mt-1 text-xs text-white/55">
-			{tourCount}
-			{tourCount === 1 ? 'tour' : 'tours'}
-		</p>
+		<h3 class="mt-1 font-display text-3xl md:text-5xl tracking-wide text-white">{name}</h3>
 	</div>
 </a>
 

@@ -62,7 +62,7 @@
 </script>
 
 <svelte:head>
-	<title>Tours — Evajo Tours & Travel</title>
+	<title>Tours - Evajo Tours & Travel</title>
 	<meta
 		name="description"
 		content="Browse East Africa safaris, mountain treks and water adventures. Filter by tag or country to find your perfect tour." />
@@ -138,7 +138,7 @@
 		{:else if filteredTours().length > 0}
 			<div
 				bind:this={grid}
-				class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6">
+				class="grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-6">
 				{#each filteredTours() as tour (tour.id)}
 					<TourCard
 						id={tour.id}

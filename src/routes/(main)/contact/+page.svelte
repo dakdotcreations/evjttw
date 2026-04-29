@@ -9,7 +9,7 @@
 </script>
 
 <svelte:head>
-	<title>Contact Us — Evajo Tours & Travel</title>
+	<title>Contact Us - Evajo Tours & Travel</title>
 	<meta
 		name="description"
 		content="Get in touch with Evajo Tours & Travel to plan your East Africa safari or trek."
@@ -18,7 +18,7 @@
 
 <!-- HERO -->
 <div class="bg-primary pb-20 pt-36">
-	<div class="mx-auto max-w-5xl px-6 lg:px-8">
+	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<p class="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-accent">Let's Talk</p>
 		<HeadlineReveal>
 			<h1 class="font-display text-[clamp(3rem,7vw,6rem)] leading-none tracking-wide text-white">
@@ -35,8 +35,8 @@
 </div>
 
 <!-- SPLIT LAYOUT -->
-<section class="bg-white">
-	<div class="mx-auto grid max-w-7xl gap-0 lg:grid-cols-[38%_62%]">
+<section class="bg-white lg:bg-linear-to-r lg:from-[#f5f3f0] lg:to-40% lg:to-white/50">
+	<div class="mx-auto grid max-w-7xl gap-0 lg:grid-cols-[38fr_62fr]">
 		<!-- Left info panel -->
 		<div class="bg-[#f5f3f0] px-8 py-16 lg:px-12 lg:py-20">
 			<p class="mb-2 text-xs font-semibold uppercase tracking-widest text-accent">Find Us</p>
@@ -46,25 +46,32 @@
 				<div class="flex items-start gap-3">
 					<MapPin size={18} class="mt-0.5 shrink-0 text-accent" />
 					<div>
-							<p class="font-semibold">Seeta Namilyango Road, Mukono</p>
-							<p class="text-gray-500">Kampala–Jinja Highway · P.O.Box 141615, Kampala, Uganda</p>
-						</div>
+                        <p class="font-semibold">Seeta Namilyango Road, Mukono</p>
+                        <p class="text-gray-500">Kampala–Jinja Highway · P.O.Box 141615, Kampala, Uganda</p>
 					</div>
-					<div class="flex items-start gap-3">
-						<Phone size={18} class="mt-0.5 shrink-0 text-accent" />
-						<div class="space-y-1">
-							<a href="tel:+256708506649" class="block hover:text-primary">+256 708 506 649 <span class="text-gray-400">(Direct)</span></a>
-							<a href="tel:+256780379017" class="block hover:text-primary">+256 780 379 017</a>
-							<a href="https://wa.me/256703879666" target="_blank" rel="noopener noreferrer" class="block hover:text-primary">+256 703 879 666 <span class="text-gray-400">(WhatsApp)</span></a>
-						</div>
-					</div>
-					<div class="flex items-center gap-3">
-						<Mail size={18} class="shrink-0 text-accent" />
-						<div class="space-y-1">
-							<a href="mailto:info@evajotours.com" class="block hover:text-primary">info@evajotours.com</a>
-							<a href="mailto:evajotoursandtravel@gmail.com" class="block hover:text-primary">evajotoursandtravel@gmail.com</a>
-						</div>
-				<p class="mb-3 text-xs font-semibold uppercase tracking-widest text-gray-400">
+                </div>
+                <div class="flex items-start gap-3">
+                    <Phone size={18} class="mt-0.5 shrink-0 text-accent" />
+                    <div class="space-y-1">
+                        <a href="tel:+256708506649" class="block hover:text-primary">
+                            +256 708 506 649 <span class="text-gray-400">(Direct)</span>
+                        </a>
+                        <a href="tel:+256780379017" class="block hover:text-primary">
+                            +256 780 379 017
+                        </a>
+                        <a href="https://wa.me/256703879666" target="_blank" rel="noopener noreferrer" class="block hover:text-primary">
+                            +256 703 879 666 <span class="text-gray-400">(WhatsApp)</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <Mail size={18} class="shrink-0 text-accent" />
+                    <div class="space-y-1">
+                        <a href="mailto:info@evajotoursandtravel.com" class="block hover:text-primary">
+                            info@evajotoursandtravel.com</a>
+                    </div>
+                </div>
+				<p class="mb-3 text-xs font-semibold uppercase tracking-widest opacity-60">
 					Response time
 				</p>
 				<p class="text-sm text-gray-600">
@@ -77,7 +84,7 @@
 		<!-- Right form -->
 		<div class="px-8 py-16 lg:px-16 lg:py-20">
 			<p class="mb-2 text-xs font-semibold uppercase tracking-widest text-accent">Send a Message</p>
-			<h2 class="mb-8 font-display text-3xl tracking-wide text-black">Tell Us Your Dream</h2>
+			<h2 class="mb-8 font-display text-3xl tracking-wide text-black">Tell Us About Your Adventure</h2>
 			<ContactForm formData={data.form} />
 		</div>
 	</div>

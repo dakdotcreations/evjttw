@@ -11,11 +11,11 @@ const data: SeedData = {
 		title: '3 Day Kibale Forest Chimpanzee Safari',
 		summary:
 			'Track wild chimpanzees in the primate capital of the world, hike volcanic crater landscapes, and explore Bigodi Wetland on this action-packed 3-day Uganda safari.',
-		description: `Kibale Forest National Park is a reward to primate lovers because of the exceptional concentration of primates thriving in this dense tropical rainforest. It holds the highest percentage of chimpanzee sightings in the wild of any location in Africa or the world. But Kibale is more than primates — the region\'s volcanic heritage has carved out authentic crater lakes, sweeping farmland, and lush tea estates that make it an unforgettable destination for eco-travellers and nature lovers alike.
+		description: `Kibale Forest National Park is a reward to primate lovers because of the exceptional concentration of primates thriving in this dense tropical rainforest. It holds the highest percentage of chimpanzee sightings in the wild of any location in Africa or the world. But Kibale is more than primates - the region\'s volcanic heritage has carved out authentic crater lakes, sweeping farmland, and lush tea estates that make it an unforgettable destination for eco-travellers and nature lovers alike.
 
 The safari starts and ends in Kampala, with an optional extension to Murchison Falls, Queen Elizabeth National Park, or Bwindi Impenetrable Forest for mountain gorilla trekking.
 
-It is estimated that over 1,500 chimpanzees live in community groups within Kibale National Park. Of these, approximately four communities are fully habituated — meaning they are wild yet accustomed to human visitors and behave in a predictable manner. A strict limit on the number of trekkers per group means permits must be booked well in advance.
+It is estimated that over 1,500 chimpanzees live in community groups within Kibale National Park. Of these, approximately four communities are fully habituated - meaning they are wild yet accustomed to human visitors and behave in a predictable manner. A strict limit on the number of trekkers per group means permits must be booked well in advance.
 
 Activities include chimpanzee trekking, guided birding, a Bigodi Wetland boardwalk walk, crater lake hiking at Nyakashura, and en-route scenic drives through tea country.`,
 		durationDays: 3,
@@ -41,14 +41,14 @@ Activities include chimpanzee trekking, guided birding, a Bigodi Wetland boardwa
 			stepNumber: 2,
 			title: 'Chimpanzee Trekking & Bigodi Wetland Walk',
 			description:
-				'Rise early for a pre-dawn briefing at the park headquarters before heading into the forest with ranger guides and trackers. Spend up to one hour in the presence of a habituated chimpanzee community — one of the most sought-after wildlife encounters in Africa. Return to camp for lunch, then join an afternoon guided boardwalk walk through Bigodi Wetland Sanctuary, a community-run reserve teeming with red colobus monkeys, olive baboons, grey-cheeked mangabeys, and over 200 bird species. Meal plan: Full Board. Accommodation: Mid-Range Kibale Forest Camp.',
+				'Rise early for a pre-dawn briefing at the park headquarters before heading into the forest with ranger guides and trackers. Spend up to one hour in the presence of a habituated chimpanzee community - one of the most sought-after wildlife encounters in Africa. Return to camp for lunch, then join an afternoon guided boardwalk walk through Bigodi Wetland Sanctuary, a community-run reserve teeming with red colobus monkeys, olive baboons, grey-cheeked mangabeys, and over 200 bird species. Meal plan: Full Board. Accommodation: Mid-Range Kibale Forest Camp.',
 			highlight: 'Chimp trekking permit and Bigodi community wetland walk',
 			durationDays: 1,
 			locationName: 'Kibale Forest National Park',
 		},
 		{
 			stepNumber: 3,
-			title: 'Return to Kampala — End of Safari',
+			title: 'Return to Kampala - End of Safari',
 			description:
 				'Enjoy a leisurely breakfast in the forest, then begin the scenic drive back to Kampala. En-route photo stops at the crater lakes and tea estates are possible depending on time. Drop-off at your Kampala hotel or Entebbe International Airport, marking the end of your Kibale chimpanzee adventure.',
 			highlight: null,
@@ -81,8 +81,8 @@ Activities include chimpanzee trekking, guided birding, a Bigodi Wetland boardwa
 			'Personal insurance and shopping',
 			'Laundry, telephone, tips, and meals not indicated in the itinerary',
 			'Accommodation on your first and last night in Uganda',
-			'Mountain Gorilla habituation experience at Bwindi Impenetrable / Mgahinga (optional — $800 per person)',
-			'Night game drive at Queen Elizabeth National Park (optional — $80 per person)',
+			'Mountain Gorilla habituation experience at Bwindi Impenetrable / Mgahinga (optional - $800 per person)',
+			'Night game drive at Queen Elizabeth National Park (optional - $80 per person)',
 		],
 
 		complementaries: ['Umbrella', 'T-Shirt', 'Sunglasses'],

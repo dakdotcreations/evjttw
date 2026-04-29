@@ -32,23 +32,32 @@ import chimpsGorillaWildlife7day from './chimps-gorillas-wildlife-7day.js';
 import kenyaExclusiveSafari7day from './kenya-exclusive-safari-7day.js';
 import murchisonChimpGorilla8day from './murchison-chimp-gorilla-8day.js';
 import ugandaTanzaniaExperience8day from './uganda-tanzania-experience-8day.js';
+import ugandaWildlifePrimates9day from './uganda-wildlife-primates-9day.js';
+import ugandaBirdingRhinosPrimates10day from './uganda-birding-rhinos-primates-10day.js';
+import gorillasChimpsWildlife10day from './gorillas-chimps-wildlife-10day.js';
+import murchisonGorillasGoldenMonkeys10day from './murchison-gorillas-golden-monkeys-10day.js';
+import ugandaCultureWildlife12day from './uganda-culture-wildlife-12day.js';
+import aroundUganda15day from './around-uganda-15day.js';
+import bestUganda17day from './best-uganda-17day.js';
+import bestUganda19day from './best-uganda-19day.js';
+import adventureUganda20day from './adventure-uganda-20day.js';
+import safariAdventureUganda21day from './safari-adventure-uganda-21day.js';
+import gorillaTracking5day from './gorilla-tracking-5day.js';
+import ugandaCityToursMega from './uganda-city-tours-mega.js';
 
 const allItineraries: SeedData[] = [
-	kibaleSafari,
-	masaiMaraGameDrive,
-	murchisonFallsSafari,
-	queenElizabethWildlifeTour,
-	rwandaAkageraWildlifeSafari,
-	bwindiGorillaTour,
-	bwindiGorillaLakeBunyonyi,
-	gorillaAndWildlifeSafari5day,
-	kidepoBig5Safari5day,
-	murchisonQeGorillas7day,
-	murchisonQeGorillas7dayPrivate,
-	chimpsGorillaWildlife7day,
-	kenyaExclusiveSafari7day,
-	murchisonChimpGorilla8day,
-	ugandaTanzaniaExperience8day,
+	ugandaWildlifePrimates9day,
+	ugandaBirdingRhinosPrimates10day,
+	gorillasChimpsWildlife10day,
+	murchisonGorillasGoldenMonkeys10day,
+	ugandaCultureWildlife12day,
+	aroundUganda15day,
+	bestUganda17day,
+	bestUganda19day,
+	adventureUganda20day,
+	safariAdventureUganda21day,
+	gorillaTracking5day,
+	ugandaCityToursMega,
 	// Add new itinerary data files here
 ];
 

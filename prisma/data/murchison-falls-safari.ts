@@ -10,10 +10,10 @@ const data: SeedData = {
 		id: 'seed-murchison-falls-safari',
 		title: '3 Day Murchison Falls Safari',
 		summary:
-			"Track wild rhinos at Ziwa Sanctuary then explore Uganda\'s largest national park — home to four of the Big Five, the world\'s most powerful waterfall, and a spectacular Nile boat cruise.",
-		description: `Murchison Falls National Park is Uganda\'s largest and most visited national park, covering over 3,800 sq km of savannah, woodland, and riverine forest along the Nile. The park is home to four of the Big Five — lions, buffaloes, leopards, and elephants — as well as giraffes, Nile crocodiles, hippos, and an incredible diversity of birdlife.
+			"Track wild rhinos at Ziwa Sanctuary then explore Uganda\'s largest national park - home to four of the Big Five, the world\'s most powerful waterfall, and a spectacular Nile boat cruise.",
+		description: `Murchison Falls National Park is Uganda\'s largest and most visited national park, covering over 3,800 sq km of savannah, woodland, and riverine forest along the Nile. The park is home to four of the Big Five - lions, buffaloes, leopards, and elephants - as well as giraffes, Nile crocodiles, hippos, and an incredible diversity of birdlife.
 
-The centrepiece of the park is Murchison Falls itself, where the entire volume of the Nile is forced through a narrow 8-metre gorge, creating the most powerful waterfall on earth. A boat cruise up the Nile to the base of the falls — through channels thick with hippos and crocodiles — is one of East Africa\'s great safari experiences.
+The centrepiece of the park is Murchison Falls itself, where the entire volume of the Nile is forced through a narrow 8-metre gorge, creating the most powerful waterfall on earth. A boat cruise up the Nile to the base of the falls - through channels thick with hippos and crocodiles - is one of East Africa\'s great safari experiences.
 
 Before entering the park, the itinerary includes a stop at Ziwa Rhino Sanctuary in Masindi, the only place in Uganda where you can track wild southern white rhinos on foot. Rhinos were previously extinct in Uganda and are now being reintroduced and bred here ahead of eventual release into the wild.
 
@@ -39,10 +39,10 @@ The safari starts and ends in Kampala or Entebbe, with pickup at Entebbe Interna
 		},
 		{
 			stepNumber: 2,
-			title: 'Full Day — Morning Game Drive & Nile Boat Cruise',
+			title: 'Full Day - Morning Game Drive & Nile Boat Cruise',
 			description:
-				'After an early breakfast at around 6:30 am, set off for a morning game drive across the Nyamsika Plateau — prime territory for lions, elephants, buffaloes, giraffes, and leopards. Return to the lodge for lunch, then board a launch boat for an afternoon cruise up the Nile, drifting past banks heavy with hippos, Nile crocodiles, elephants, antelopes, and an extraordinary variety of water birds. The boat anchors near the "Devil\'s Cauldron" at the base of the falls for views of the thundering cascade from below. Hike up to the top of the falls to watch the full force of the Nile pouring through the gorge — often accompanied by a resident herd of elephants on the opposite bank. Return to the lodge for dinner and overnight. Meal plan: Full Board.',
-			highlight: 'Nile boat cruise to the base of Murchison Falls — Big Five game drive',
+				'After an early breakfast at around 6:30 am, set off for a morning game drive across the Nyamsika Plateau - prime territory for lions, elephants, buffaloes, giraffes, and leopards. Return to the lodge for lunch, then board a launch boat for an afternoon cruise up the Nile, drifting past banks heavy with hippos, Nile crocodiles, elephants, antelopes, and an extraordinary variety of water birds. The boat anchors near the "Devil\'s Cauldron" at the base of the falls for views of the thundering cascade from below. Hike up to the top of the falls to watch the full force of the Nile pouring through the gorge - often accompanied by a resident herd of elephants on the opposite bank. Return to the lodge for dinner and overnight. Meal plan: Full Board.',
+			highlight: 'Nile boat cruise to the base of Murchison Falls - Big Five game drive',
 			durationDays: 1,
 			locationName: 'Murchison Falls National Park',
 		},
@@ -50,8 +50,8 @@ The safari starts and ends in Kampala or Entebbe, with pickup at Entebbe Interna
 			stepNumber: 3,
 			title: 'Rhino Tracking at Ziwa → Return to Kampala',
 			description:
-				'Enjoy an early breakfast and check out of the lodge. Drive south toward Kampala, stopping at Ziwa Rhino Sanctuary in Masindi for a 2–3 hour guided rhino tracking experience on foot — the only opportunity in Uganda to encounter wild southern white rhinos. Afterwards, stop in Masindi town for a traditional African lunch at Court View Hotel before continuing to Kampala. Drop-off at your hotel or Entebbe International Airport on arrival, marking the end of your Murchison Falls adventure.',
-			highlight: 'On-foot rhino tracking at Ziwa — the only place in Uganda to see wild rhinos',
+				'Enjoy an early breakfast and check out of the lodge. Drive south toward Kampala, stopping at Ziwa Rhino Sanctuary in Masindi for a 2–3 hour guided rhino tracking experience on foot - the only opportunity in Uganda to encounter wild southern white rhinos. Afterwards, stop in Masindi town for a traditional African lunch at Court View Hotel before continuing to Kampala. Drop-off at your hotel or Entebbe International Airport on arrival, marking the end of your Murchison Falls adventure.',
+			highlight: 'On-foot rhino tracking at Ziwa - the only place in Uganda to see wild rhinos',
 			durationDays: 1,
 			locationName: 'Ziwa Rhino Sanctuary',
 		},
@@ -74,7 +74,7 @@ The safari starts and ends in Kampala or Entebbe, with pickup at Entebbe Interna
 			'Air flight tickets',
 			'Ugandan visas',
 			'Optional activities not listed in the itinerary',
-			'Night game drive (optional — $200 per person at Paraa Safari Lodge)',
+			'Night game drive (optional - $200 per person at Paraa Safari Lodge)',
 			'Porter fees when tracking',
 			'Personal insurance and shopping',
 		],
@@ -95,7 +95,7 @@ The safari starts and ends in Kampala or Entebbe, with pickup at Entebbe Interna
 			{
 				question: 'Should I book pre/post tour accommodation?',
 				answer:
-					'Accommodation is included in the safari package, so there is no need to book pre/post accommodation separately. In rare cases, clients wish to upgrade to different accommodation — that is absolutely fine as long as you are available at the time of the tour.',
+					'Accommodation is included in the safari package, so there is no need to book pre/post accommodation separately. In rare cases, clients wish to upgrade to different accommodation - that is absolutely fine as long as you are available at the time of the tour.',
 			},
 		],
 	},

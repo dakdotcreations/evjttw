@@ -9,8 +9,8 @@ const data: SeedData = {
 		id: 'seed-masai-mara-game-drive',
 		title: '3 Day Masai Mara Game Drive',
 		summary:
-			'Three days of pure safari magic in Kenya\'s most iconic wildlife reserve — home to the Big Five, the Great Migration, and endless open savannah.',
-		description: `The Maasai Mara National Reserve is Kenya\'s premier wildlife destination and one of the most celebrated safari areas on the planet. This 3-day game drive puts you in the heart of the action — whether it\'s lions basking on the plains, cheetahs cutting across the grasslands, or the thundering hooves of the annual wildebeest migration.
+			'Three days of pure safari magic in Kenya\'s most iconic wildlife reserve - home to the Big Five, the Great Migration, and endless open savannah.',
+		description: `The Maasai Mara National Reserve is Kenya\'s premier wildlife destination and one of the most celebrated safari areas on the planet. This 3-day game drive puts you in the heart of the action - whether it\'s lions basking on the plains, cheetahs cutting across the grasslands, or the thundering hooves of the annual wildebeest migration.
 
 The ultimate spectacle is the Great Wildebeest Migration: every July and August, millions of wildebeest move north from the Serengeti in search of lusher pastures before turning south again in October. Witnessing a river crossing is a bucket-list moment that very few places on earth can match.
 
@@ -32,7 +32,7 @@ The safari starts and ends in Nairobi, with airport pickup at Jomo Kenyatta Inte
 			title: 'Nairobi → Maasai Mara',
 			description:
 				'Pick up from Jomo Kenyatta International Airport or your Nairobi hotel and drive southwest to the famous Maasai Mara Game Reserve, arriving in time for lunch at Sarova Mara Game Camp. After settling in, head out for an afternoon game drive during the golden hours when predators become most active. The next two days are devoted entirely to game viewing in the early mornings and evenings when wildlife sightings are at their peak. Accommodation: Full board at Sarova Mara Game Camp.',
-			highlight: 'Afternoon game drive on arrival — first taste of Mara wildlife',
+			highlight: 'Afternoon game drive on arrival - first taste of Mara wildlife',
 			durationDays: 1,
 			locationName: 'Maasai Mara National Reserve',
 		},
@@ -40,16 +40,16 @@ The safari starts and ends in Nairobi, with airport pickup at Jomo Kenyatta Inte
 			stepNumber: 2,
 			title: 'Full Day in the Maasai Mara',
 			description:
-				'Spend the entire day exploring the reserve with your expert driver-guide. Morning game drives offer the best predator activity; afternoons bring dramatic light for photography, and evenings reward you with spectacular orange-tinted sunsets best enjoyed with sundowners at the lodge. The Mara\'s diverse ecosystems mean wildlife is visible everywhere — lions, cheetahs, leopards, elephants, buffaloes, zebras, hippos, giraffes, hyenas, and hundreds of bird species all share this landscape. During migration season (July–October), river crossing sightings can be arranged depending on wildebeest movement. Accommodation: Full board at Sarova Mara Game Camp.',
+				'Spend the entire day exploring the reserve with your expert driver-guide. Morning game drives offer the best predator activity; afternoons bring dramatic light for photography, and evenings reward you with spectacular orange-tinted sunsets best enjoyed with sundowners at the lodge. The Mara\'s diverse ecosystems mean wildlife is visible everywhere - lions, cheetahs, leopards, elephants, buffaloes, zebras, hippos, giraffes, hyenas, and hundreds of bird species all share this landscape. During migration season (July–October), river crossing sightings can be arranged depending on wildebeest movement. Accommodation: Full board at Sarova Mara Game Camp.',
 			highlight: 'Full-day Big Five game drives; wildebeest migration river crossings in season',
 			durationDays: 1,
 			locationName: 'Maasai Mara National Reserve',
 		},
 		{
 			stepNumber: 3,
-			title: 'Maasai Mara → Nairobi — End of Safari',
+			title: 'Maasai Mara → Nairobi - End of Safari',
 			description:
-				'On your final morning you have two options: a hot-air balloon flight over the savannah at dawn — an outstanding way to view the plains and wildlife from above, followed by a champagne bush breakfast on landing — or an early morning game drive for last-minute encounters before departure. After breakfast, transfer back to Nairobi for drop-off at your hotel or Jomo Kenyatta International Airport, marking the end of your Maasai Mara adventure.',
+				'On your final morning you have two options: a hot-air balloon flight over the savannah at dawn - an outstanding way to view the plains and wildlife from above, followed by a champagne bush breakfast on landing - or an early morning game drive for last-minute encounters before departure. After breakfast, transfer back to Nairobi for drop-off at your hotel or Jomo Kenyatta International Airport, marking the end of your Maasai Mara adventure.',
 			highlight: 'Optional sunrise hot-air balloon flight with champagne breakfast',
 			durationDays: 1,
 			locationName: 'Maasai Mara National Reserve',
@@ -74,7 +74,7 @@ The safari starts and ends in Nairobi, with airport pickup at Jomo Kenyatta Inte
 			'Park entry fees',
 			'Guide gratuity',
 			'Visit to the Maasai village (available at additional cost)',
-			'Hot-air balloon flight (optional — additional cost)',
+			'Hot-air balloon flight (optional - additional cost)',
 			'Personal items and shopping',
 		],
 
@@ -99,7 +99,7 @@ The safari starts and ends in Nairobi, with airport pickup at Jomo Kenyatta Inte
 			{
 				question: 'Should I book pre/post tour accommodation?',
 				answer:
-					"We recommend arriving in Nairobi the night before departure so you are rested and ready for the early morning drive to the Mara. Post-tour accommodation in Nairobi is not included but can be arranged — get in touch and we\'ll find the right option for you.",
+					"We recommend arriving in Nairobi the night before departure so you are rested and ready for the early morning drive to the Mara. Post-tour accommodation in Nairobi is not included but can be arranged - get in touch and we\'ll find the right option for you.",
 			},
 			{
 				question: 'What is the cancellation policy?',

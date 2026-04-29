@@ -59,7 +59,7 @@
 <!--
   Segmented navbar:
   - At top (not scrolled): three floating pill segments spaced across the bar,
-    all with white/10 glass backgrounds — links left, logo centre, CTA right.
+    all with white/10 glass backgrounds - links left, logo centre, CTA right.
   - On scroll: segments merge into a solid white bar seamlessly.
 -->
 <header
@@ -71,7 +71,7 @@
 	<!-- Desktop layout -->
 	<div class="relative mx-auto hidden h-20 max-w-7xl items-center px-6 md:flex lg:px-8">
 
-		<!-- LEFT — nav links segment -->
+		<!-- LEFT - nav links segment -->
 		<div
 			class="flex items-center gap-1 transition-all duration-500 {scrolled
 				? 'rounded-full bg-white/40 px-2 py-2 backdrop-blur-xs'
@@ -94,7 +94,7 @@
 			{/each}
 		</div>
 
-		<!-- CENTRE — logo blob (organic shape) -->
+		<!-- CENTRE - logo blob (organic shape) -->
 		<div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
 			<a
 				href="/"
@@ -112,7 +112,7 @@
 			</a>
 		</div>
 
-		<!-- RIGHT — CTA segment -->
+		<!-- RIGHT - CTA segment -->
 		<div class="ml-auto">
 			<a
 				href="/contact"

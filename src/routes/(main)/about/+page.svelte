@@ -25,12 +25,12 @@
 		{
 			icon: Map,
 			title: 'Expert Local Guides',
-			body: 'Born and raised across East Africa — they know every trail, watering hole, and hidden gem.'
+			body: 'Born and raised across East Africa - they know every trail, watering hole, and hidden gem.'
 		},
 		{
 			icon: PenLine,
 			title: 'Bespoke Itineraries',
-			body: 'Every trip is tailored to you — your pace, interests, and budget. No two Evajo journeys are the same.'
+			body: 'Every trip is tailored to you - your pace, interests, and budget. No two Evajo journeys are the same.'
 		},
 		{
 			icon: Award,
@@ -53,26 +53,25 @@
 </script>
 
 <svelte:head>
-	<title>About Us — Evajo Tours & Travel</title>
+	<title>About Us - Evajo Tours & Travel</title>
 	<meta
 		name="description"
-		content="Learn about Evajo Tours & Travel — East Africa's dedicated safari and adventure specialists since 2014, official partner of the African Conservation Foundation."
+		content="Learn about Evajo Tours & Travel - East Africa's dedicated safari and adventure specialists since 2014, official partner of the African Conservation Foundation."
 	/>
 </svelte:head>
 
 <!-- HERO -->
 <section class="relative overflow-hidden bg-primary pb-20 pt-36">
-	<div class="mx-auto max-w-5xl px-6 lg:px-8">
-		<p class="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-accent">Our Story</p>
+	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<HeadlineReveal>
 			<h1 class="font-display text-[clamp(3rem,7vw,6rem)] leading-none tracking-wide text-white">
-				Born in East Africa. Built for Explorers.
+				Born in East Africa. <br>Built for Explorers.
 			</h1>
 		</HeadlineReveal>
 		<ParaFade delay={0.3}>
 			<p class="mt-6 max-w-2xl text-base leading-relaxed text-white/60">
 				Evajo Tours &amp; Travel is East Africa's premier tour operator and official partner of the
-				African Conservation Foundation — crafting extraordinary safari, trekking &amp; wildlife
+				African Conservation Foundation crafting extraordinary safari, trekking &amp; wildlife
 				adventures, and giving back to the ecosystems you come to explore.
 			</p>
 		</ParaFade>
@@ -81,7 +80,7 @@
 
 <!-- WHO WE ARE -->
 <section class="bg-white py-20">
-	<div class="mx-auto max-w-5xl px-6 lg:px-8">
+	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div class="grid gap-12 lg:grid-cols-2 lg:gap-16">
 			<div>
 				<p class="mb-2 text-xs font-semibold uppercase tracking-widest text-accent">Who We Are</p>
@@ -133,7 +132,7 @@
 		</div>
 		<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
 			{#each whyUs as item (item.title)}
-				<div class="border border-white/10 p-6">
+				<div class="border border-white/10 p-6 hover:-translate-y-4 transition-transform duration-300">
 					<item.icon size={28} class="text-accent" />
 					<h3 class="mt-4 font-display text-xl tracking-wide text-white">{item.title}</h3>
 					<p class="mt-2 text-sm leading-relaxed text-white/60">{item.body}</p>
@@ -145,7 +144,7 @@
 
 <!-- CUSTOMIZE YOUR SAFARI -->
 <section class="bg-[#f5f3f0] py-20">
-	<div class="mx-auto max-w-5xl px-6 lg:px-8">
+	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div class="grid gap-12 lg:grid-cols-2 lg:gap-16 lg:items-center">
 			<div>
 				<p class="mb-2 text-xs font-semibold uppercase tracking-widest text-accent">Tailor-Made Travel</p>
@@ -158,7 +157,7 @@
 					<div class="space-y-4 text-sm leading-relaxed text-gray-600">
 						<p>
 							Create with us your tailor-made travel experience and design your tour according to
-							your individual needs. We'll offer you the experience you are looking for — a trip
+							your individual needs. We'll offer you the experience you are looking for a trip
 							that fits perfectly with your requirements.
 						</p>
 						<p>
@@ -179,7 +178,7 @@
 					{ icon: Compass, text: 'Book one of our most loved safari adventures' },
 					{ icon: Globe, text: 'Explore Uganda, Kenya, Tanzania, Rwanda & more' },
 					{ icon: PenLine, text: 'Design a fully customized journey around your schedule' },
-					{ icon: ShieldCheck, text: 'We handle every detail — you focus on the experience' }
+					{ icon: ShieldCheck, text: 'We handle every detail - you focus on the experience' }
 				] as item (item.text)}
 					<div class="flex items-start gap-4 bg-white p-5">
 						<item.icon size={20} class="mt-0.5 shrink-0 text-accent" />
@@ -193,7 +192,7 @@
 
 <!-- RESERVATION & PAYMENTS -->
 <section class="bg-white py-20">
-	<div class="mx-auto max-w-5xl px-6 lg:px-8">
+	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<p class="mb-2 text-xs font-semibold uppercase tracking-widest text-accent">How It Works</p>
 		<HeadlineReveal>
 			<h2 class="mb-10 font-display text-4xl tracking-wide text-black">
@@ -234,7 +233,7 @@
 					{#each [
 						'Quoted in US dollars (USD)',
 						'Subject to availability',
-						'Quoted per person — double or single room basis',
+						'Quoted per person - double or single room basis',
 						'Inclusive of accommodation, stated activities, full-board meals and all levies',
 						'Subject to change without prior notice'
 					] as point (point)}
@@ -246,7 +245,7 @@
 				</ul>
 				<p class="mt-6 text-sm leading-relaxed text-gray-600">
 					We have carefully selected lodges with excellent meals, service-oriented staff and a
-					nature-based setting for a more wonderful experience — recommended by our guests time
+					nature-based setting for a more wonderful experience - recommended by our guests time
 					and again.
 				</p>
 			</div>
@@ -256,7 +255,7 @@
 
 <!-- CANCELLATION POLICY -->
 <section class="bg-primary py-20">
-	<div class="mx-auto max-w-5xl px-6 lg:px-8">
+	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<p class="mb-2 text-xs font-semibold uppercase tracking-[0.25em] text-accent">Terms &amp; Conditions</p>
 		<HeadlineReveal>
 			<h2 class="mb-4 font-display text-4xl tracking-wide text-white">
@@ -295,7 +294,7 @@
 
 <CtaBanner
 	heading="Ready to Explore East Africa?"
-	subtext="Let us build your perfect trip — tailor-made and expertly guided. We wish you a wonderful and splendid safari adventure."
+	subtext="Let us build your perfect trip - tailor-made and expertly guided. We wish you a wonderful and splendid safari adventure."
 	btnLabel="Start Planning"
 	href="/contact"
 />

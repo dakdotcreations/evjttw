@@ -32,14 +32,14 @@
 		const { gsap } = await loadGsap()
 		openTl = gsap.timeline({ defaults: { ease: "power3.out" } })
 		openTl
-			.to(heroHeadEl, { scale: 0.62, y: -16, opacity: 0.45, duration: 0.45 })
+			.to(heroHeadEl, { scale: 0.62, y: -16, opacity: 0.45, duration: 0.75 })
 			.to(heroTagline, { opacity: 0, y: -8, duration: 0.3 }, "<")
 			.to(formTriggerEl, { opacity: 0, y: -8, duration: 0.25, pointerEvents: "none" }, "<")
 			.fromTo(
 				formEl,
-				{ opacity: 0, y: 36, display: "block" },
-				{ opacity: 1, y: 0, duration: 0.45 },
-				"-=0.1",
+				{ opacity: 0, y: 36, scale: 0.5, display: "block" },
+				{ opacity: 1, y: 0, scale: 1, duration: 1.25 },
+				"-=1",
 			)
 	}
 
@@ -166,7 +166,7 @@
 </script>
 
 <svelte:head>
-	<title>Evajo Tours & Travel — East Africa Safaris & Adventures</title>
+	<title>Evajo Tours & Travel - East Africa Safaris & Adventures</title>
 	<meta
 		name="description"
 		content="Experience safaris, mountain trekking and water adventures across Uganda, Kenya, Tanzania and Rwanda with Evajo Tours & Travel." />
@@ -193,21 +193,15 @@
 		<p
 			bind:this={heroTagline}
 			class="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-accent">
-			Uganda · Kenya · Tanzania · Rwanda
+			Adventure Awaits in Every Corner of East Africa
 		</p>
 
 		<!-- Headline (scales down when form opens) -->
 		<div bind:this={heroHeadEl} class="overflow-hidden">
 			<h1
 				class="font-display text-[clamp(3.5rem,9vw,8rem)] leading-[0.95] tracking-wide text-white">
-				Where the Wild Calls You
+				Where the Wild Calls For <span class="text-accent">You</span>
 			</h1>
-		</div>
-
-		<!-- CTAs -->
-		<div bind:this={heroCtas} class="mt-10 flex flex-wrap justify-center gap-4">
-			<Btn href="/tours" variant="primary" size="lg">Explore Tours</Btn>
-			<Btn href="/contact" variant="outline" size="lg">Plan My Trip</Btn>
 		</div>
 
 		<!-- "Find Your Adventure" trigger -->
@@ -227,7 +221,7 @@
 					stroke-linejoin="round"
 					aria-hidden="true"
 					><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
-				Find Your Adventure
+				Find Your Adventure Now
 			</button>
 		</div>
 
@@ -486,7 +480,7 @@
 					class="text-sm font-semibold text-primary underline-offset-2 hover:underline"
 					>View all →</a>
 			</div>
-			<div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+			<div class="grid gap-4 sm:grid-cols-2">
 				{#each data.countries as country (country.id)}
 					<DestinationCard
 						code={country.code}
@@ -504,6 +498,6 @@
 
 <CtaBanner
 	heading="Ready to Answer the Call?"
-	subtext="Tell us your dream — we'll plan every detail from flights to campfires."
+	subtext="Tell us your dream - we'll plan every detail from flights to campfires."
 	btnLabel="Plan My Trip"
 	href="/contact" />

@@ -21,7 +21,7 @@
 </script>
 
 <svelte:head>
-	<title>Leave a Review — Evajo Tours & Travel</title>
+	<title>Leave a Review - Evajo Tours & Travel</title>
 </svelte:head>
 
 <div class="bg-primary pb-20 pt-36">

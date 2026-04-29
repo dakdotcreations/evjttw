@@ -20,7 +20,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		return resolve(event);
 	}
 
-	// Fast path: verify HMAC-signed access token — no DB call
+	// Fast path: verify HMAC-signed access token - no DB call
 	const accessToken = event.cookies.get(ACCESS_TOKEN_COOKIE);
 	if (accessToken) {
 		const payload = verifyAccessToken(accessToken);

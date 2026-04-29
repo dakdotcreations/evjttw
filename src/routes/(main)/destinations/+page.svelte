@@ -26,7 +26,7 @@
 </script>
 
 <svelte:head>
-	<title>Destinations — Evajo Tours & Travel</title>
+	<title>Destinations - Evajo Tours & Travel</title>
 	<meta
 		name="description"
 		content="Explore Uganda, Kenya, Tanzania and Rwanda with Evajo Tours & Travel. Discover wildlife safaris, mountain trekking and water adventures."
@@ -35,7 +35,7 @@
 
 <!-- HERO -->
 <div class="bg-primary pb-20 pt-36">
-	<div class="mx-auto max-w-5xl px-6 lg:px-8">
+	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<p class="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-accent">Where We Go</p>
 		<HeadlineReveal>
 			<h1 class="font-display text-[clamp(3rem,7vw,6rem)] leading-none tracking-wide text-white">
@@ -55,7 +55,7 @@
 		{#if data.countries.length > 0}
 			<div
 				bind:this={grid}
-				class="grid gap-6 grid-cols-[repeat(auto-fit,minmax(280px,1fr))]"
+				class="grid gap-6 grid-cols-[repeat(auto-fit,minmax(450px,1fr))]"
 			>
 				{#each data.countries as country (country.id)}
 					<DestinationCard

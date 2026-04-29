@@ -73,7 +73,7 @@ async function main() {
 	});
 	console.log('✅ Countries: Uganda, Kenya, Tanzania, Rwanda');
 
-	// ── Locations — Uganda ───────────────────────────────────────────────────
+	// ── Locations - Uganda ───────────────────────────────────────────────────
 	const bwindi = await upsertLocation({ name: 'Bwindi Impenetrable National Park', description: 'A UNESCO World Heritage site and home to nearly half of the world\'s remaining mountain gorillas.', countryId: uganda.id });
 	await upsertLocation({ name: 'Murchison Falls National Park', description: 'Witness the Nile squeeze through an 8-meter gorge, creating the world\'s most powerful waterfall.', countryId: uganda.id });
 	await upsertLocation({ name: 'Queen Elizabeth National Park', description: 'Famous for tree-climbing lions and the wildlife-rich Kazinga Channel.', countryId: uganda.id });
@@ -94,9 +94,9 @@ async function main() {
 	const lakeVictoria = await upsertLocation({ name: 'Entebbe Botanical Gardens', description: 'A lakeside sanctuary perfect for birding and nature walks right by the international airport.', countryId: uganda.id });
 	await upsertLocation({ name: 'Katwe Salt Lake', description: 'A traditional salt mining lake where locals have used the same methods for centuries.', countryId: uganda.id });
 	await upsertLocation({ name: 'Mabira Forest', description: 'A lush rainforest canopy perfect for zip-lining and eco-walks between Kampala and Jinja.', countryId: uganda.id });
-	console.log('✅ Locations — Uganda (20)');
+	console.log('✅ Locations - Uganda (20)');
 
-	// ── Locations — Kenya ────────────────────────────────────────────────────
+	// ── Locations - Kenya ────────────────────────────────────────────────────
 	const masaiMara = await upsertLocation({ name: 'Maasai Mara National Reserve', description: 'Host to the Great Wildebeest Migration, one of the seven natural wonders of the world.', countryId: kenya.id });
 	await upsertLocation({ name: 'Amboseli National Park', description: 'Famous for large elephant herds and iconic views of Mount Kilimanjaro.', countryId: kenya.id });
 	await upsertLocation({ name: 'Diani Beach', description: 'A world-renowned white-sand beach destination with turquoise waters and coral reefs.', countryId: kenya.id });
@@ -108,9 +108,9 @@ async function main() {
 	await upsertLocation({ name: 'Watamu Marine National Park', description: 'A pristine coastal ecosystem perfect for snorkeling and visiting Gede Ruins.', countryId: kenya.id });
 	await upsertLocation({ name: 'Lamu Island', description: 'A UNESCO World Heritage Swahili settlement where time seems to stand still.', countryId: kenya.id });
 	await upsertLocation({ name: "Hell's Gate National Park", description: 'One of the few parks where you can cycle or hike among wildlife and explore deep gorges.', countryId: kenya.id });
-	console.log('✅ Locations — Kenya (11)');
+	console.log('✅ Locations - Kenya (11)');
 
-	// ── Locations — Tanzania ─────────────────────────────────────────────────
+	// ── Locations - Tanzania ─────────────────────────────────────────────────
 	const serengeti = await upsertLocation({ name: 'Serengeti National Park', description: 'The quintessential safari destination with endless plains and massive predator populations.', countryId: tanzania.id });
 	await upsertLocation({ name: 'Ngorongoro Crater', description: "The world's largest intact volcanic caldera, home to over 25,000 large animals.", countryId: tanzania.id });
 	await upsertLocation({ name: 'Mount Kilimanjaro', description: 'The roof of Africa; a bucket-list destination for hikers and adventurers worldwide.', countryId: tanzania.id });
@@ -123,13 +123,13 @@ async function main() {
 	await upsertLocation({ name: 'Arusha National Park', description: 'The gateway to the northern circuit, featuring Mount Meru and Momella Lakes.', countryId: tanzania.id });
 	await upsertLocation({ name: 'Pemba Island', description: "Known as the 'Green Island,' offering some of the best untouched coral reefs in the Indian Ocean.", countryId: tanzania.id });
 	await upsertLocation({ name: 'Lake Naivasha', description: 'A freshwater Rift Valley lake ringed by yellow-fever acacia woodland, famous for hippos and boat safaris.', countryId: kenya.id });
-	console.log('✅ Locations — Tanzania (11) + Lake Naivasha (Kenya)');
+	console.log('✅ Locations - Tanzania (11) + Lake Naivasha (Kenya)');
 
-	// ── Locations — Rwanda ───────────────────────────────────────────────────
+	// ── Locations - Rwanda ───────────────────────────────────────────────────
 	await upsertLocation({ name: 'Akagera National Park', description: "Rwanda's only Big Five savannah park, reintroduced with lions and rhinos and bordering Lake Ihema.", countryId: rwanda.id });
 	await upsertLocation({ name: 'Volcanoes National Park', description: 'The premier destination for mountain gorilla trekking in Rwanda, set in the Virunga Mountains.', countryId: rwanda.id });
 	await upsertLocation({ name: 'Nyungwe Forest National Park', description: 'A montane rainforest spanning 970 sq km, rich in chimpanzees and over 300 bird species.', countryId: rwanda.id });
-	console.log('✅ Locations — Rwanda (3)');
+	console.log('✅ Locations - Rwanda (3)');
 
 	// ── Itineraries ───────────────────────────────────────────────────────────
 	const gorillaTrek = await prisma.itinerary.upsert({

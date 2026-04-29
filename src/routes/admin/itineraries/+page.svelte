@@ -72,7 +72,7 @@
 				{#each filtered as row}
 					<tr class="hover:bg-gray-50">
 						<td class="px-6 py-3 font-medium text-gray-900">{row.title}</td>
-						<td class="px-6 py-3 text-gray-600 text-xs">{row.countries.join(', ') || '—'}</td>
+						<td class="px-6 py-3 text-gray-600 text-xs">{row.countries.join(', ') || '-'}</td>
 						<td class="px-6 py-3 text-gray-600">{row.durationDays}d</td>
 						<td class="px-6 py-3 text-gray-600 whitespace-nowrap">{formatPrice(row)}</td>
 						<td class="px-6 py-3 text-gray-600">{row.enquiryCount}</td>

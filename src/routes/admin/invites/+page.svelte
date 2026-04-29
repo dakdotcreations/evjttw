@@ -90,7 +90,7 @@
 					{#each allInvites as invite}
 						<tr class="hover:bg-gray-50">
 							<td class="px-4 py-3">
-								<p class="font-medium text-gray-800">{invite.note ?? '—'}</p>
+								<p class="font-medium text-gray-800">{invite.note ?? '-'}</p>
 								<button type="button" onclick={() => copyLink(invite.token)}
 									class="mt-0.5 inline-flex items-center gap-1 text-xs text-indigo-500 hover:text-indigo-700">
 									{#if copiedToken === invite.token}
@@ -118,7 +118,7 @@
 										{/if}
 									</a>
 								{:else}
-									<span class="text-gray-400">—</span>
+									<span class="text-gray-400">-</span>
 								{/if}
 							</td>
 							<td class="px-4 py-3 text-gray-500 text-xs whitespace-nowrap">

@@ -6,7 +6,7 @@ import type { PageLoad } from './$types';
 export const load: PageLoad = async ({ fetch, params }) => {
 	if (browser) {
 		// Fire background fetch (no-op if already loading/loaded), return immediately.
-		// The store drives the UI reactively — skeleton shows while loading.
+		// The store drives the UI reactively - skeleton shows while loading.
 		tourStore.loadDetail(params.id);
 		const entry = tourStore.details[params.id];
 		return {

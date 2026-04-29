@@ -12,14 +12,14 @@ import type { SeedData } from './types.js';
 const data: SeedData = {
 	itinerary: {
 		id: 'seed-rwanda-akagera-wildlife-safari',
-		title: '3 Day Rwanda Wildlife Safari — Akagera National Park',
+		title: '3 Day Rwanda Wildlife Safari - Akagera National Park',
 		summary:
-			"Explore Rwanda\'s remarkable conservation success story at Akagera — a park that lost all its wildlife and has now reclaimed lions, black rhinos, elephants, and the full savannah ecosystem.",
+			"Explore Rwanda\'s remarkable conservation success story at Akagera - a park that lost all its wildlife and has now reclaimed lions, black rhinos, elephants, and the full savannah ecosystem.",
 		description: `Akagera National Park is one of Africa\'s most extraordinary conservation comeback stories. After years of near-total loss of biodiversity, intensive rewilding efforts have returned black rhinos, lions, elephants, buffaloes, giraffes, hippos, and a wealth of other species to the park. Today Akagera is Rwanda\'s only Big Five reserve and one of the most inspiring wildlife destinations on the continent.
 
-The park covers over 1,100 sq km of savannah, woodland, lakes, and wetlands along the Tanzania border. Its network of lakes — including the vast Lake Ihema — forms a rich aquatic ecosystem that supports hippos, Nile crocodiles, and over 500 bird species, making it one of East Africa\'s premier birding destinations.
+The park covers over 1,100 sq km of savannah, woodland, lakes, and wetlands along the Tanzania border. Its network of lakes - including the vast Lake Ihema - forms a rich aquatic ecosystem that supports hippos, Nile crocodiles, and over 500 bird species, making it one of East Africa\'s premier birding destinations.
 
-Beyond the wildlife, Rwanda offers a fascinating cultural dimension. The Ibwachu Cultural Village experience provides an immersive look at local community life — traditional music and dance performances, community walks, banana brewing, and handicrafts.
+Beyond the wildlife, Rwanda offers a fascinating cultural dimension. The Ibwachu Cultural Village experience provides an immersive look at local community life - traditional music and dance performances, community walks, banana brewing, and handicrafts.
 
 The safari departs from and returns to Kigali International Airport.`,
 		durationDays: 3,
@@ -34,10 +34,10 @@ The safari departs from and returns to Kigali International Airport.`,
 	steps: [
 		{
 			stepNumber: 1,
-			title: 'Kigali → Akagera National Park — Evening Game Drive',
+			title: 'Kigali → Akagera National Park - Evening Game Drive',
 			description:
 				'Your journey begins in Kigali. Depart early and drive approximately 3 hours east to Akagera National Park, arriving in time for lunch. After settling in at your lodge (options include Magashi Lodge, Ruzizi Tented Camp, Karenge Bush Camp, or Akagera Game Lodge), head out for an evening game drive across the savannah. Spot elephants, buffaloes, lions, giraffes, oribis, topis, waterbucks, duikers, klipspringers, impalas, and many more species during the golden hours when wildlife is most active. Return to the lodge for dinner and overnight.',
-			highlight: 'First encounter with Akagera\'s rewilded Big Five — lions, rhinos, and elephants',
+			highlight: 'First encounter with Akagera\'s rewilded Big Five - lions, rhinos, and elephants',
 			durationDays: 1,
 			locationName: 'Akagera National Park',
 		},
@@ -45,8 +45,8 @@ The safari departs from and returns to Kigali International Airport.`,
 			stepNumber: 2,
 			title: 'Morning Game Drive & Lake Ihema Boat Trip',
 			description:
-				'After breakfast, set off for an early morning game drive while animals are at their most active on the open plains. Watch herds graze, predators patrol, and birds fill the skies as the day warms up. Return to the lodge for lunch. In the afternoon, board a boat for a cruise on Lake Ihema — one of the largest lakes in Rwanda — drifting past pods of hippos, basking Nile crocodiles, and an exceptional diversity of water birds including African fish eagles, herons, storks, and kingfishers. Return to the lodge for dinner and overnight. Meal plan: Full Board.',
-			highlight: 'Lake Ihema boat cruise — hippos, crocodiles, and 500+ bird species',
+				'After breakfast, set off for an early morning game drive while animals are at their most active on the open plains. Watch herds graze, predators patrol, and birds fill the skies as the day warms up. Return to the lodge for lunch. In the afternoon, board a boat for a cruise on Lake Ihema - one of the largest lakes in Rwanda - drifting past pods of hippos, basking Nile crocodiles, and an exceptional diversity of water birds including African fish eagles, herons, storks, and kingfishers. Return to the lodge for dinner and overnight. Meal plan: Full Board.',
+			highlight: 'Lake Ihema boat cruise - hippos, crocodiles, and 500+ bird species',
 			durationDays: 1,
 			locationName: 'Akagera National Park',
 		},

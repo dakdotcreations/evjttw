@@ -5,13 +5,13 @@ export type SeedStep = {
 	highlight?: string | null;
 	durationDays?: number | null;
 	durationHours?: number | null;
-	/** Name of an existing Location row — resolved to locationId at insert time. */
+	/** Name of an existing Location row - resolved to locationId at insert time. */
 	locationName?: string;
 	images?: string[];
 };
 
 export type SeedItinerary = {
-	/** Stable ID used for upserts — use a descriptive slug, e.g. "seed-kibale-chimp-safari". */
+	/** Stable ID used for upserts - use a descriptive slug, e.g. "seed-kibale-chimp-safari". */
 	id: string;
 	title: string;
 	summary: string;
