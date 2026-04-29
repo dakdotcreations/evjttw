@@ -179,7 +179,7 @@
 	{/if}
 	<div class="absolute inset-0 bg-linear-to-t from-black/85 via-black/30 to-black/10"></div>
 	<div class="relative z-10 w-full pb-12 pt-28">
-		<div class="mx-auto max-w-5xl px-6 lg:px-8">
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
 			{#if itinerary.tags.length > 0}
 				<div class="hero-in mb-4 flex flex-wrap gap-2">
 					{#each itinerary.tags as tag (tag.slug)}
@@ -217,7 +217,7 @@
 
 <!-- MAIN CONTENT -->
 <div class="bg-white">
-	<div class="mx-auto max-w-5xl px-6 py-14 lg:px-8">
+	<div class="mx-auto max-w-7xl px-6 py-14 lg:px-8">
 		<div class="grid gap-12 lg:grid-cols-[1fr_360px]">
 			<!-- Left column -->
 			<div>
