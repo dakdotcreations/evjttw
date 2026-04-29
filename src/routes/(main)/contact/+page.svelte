@@ -61,7 +61,7 @@
 					<div class="flex items-center gap-3">
 						<Mail size={18} class="shrink-0 text-accent" />
 						<div class="space-y-1">
-							<a href="mailto:info@evajotours.com" class="block hover:text-primary">info@evajotours.com</a>
+							<a href="mailto:info@evajotoursandtravel.com" class="block hover:text-primary">info@evajotoursandtravel.com</a>
 							<a href="mailto:evajotoursandtravel@gmail.com" class="block hover:text-primary">evajotoursandtravel@gmail.com</a>
 						</div>
 				<p class="mb-3 text-xs font-semibold uppercase tracking-widest text-gray-400">

@@ -38,8 +38,8 @@
 					<a href="tel:+256780379017" class="flex items-center gap-2.5 text-sm text-white/55 transition-colors hover:text-accent">
 						<Phone size={14} class="shrink-0 text-accent" />+256 780 379 017
 					</a>
-					<a href="mailto:info@evajotours.com" class="flex items-center gap-2.5 text-sm text-white/55 transition-colors hover:text-accent">
-						<Mail size={14} class="shrink-0 text-accent" />info@evajotours.com
+					<a href="mailto:info@evajotoursandtravel.com" class="flex items-center gap-2.5 text-sm text-white/55 transition-colors hover:text-accent">
+						<Mail size={14} class="shrink-0 text-accent" />info@evajotoursandtravel.com
 					</a>
 					<div class="flex items-center gap-2.5 text-sm text-white/55">
 						<MapPin size={14} class="shrink-0 text-accent" />Seeta Namilyango Rd, Mukono, Kampala
