@@ -166,7 +166,7 @@
 </script>
 
 <svelte:head>
-	<title>Evajo Tours & Travel — East Africa Safaris & Adventures</title>
+	<title>Evajo Tours & Travel - East Africa Safaris & Adventures</title>
 	<meta
 		name="description"
 		content="Experience safaris, mountain trekking and water adventures across Uganda, Kenya, Tanzania and Rwanda with Evajo Tours & Travel." />
@@ -498,6 +498,6 @@
 
 <CtaBanner
 	heading="Ready to Answer the Call?"
-	subtext="Tell us your dream — we'll plan every detail from flights to campfires."
+	subtext="Tell us your dream - we'll plan every detail from flights to campfires."
 	btnLabel="Plan My Trip"
 	href="/contact" />

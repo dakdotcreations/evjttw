@@ -46,7 +46,7 @@
 
 	const subjectName = $derived(
 		data.feature.displayName ??
-		(data.feature.country ? data.feature.country.name : data.feature.location?.name ?? '—')
+		(data.feature.country ? data.feature.country.name : data.feature.location?.name ?? '-')
 	);
 
 	// itineraries already added

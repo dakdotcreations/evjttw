@@ -12,13 +12,13 @@ applyTo: "**/*.svelte, **/*.ts, **/*.svelte.ts, prisma/schema.prisma"
 - **Tailwind CSS v4** with `@tailwindcss/forms` and `@tailwindcss/typography`
 - **Superforms** + **Zod v4** for forms
 - **Prisma** with PostgreSQL, client output at `src/generated/prisma`
-- **pnpm** — never use npm or yarn commands
+- **pnpm** - never use npm or yarn commands
 
 ---
 
 ## Svelte 5
 
-- Always use runes — never legacy syntax (`export let`, `$:`, `on:click`, slots)
+- Always use runes - never legacy syntax (`export let`, `$:`, `on:click`, slots)
 - Declare props with `$props()`:
   ```svelte
   let { value, onchange }: { value: string; onchange: (v: string) => void } = $props();
@@ -37,11 +37,11 @@ applyTo: "**/*.svelte, **/*.ts, **/*.svelte.ts, prisma/schema.prisma"
 
 ## TypeScript
 
-- Strict mode is on — no implicit `any`, no `as any` shortcuts
+- Strict mode is on - no implicit `any`, no `as any` shortcuts
 - Use `$lib/` alias for imports from `src/lib/`; use `./relative` for same-directory files
 - Extend `App` namespace in `src/app.d.ts` for `Locals`, `PageData`, etc.
 - Prisma client imports come from `$lib/server/prisma` (or similar server-only module), never from client-side components
-- Type form data with Zod `.infer<>` — do not write duplicate type definitions
+- Type form data with Zod `.infer<>` - do not write duplicate type definitions
 
 ---
 
@@ -54,7 +54,7 @@ applyTo: "**/*.svelte, **/*.ts, **/*.svelte.ts, prisma/schema.prisma"
 
 ---
 
-## Forms — Superforms + Zod
+## Forms - Superforms + Zod
 
 - Define schemas with Zod in a shared `$lib/schemas/` file; import into server `load`/`actions`
 - Use `superValidate` server-side; return `{ form }` from `load`
@@ -66,7 +66,7 @@ applyTo: "**/*.svelte, **/*.ts, **/*.svelte.ts, prisma/schema.prisma"
 
 ## Prisma
 
-- Generated client lives at `src/generated/prisma` — import from there only in server-side code
+- Generated client lives at `src/generated/prisma` - import from there only in server-side code
 - Model names: PascalCase singular (e.g., `User`, `BlogPost`)
 - Field names: camelCase
 - Always include `id`, `createdAt`, `updatedAt` on every model

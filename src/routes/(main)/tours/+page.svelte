@@ -62,7 +62,7 @@
 </script>
 
 <svelte:head>
-	<title>Tours — Evajo Tours & Travel</title>
+	<title>Tours - Evajo Tours & Travel</title>
 	<meta
 		name="description"
 		content="Browse East Africa safaris, mountain treks and water adventures. Filter by tag or country to find your perfect tour." />

@@ -9,7 +9,7 @@
 </script>
 
 <svelte:head>
-	<title>Contact Us — Evajo Tours & Travel</title>
+	<title>Contact Us - Evajo Tours & Travel</title>
 	<meta
 		name="description"
 		content="Get in touch with Evajo Tours & Travel to plan your East Africa safari or trek."

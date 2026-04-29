@@ -58,7 +58,7 @@
 	let openFaq = $state<number | null>(null)
 	function toggleFaq(i: number) { openFaq = openFaq === i ? null : i }
 
-	// Client-side superforms initialisation — form actions still POST to the server
+	// Client-side superforms initialisation - form actions still POST to the server
 	const enquiryForm = defaults(zod4(bookingEnquirySchema))
 
 	let heroEl: HTMLElement | undefined = $state()
@@ -149,7 +149,7 @@
 </script>
 
 <svelte:head>
-	<title>{itinerary ? `${itinerary.title} — Evajo Tours & Travel` : 'Loading… — Evajo Tours & Travel'}</title>
+	<title>{itinerary ? `${itinerary.title} - Evajo Tours & Travel` : 'Loading… - Evajo Tours & Travel'}</title>
 	<meta name="description" content={itinerary?.summary ?? ""} />
 </svelte:head>
 

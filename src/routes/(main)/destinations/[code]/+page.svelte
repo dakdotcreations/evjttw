@@ -25,7 +25,7 @@
 </script>
 
 <svelte:head>
-	<title>{data.country.name} — Evajo Tours & Travel</title>
+	<title>{data.country.name} - Evajo Tours & Travel</title>
 	<meta
 		name="description"
 		content={data.country.description ?? `Explore ${data.country.name} with Evajo Tours & Travel.`}

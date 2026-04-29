@@ -70,7 +70,7 @@
 						<a href="/admin/itineraries/{step.itinerary.id}" class="text-indigo-600 hover:underline">
 							{step.itinerary.title}
 						</a>
-						<span class="text-gray-400"> — Step {step.stepNumber}: {step.title}</span>
+						<span class="text-gray-400"> - Step {step.stepNumber}: {step.title}</span>
 					</li>
 				{/each}
 			</ul>

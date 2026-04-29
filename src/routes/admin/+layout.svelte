@@ -44,7 +44,7 @@
 		const pathname = page.url.pathname;
 		// Exact match first
 		if (titles[pathname]) return titles[pathname];
-		// Segment match — find longest prefix
+		// Segment match - find longest prefix
 		const match = Object.keys(titles)
 			.filter((k) => k !== '/admin' && pathname.startsWith(k))
 			.sort((a, b) => b.length - a.length)[0];

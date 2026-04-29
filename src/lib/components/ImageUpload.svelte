@@ -102,8 +102,8 @@
 
 	<!--
 		Two inputs submitted with the form:
-		1. Hidden text input — sends the existing saved Azure URL (empty string if cleared/new)
-		2. File input — sends the newly selected compressed file (empty if not changed)
+		1. Hidden text input - sends the existing saved Azure URL (empty string if cleared/new)
+		2. File input - sends the newly selected compressed file (empty if not changed)
 		The server prefers the file if present, otherwise falls back to the hidden URL.
 	-->
 	<input type="hidden" {name} bind:value />

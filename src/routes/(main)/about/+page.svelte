@@ -25,12 +25,12 @@
 		{
 			icon: Map,
 			title: 'Expert Local Guides',
-			body: 'Born and raised across East Africa — they know every trail, watering hole, and hidden gem.'
+			body: 'Born and raised across East Africa - they know every trail, watering hole, and hidden gem.'
 		},
 		{
 			icon: PenLine,
 			title: 'Bespoke Itineraries',
-			body: 'Every trip is tailored to you — your pace, interests, and budget. No two Evajo journeys are the same.'
+			body: 'Every trip is tailored to you - your pace, interests, and budget. No two Evajo journeys are the same.'
 		},
 		{
 			icon: Award,
@@ -53,10 +53,10 @@
 </script>
 
 <svelte:head>
-	<title>About Us — Evajo Tours & Travel</title>
+	<title>About Us - Evajo Tours & Travel</title>
 	<meta
 		name="description"
-		content="Learn about Evajo Tours & Travel — East Africa's dedicated safari and adventure specialists since 2014, official partner of the African Conservation Foundation."
+		content="Learn about Evajo Tours & Travel - East Africa's dedicated safari and adventure specialists since 2014, official partner of the African Conservation Foundation."
 	/>
 </svelte:head>
 
@@ -178,7 +178,7 @@
 					{ icon: Compass, text: 'Book one of our most loved safari adventures' },
 					{ icon: Globe, text: 'Explore Uganda, Kenya, Tanzania, Rwanda & more' },
 					{ icon: PenLine, text: 'Design a fully customized journey around your schedule' },
-					{ icon: ShieldCheck, text: 'We handle every detail — you focus on the experience' }
+					{ icon: ShieldCheck, text: 'We handle every detail - you focus on the experience' }
 				] as item (item.text)}
 					<div class="flex items-start gap-4 bg-white p-5">
 						<item.icon size={20} class="mt-0.5 shrink-0 text-accent" />
@@ -233,7 +233,7 @@
 					{#each [
 						'Quoted in US dollars (USD)',
 						'Subject to availability',
-						'Quoted per person — double or single room basis',
+						'Quoted per person - double or single room basis',
 						'Inclusive of accommodation, stated activities, full-board meals and all levies',
 						'Subject to change without prior notice'
 					] as point (point)}
@@ -245,7 +245,7 @@
 				</ul>
 				<p class="mt-6 text-sm leading-relaxed text-gray-600">
 					We have carefully selected lodges with excellent meals, service-oriented staff and a
-					nature-based setting for a more wonderful experience — recommended by our guests time
+					nature-based setting for a more wonderful experience - recommended by our guests time
 					and again.
 				</p>
 			</div>
@@ -294,7 +294,7 @@
 
 <CtaBanner
 	heading="Ready to Explore East Africa?"
-	subtext="Let us build your perfect trip — tailor-made and expertly guided. We wish you a wonderful and splendid safari adventure."
+	subtext="Let us build your perfect trip - tailor-made and expertly guided. We wish you a wonderful and splendid safari adventure."
 	btnLabel="Start Planning"
 	href="/contact"
 />

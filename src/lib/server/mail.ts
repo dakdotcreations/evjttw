@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM, ADMIN_EMAIL } from '$env/static/private';
 import { PUBLIC_SITE_URL } from '$env/static/public';
 
-// Inline types — will be replaced with generated Prisma types once models are added
+// Inline types - will be replaced with generated Prisma types once models are added
 type BookingEnquiry = {
 	itineraryId: string;
 	fullName: string;
@@ -77,7 +77,7 @@ export async function sendBookingEnquiryEmail(
 	await sendMail({
 		from: SMTP_FROM,
 		to: ADMIN_EMAIL,
-		subject: `New Booking Enquiry — ${enquiry.itinerary.title}`,
+		subject: `New Booking Enquiry - ${enquiry.itinerary.title}`,
 		html: `
 			<!DOCTYPE html>
 			<html>
@@ -89,10 +89,10 @@ export async function sendBookingEnquiryEmail(
 				<table style="width: 100%; border-collapse: collapse; font-size: 15px;">
 					<tr><td style="padding: 8px 0; color: #555; width: 140px;">Full Name</td><td style="padding: 8px 0; font-weight: 600;">${enquiry.fullName}</td></tr>
 					<tr><td style="padding: 8px 0; color: #555;">Email</td><td style="padding: 8px 0;">${enquiry.email}</td></tr>
-					<tr><td style="padding: 8px 0; color: #555;">Phone</td><td style="padding: 8px 0;">${enquiry.phone ?? '—'}</td></tr>
+					<tr><td style="padding: 8px 0; color: #555;">Phone</td><td style="padding: 8px 0;">${enquiry.phone ?? '-'}</td></tr>
 					<tr><td style="padding: 8px 0; color: #555;">Travel Date</td><td style="padding: 8px 0;">${travelDate}</td></tr>
-					<tr><td style="padding: 8px 0; color: #555;">Group Size</td><td style="padding: 8px 0;">${enquiry.groupSize ?? '—'}</td></tr>
-					<tr><td style="padding: 8px 0; color: #555; vertical-align: top;">Message</td><td style="padding: 8px 0; white-space: pre-wrap;">${enquiry.message ?? '—'}</td></tr>
+					<tr><td style="padding: 8px 0; color: #555;">Group Size</td><td style="padding: 8px 0;">${enquiry.groupSize ?? '-'}</td></tr>
+					<tr><td style="padding: 8px 0; color: #555; vertical-align: top;">Message</td><td style="padding: 8px 0; white-space: pre-wrap;">${enquiry.message ?? '-'}</td></tr>
 				</table>
 				<hr style="margin: 24px 0; border: none; border-top: 1px solid #e5e5e5;" />
 				<p style="font-size: 13px; color: #888;">
@@ -116,7 +116,7 @@ export async function sendContactEmail(data: ContactMessage): Promise<void> {
 	await sendMail({
 		from: SMTP_FROM,
 		to: ADMIN_EMAIL,
-		subject: `Contact Form: ${data.subject ?? 'General Enquiry'} — ${data.name}`,
+		subject: `Contact Form: ${data.subject ?? 'General Enquiry'} - ${data.name}`,
 		html: `
 			<!DOCTYPE html>
 			<html>
@@ -125,8 +125,8 @@ export async function sendContactEmail(data: ContactMessage): Promise<void> {
 				<table style="width: 100%; border-collapse: collapse; font-size: 15px; margin-top: 16px;">
 					<tr><td style="padding: 8px 0; color: #555; width: 100px;">Name</td><td style="padding: 8px 0; font-weight: 600;">${data.name}</td></tr>
 					<tr><td style="padding: 8px 0; color: #555;">Email</td><td style="padding: 8px 0;"><a href="mailto:${data.email}" style="color: #2563eb;">${data.email}</a></td></tr>
-					<tr><td style="padding: 8px 0; color: #555;">Phone</td><td style="padding: 8px 0;">${data.phone ?? '—'}</td></tr>
-					<tr><td style="padding: 8px 0; color: #555;">Subject</td><td style="padding: 8px 0;">${data.subject ?? '—'}</td></tr>
+					<tr><td style="padding: 8px 0; color: #555;">Phone</td><td style="padding: 8px 0;">${data.phone ?? '-'}</td></tr>
+					<tr><td style="padding: 8px 0; color: #555;">Subject</td><td style="padding: 8px 0;">${data.subject ?? '-'}</td></tr>
 					<tr><td style="padding: 8px 0; color: #555; vertical-align: top;">Message</td><td style="padding: 8px 0; white-space: pre-wrap;">${data.message}</td></tr>
 				</table>
 			</body>

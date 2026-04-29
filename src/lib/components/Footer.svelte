@@ -23,7 +23,7 @@
 					/>
 				</a>
 				<p class="mt-5 max-w-xs text-sm leading-relaxed text-white/55">
-					East Africa's premier tour operator — crafting extraordinary safari, trekking &amp; wildlife
+					East Africa's premier tour operator - crafting extraordinary safari, trekking &amp; wildlife
 					adventures since 2014.
 				</p>
 			</div>

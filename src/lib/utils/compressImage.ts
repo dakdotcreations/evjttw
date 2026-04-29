@@ -45,7 +45,7 @@ export async function compressImage(file: File, maxBytes = MAX_BYTES): Promise<F
 							const scale = Math.sqrt(maxBytes / blob.size) * 0.9;
 							attempt(Math.floor(width * scale), Math.floor(height * scale), 0.75);
 						} else {
-							// Best we can do — return what we have
+							// Best we can do - return what we have
 							resolve(new File([blob], outputName, { type: 'image/jpeg' }));
 						}
 					},

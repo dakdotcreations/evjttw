@@ -69,7 +69,7 @@
 								<GripVertical class="h-4 w-4" />
 							</td>
 							<td class="px-4 py-3 font-medium text-gray-900">
-								{feature.displayName ?? (feature.country?.name ?? feature.location?.name ?? '—')}
+								{feature.displayName ?? (feature.country?.name ?? feature.location?.name ?? '-')}
 							</td>
 							<td class="px-4 py-3">
 								{#if feature.country}
@@ -81,7 +81,7 @@
 										Location · {feature.location.name}
 									</span>
 								{:else}
-									<span class="text-gray-400">—</span>
+									<span class="text-gray-400">-</span>
 								{/if}
 							</td>
 							<td class="px-4 py-3 text-gray-600">{feature._count.items} / 4</td>

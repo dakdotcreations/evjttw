@@ -26,7 +26,7 @@
 </script>
 
 <svelte:head>
-	<title>Destinations — Evajo Tours & Travel</title>
+	<title>Destinations - Evajo Tours & Travel</title>
 	<meta
 		name="description"
 		content="Explore Uganda, Kenya, Tanzania and Rwanda with Evajo Tours & Travel. Discover wildlife safaris, mountain trekking and water adventures."
