@@ -36,7 +36,7 @@
 <div
 	bind:this={heroEl}
 	class="relative flex items-end overflow-hidden bg-primary"
-	style="min-height:70vh;"
+	style="min-height:80vh;"
 >
 	{#if data.country.videoUrl}
 		<video
@@ -57,20 +57,17 @@
 	{/if}
 	<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10"></div>
 	<div class="relative z-10 w-full pb-14 pt-28">
-		<div class="mx-auto max-w-5xl px-6 lg:px-8">
-			{#if data.country.flagEmoji}
-				<div class="hero-in mb-3 text-5xl">{data.country.flagEmoji}</div>
-			{/if}
+		<div class="mx-auto max-w-7xl px-6 lg:px-8">
 			<HeadlineReveal>
-				<h1 class="hero-in font-display text-[clamp(3rem,7vw,6.5rem)] leading-none tracking-wide text-white">
+				<h1 class="hero-in font-display text-[clamp(4rem,9vw,8.5rem)] leading-none tracking-wide text-white">
 					{data.country.name}
 				</h1>
 			</HeadlineReveal>
-			{#if data.tours.length > 0}
-				<p class="hero-in mt-4 text-sm text-white/60">
-					{data.tours.length} tour{data.tours.length === 1 ? '' : 's'} available
-				</p>
-			{/if}
+            {#if data.country.description}
+                <div class="text-base text-white opacity-80 leading-relaxed">
+                    {@html data.country.description}
+                </div>
+            {/if}
 		</div>
 	</div>
 </div>
@@ -78,11 +75,6 @@
 <!-- ABOUT / KEY AREAS -->
 <section class="bg-white py-16">
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
-		{#if data.country.description}
-			<div class="mb-10 text-base leading-relaxed">
-				{@html data.country.description}
-			</div>
-		{/if}
 		{#if data.country.locations.length > 0}
 			<div>
 				<p class="mb-3 text-xs font-semibold uppercase tracking-widest text-accent">Key Areas</p>
@@ -108,7 +100,7 @@
 			</HeadlineReveal>
 		</div>
 		{#if data.tours.length > 0}
-			<div bind:this={toursGrid} class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+			<div bind:this={toursGrid} class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 				{#each data.tours as tour (tour.id)}
 					<TourCard
 						id={tour.id}
