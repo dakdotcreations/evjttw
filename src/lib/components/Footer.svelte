@@ -100,10 +100,9 @@
 
 		<!-- Bottom bar -->
 		<div class="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6">
-			<p class="text-xs text-white/35">&copy; {year} Evajo Tours &amp; Travel. All rights reserved.</p>
+			<p class="text-xs opacity-40">&copy; {year} Evajo Tours &amp; Travel. All rights reserved.</p>
 			<div class="flex gap-5">
-				<a href="/contact" class="text-xs text-white/35 transition-colors hover:text-white">Contact</a>
-				<a href="/about" class="text-xs text-white/35 transition-colors hover:text-white">About</a>
+				<a href="https://www.dakdot.com" target="_blank" rel="noopener noreferrer" class="text-xs opacity-40 transition-colors hover:text-white">Powered by DakDot Creations</a>
 			</div>
 		</div>
 	</div>
