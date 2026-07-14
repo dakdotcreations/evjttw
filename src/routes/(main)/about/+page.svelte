@@ -1,9 +1,10 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import TestimonialsStrip from '$lib/components/TestimonialsStrip.svelte';
+	import AffiliationsSection from '$lib/components/AffiliationsSection.svelte';
 	import CtaBanner from '$lib/components/CtaBanner.svelte';
 	import HeadlineReveal from '$lib/components/HeadlineReveal.svelte';
 	import ParaFade from '$lib/components/ParaFade.svelte';
+	import TestimonialsStrip from '$lib/components/TestimonialsStrip.svelte';
 	import {
 		Map,
 		PenLine,
@@ -289,6 +290,8 @@
 		</div>
 	</div>
 </section>
+
+<AffiliationsSection />
 
 <TestimonialsStrip testimonials={data.testimonials} />
 

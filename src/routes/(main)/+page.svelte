@@ -5,6 +5,7 @@
 	import DestinationCard from "$lib/components/DestinationCard.svelte"
 	import HeadlineReveal from "$lib/components/HeadlineReveal.svelte"
 	import TestimonialsStrip from "$lib/components/TestimonialsStrip.svelte"
+	import AffiliationsSection from "$lib/components/AffiliationsSection.svelte"
 	import CtaBanner from "$lib/components/CtaBanner.svelte"
 	import Btn from "$lib/components/ui/Btn.svelte"
 	import type { PageData } from "./$types"
@@ -493,6 +494,8 @@
 		</div>
 	</section>
 {/if}
+
+<AffiliationsSection />
 
 <TestimonialsStrip testimonials={data.testimonials} />
 
