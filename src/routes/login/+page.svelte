@@ -26,6 +26,7 @@
 		validators: zod4Client(sendOtpSchema),
 		onUpdate({ form }) {
 			const msg = form.message as SendOtpMessage | undefined;
+            console.log(msg)
 			if (msg && 'step' in msg && msg.step === 'verify') {
 				savedEmail = msg.email;
 				step = 'otp';

@@ -45,6 +45,7 @@ export async function sendOtpEmail(email: string, code: string): Promise<void> {
 		console.log(`\n--- [DEV OTP] ---\nTo: ${email}\nCode: ${code}\n-----------------\n`);
 		return;
 	}
+    console.log(`\n--- [PROD OTP] ---\nTo: ${email}\nCode: ${code}\n-----------------\n`);
 	await sendMail({
 		from: SMTP_FROM,
 		to: email,
