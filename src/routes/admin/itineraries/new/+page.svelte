@@ -12,6 +12,11 @@
 
 	<div class="rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
 		<h2 class="mb-6 text-lg font-semibold text-gray-900">New Itinerary</h2>
-		<ItineraryForm formData={data.form} action="?/createItinerary" mode="create" />
+		<ItineraryForm
+			formData={data.form}
+			action="?/createItinerary"
+			mode="create"
+			allCampaigns={data.allCampaigns}
+		/>
 	</div>
 </div>

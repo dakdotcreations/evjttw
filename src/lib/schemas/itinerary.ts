@@ -23,5 +23,7 @@ export const itinerarySchema = z.object({
 	/** Newline-separated list */
 	complementaries: z.string().default(''),
 	/** JSON-encoded array of { question, answer } */
-	faqs: z.string().default('[]')
+	faqs: z.string().default('[]'),
+	/** Comma-separated list of campaign codes this itinerary belongs to */
+	campaignCodes: z.string().default('')
 });

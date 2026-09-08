@@ -4,11 +4,15 @@ import { redirect } from '@sveltejs/kit';
 import prisma from '$lib/server/prisma';
 import { itinerarySchema } from '$lib/schemas/itinerary';
 import { uploadImageFile } from '$lib/server/azure';
+import { syncItineraryCampaigns } from '$lib/server/campaigns';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
-	const form = await superValidate(zod4(itinerarySchema));
-	return { form };
+	const [form, allCampaigns] = await Promise.all([
+		superValidate(zod4(itinerarySchema)),
+		prisma.campaign.findMany({ orderBy: { code: 'asc' } })
+	]);
+	return { form, allCampaigns };
 };
 
 export const actions: Actions = {
@@ -64,6 +68,11 @@ export const actions: Actions = {
 				faqs: faqs.length ? faqs : undefined
 			}
 		});
+
+		const campaignCodes = form.data.campaignCodes
+			? form.data.campaignCodes.split(',').map((s) => s.trim()).filter(Boolean)
+			: [];
+		if (campaignCodes.length) await syncItineraryCampaigns(itinerary.id, campaignCodes);
 
 		redirect(303, `/admin/itineraries/${itinerary.id}`);
 	}

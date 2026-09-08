@@ -12,11 +12,13 @@
 	let {
 		formData,
 		action,
-		mode = 'create'
+		mode = 'create',
+		allCampaigns = []
 	}: {
 		formData: SuperValidated<Infer<typeof itinerarySchema>>;
 		action: string;
 		mode?: 'create' | 'update';
+		allCampaigns?: { code: string; name: string }[];
 	} = $props();
 
 	const { form, errors, enhance, submitting, message } = superForm(formData, {
@@ -47,6 +49,33 @@
 		if (e.key === 'Enter') {
 			e.preventDefault();
 			addSeason();
+		}
+	}
+
+	// Campaign tag input
+	let campaignInput = $state('');
+	let campaigns = $state<string[]>(
+		$form.campaignCodes ? $form.campaignCodes.split(',').map((s) => s.trim()).filter(Boolean) : []
+	);
+
+	function addCampaign() {
+		const val = campaignInput.trim();
+		if (val && !campaigns.includes(val)) {
+			campaigns = [...campaigns, val];
+			$form.campaignCodes = campaigns.join(',');
+		}
+		campaignInput = '';
+	}
+
+	function removeCampaign(c: string) {
+		campaigns = campaigns.filter((x) => x !== c);
+		$form.campaignCodes = campaigns.join(',');
+	}
+
+	function handleCampaignKeydown(e: KeyboardEvent) {
+		if (e.key === 'Enter') {
+			e.preventDefault();
+			addCampaign();
 		}
 	}
 
@@ -229,6 +258,46 @@
 				placeholder="e.g. June, Dry Season…"
 				class="min-w-32 border-0 p-0 text-sm focus:ring-0"
 			/>
+		</div>
+	</div>
+
+	<hr class="border-gray-100" />
+
+	<!-- Campaign tag input -->
+	<div>
+		<label for="itin-campaign-input" class="block text-sm font-medium text-gray-700">
+			Campaigns
+		</label>
+		<p class="mb-1 text-xs text-gray-400">
+			Assign this tour to one or more ad campaigns. Pick an existing code or type a new one and
+			press Enter to create it.
+		</p>
+		<input type="hidden" name="campaignCodes" bind:value={$form.campaignCodes} />
+		<div class="flex flex-wrap gap-2 rounded-md border border-gray-300 p-2">
+			{#each campaigns as c}
+				<span
+					class="inline-flex items-center gap-1 rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-700"
+				>
+					{c}
+					<button type="button" onclick={() => removeCampaign(c)} class="hover:text-indigo-900">
+						<X class="h-3 w-3" />
+					</button>
+				</span>
+			{/each}
+			<input
+				id="itin-campaign-input"
+				type="text"
+				list="campaign-suggestions"
+				bind:value={campaignInput}
+				onkeydown={handleCampaignKeydown}
+				placeholder="e.g. gorilla-big5"
+				class="min-w-32 border-0 p-0 text-sm focus:ring-0"
+			/>
+			<datalist id="campaign-suggestions">
+				{#each allCampaigns as c (c.code)}
+					<option value={c.code}>{c.name}</option>
+				{/each}
+			</datalist>
 		</div>
 	</div>
 

@@ -5,6 +5,7 @@ import { error, redirect } from '@sveltejs/kit';
 import prisma from '$lib/server/prisma';
 import { itinerarySchema } from '$lib/schemas/itinerary';
 import { uploadImageFile } from '$lib/server/azure';
+import { syncItineraryCampaigns } from '$lib/server/campaigns';
 import type { Actions, PageServerLoad } from './$types';
 
 const stepSchema = z.object({
@@ -23,7 +24,7 @@ const deleteStepSchema = z.object({ id: z.string() });
 const deleteItinerarySchema = z.object({ id: z.string() });
 
 export const load: PageServerLoad = async ({ params }) => {
-	const [itinerary, locations] = await Promise.all([
+	const [itinerary, locations, allCampaigns] = await Promise.all([
 		prisma.itinerary.findUnique({
 			where: { id: params.id },
 			include: {
@@ -31,13 +32,15 @@ export const load: PageServerLoad = async ({ params }) => {
 					include: { location: { include: { country: { select: { name: true } } } } },
 					orderBy: { stepNumber: 'asc' }
 				},
+				campaigns: { include: { campaign: true } },
 				_count: { select: { enquiries: true } }
 			}
 		}),
 		prisma.location.findMany({
 			include: { country: { select: { name: true } } },
 			orderBy: { name: 'asc' }
-		})
+		}),
+		prisma.campaign.findMany({ orderBy: { code: 'asc' } })
 	]);
 
 	if (!itinerary) error(404, 'Itinerary not found');
@@ -54,7 +57,8 @@ export const load: PageServerLoad = async ({ params }) => {
 		includes: itinerary.includes.join('\n'),
 		excludes: itinerary.excludes.join('\n'),
 		complementaries: itinerary.complementaries.join('\n'),
-		faqs: itinerary.faqs ? JSON.stringify(itinerary.faqs) : '[]'
+		faqs: itinerary.faqs ? JSON.stringify(itinerary.faqs) : '[]',
+		campaignCodes: itinerary.campaigns.map((c) => c.campaign.code).join(',')
 	};
 
 	const [itineraryForm, addStepForm, updateStepForm, deleteStepForm, deleteItineraryForm] =
@@ -73,6 +77,7 @@ export const load: PageServerLoad = async ({ params }) => {
 			pricePerPerson: itinerary.pricePerPerson ? Number(itinerary.pricePerPerson) : null
 		},
 		locations,
+		allCampaigns,
 		enquiryCount: itinerary._count.enquiries,
 		itineraryForm,
 		addStepForm,
@@ -135,6 +140,11 @@ export const actions: Actions = {
 				faqs: faqs.length ? faqs : null
 			}
 		});
+
+		const campaignCodes = form.data.campaignCodes
+			? form.data.campaignCodes.split(',').map((s) => s.trim()).filter(Boolean)
+			: [];
+		await syncItineraryCampaigns(params.id, campaignCodes);
 
 		return message(form, { success: 'Itinerary updated.' });
 	},

@@ -98,6 +98,7 @@ model Itinerary {
   enquiries      BookingEnquiry[]
   features       FeatureItem[]
   tags           ItineraryTag[]
+  campaigns      ItineraryCampaign[]
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @updatedAt
 }
@@ -206,4 +207,22 @@ model ItineraryTag {
   tagId       String
 
   @@id([itineraryId, tagId])
+}
+
+model Campaign {
+  id          String              @id @default(cuid())
+  name        String
+  code        String              @unique
+  itineraries ItineraryCampaign[]
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+}
+
+model ItineraryCampaign {
+  itinerary   Itinerary @relation(fields: [itineraryId], references: [id], onDelete: Cascade)
+  itineraryId String
+  campaign    Campaign  @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  campaignId  String
+
+  @@id([itineraryId, campaignId])
 }

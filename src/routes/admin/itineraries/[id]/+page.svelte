@@ -102,7 +102,12 @@
 			{#if activeTab === 'Details'}
 				<!-- ── Section A: Itinerary Details ── -->
 				<div class="rounded-xl border border-gray-200 bg-white p-8 shadow-sm">
-					<ItineraryForm formData={data.itineraryForm} action="?/updateItinerary" mode="update" />
+					<ItineraryForm
+						formData={data.itineraryForm}
+						action="?/updateItinerary"
+						mode="update"
+						allCampaigns={data.allCampaigns}
+					/>
 				</div>
 			{:else if activeTab === 'Steps'}
 				<!-- ── Section B: Steps ── -->

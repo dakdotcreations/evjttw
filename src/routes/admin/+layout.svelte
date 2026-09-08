@@ -10,6 +10,7 @@
 		Link,
 		Users,
 		Tag,
+		Megaphone,
 		LogOut
 	} from 'lucide-svelte';
 	import type { LayoutData } from './$types';
@@ -25,6 +26,7 @@
 		{ href: '/admin/testimonials', label: 'Testimonials', icon: MessageSquare, exact: false },
 		{ href: '/admin/invites', label: 'Review Invites', icon: Link, exact: false },
 		{ href: '/admin/tags', label: 'Tags', icon: Tag, exact: false },
+		{ href: '/admin/campaigns', label: 'Campaigns', icon: Megaphone, exact: false },
 		{ href: '/admin/users', label: 'Users', icon: Users, exact: false }
 	];
 
@@ -37,6 +39,7 @@
 		'/admin/testimonials': 'Testimonials',
 		'/admin/invites': 'Review Invites',
 		'/admin/tags': 'Tags',
+		'/admin/campaigns': 'Campaigns',
 		'/admin/users': 'Users'
 	};
 
