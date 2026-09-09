@@ -214,7 +214,7 @@
 										>{tag}</span>
 								{/each}
 							</div>
-                            <img src={tour.coverImage} alt={tour.title} class="aspect-16/10 object-cover w-full mt-2 -mx-4">
+                            <img src={tour.coverImage} alt={tour.title} class="aspect-16/10 object-cover mt-2 -mx-4">
 							<h3 class="mt-2 font-display text-2xl leading-tight tracking-wide">{tour.title}</h3>
 							<p class="mt-1 flex items-center gap-1 text-xs text-black/50">
 								<Clock size={12} />
