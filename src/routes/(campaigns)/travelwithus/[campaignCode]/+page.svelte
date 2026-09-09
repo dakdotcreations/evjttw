@@ -101,11 +101,11 @@
 		<div class="absolute inset-0 bg-linear-to-t from-primary via-primary/80 to-primary/40"></div>
 
 		<div class="relative mx-auto max-w-4xl px-6 pb-16 pt-28 text-center sm:pt-36">
-			<p
+			<!-- <p
 				class="mb-4 inline-block bg-accent/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-accent"
 			>
 				Permits limited - book now
-			</p>
+			</p> -->
 			<h1 class="font-display text-5xl leading-[1.05] tracking-wide text-white sm:text-7xl">
 				Lock Eyes With Mountain Gorillas. Spot the Big 5 on the Same Journey.
 			</h1>
@@ -203,30 +203,29 @@
 						</p>
 					{/if}
 					{#each tours as tour (tour.id)}
-						<div class="flex flex-col border border-black/10 p-5">
+						<div class="flex flex-col border border-black/10 p-4">
 							<div class="flex flex-wrap gap-1.5">
 								{#each tour.countries as country (country)}
 									<span class="bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary"
-										>{country}</span
-									>
+										>{country}</span>
 								{/each}
 								{#each tour.tags as tag (tag)}
 									<span class="bg-accent/15 px-2 py-0.5 text-xs font-semibold text-accent"
-										>{tag}</span
-									>
+										>{tag}</span>
 								{/each}
 							</div>
-							<h3 class="mt-3 font-display text-2xl leading-tight tracking-wide">{tour.title}</h3>
+                            <img src={tour.imageUrl} alt={tour.title} class="aspect-16/10 object-cover w-full mt-2 -mx-4">
+							<h3 class="mt-2 font-display text-2xl leading-tight tracking-wide">{tour.title}</h3>
 							<p class="mt-1 flex items-center gap-1 text-xs text-black/50">
 								<Clock size={12} />
 								{tour.durationDays} Days
 							</p>
-							<p class="mt-3 text-sm text-black/60">{formatPrice(tour)}</p>
+							<!-- <p class="mt-3 text-sm text-black/60">{formatPrice(tour)}</p> -->
 
-							<div class="mt-auto pt-5">
+							<div class="mt-auto pt-4">
 								<a
 									href={PHONE_PRIMARY_TEL}
-									class="flex items-center justify-center gap-2 bg-accent px-4 py-2.5 text-sm font-bold tracking-wide text-black hover:bg-accent/85"
+									class="flex items-center justify-center gap-2 bg-accent px-4 py-2 text-sm font-bold tracking-wide text-black hover:bg-accent/85"
 								>
 									<Phone size={16} />
 									Call to Reserve
