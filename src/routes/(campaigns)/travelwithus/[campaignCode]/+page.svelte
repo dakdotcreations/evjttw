@@ -10,17 +10,49 @@
 		Star,
 		Clock
 	} from 'lucide-svelte';
+	import { onMount } from 'svelte';
 	import { formatPrice } from '$lib/utils/pricing';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
 
-	const PHONE_PRIMARY = '+256 708 506 649';
-	const PHONE_PRIMARY_TEL = 'tel:+256708506649';
-	const PHONE_SECONDARY = '+256 780 379 017';
-	const PHONE_SECONDARY_TEL = 'tel:+256780379017';
-	const WHATSAPP_HREF = 'https://wa.me/256708506649';
+	const PHONE_PRIMARY = '+256 780 379 017';
+	const PHONE_PRIMARY_TEL = 'tel:+256780379017';
+	const PHONE_SECONDARY = '+256 708 506 649';
+	const PHONE_SECONDARY_TEL = 'tel:+256708506649';
+	const WHATSAPP_HREF = 'https://wa.me/256780379017';
 	const EMAIL = 'info@evajotoursandtravel.com';
+	let localBusinessHours = $state('8 AM - 7 PM EAT');
+
+	function getLocalBusinessHours(): string {
+		const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+		const eatDateParts = new Intl.DateTimeFormat('en-CA', {
+			timeZone: 'Africa/Nairobi',
+			year: 'numeric',
+			month: '2-digit',
+			day: '2-digit'
+		}).formatToParts(new Date());
+		const getPart = (type: Intl.DateTimeFormatPartTypes) =>
+			eatDateParts.find((part) => part.type === type)?.value;
+		const eatDate = `${getPart('year')}-${getPart('month')}-${getPart('day')}`;
+		const opening = new Date(`${eatDate}T05:00:00.000Z`);
+		const closing = new Date(`${eatDate}T16:00:00.000Z`);
+		const timeFormatter = new Intl.DateTimeFormat(undefined, {
+			timeZone,
+			hour: 'numeric'
+		});
+		const zoneFormatter = new Intl.DateTimeFormat(undefined, {
+			timeZone,
+			timeZoneName: 'short'
+		});
+		const zone = zoneFormatter.formatToParts(opening).find((part) => part.type === 'timeZoneName')?.value;
+
+		return `${timeFormatter.format(opening)} - ${timeFormatter.format(closing)} ${zone ?? timeZone}`;
+	}
+
+	onMount(() => {
+		localBusinessHours = getLocalBusinessHours();
+	});
 
 	const faqs = [
 		{
@@ -45,11 +77,11 @@
 		},
 		{
 			q: 'Are children and families welcome?',
-			a: 'Most national parks set a minimum age of 15 for gorilla permits. Family-friendly itineraries are available - call to discuss options.'
+			a: 'Most national parks set a minimum age of 15 for gorilla permits. Family-friendly itineraries are available, call to discuss options.'
 		},
 		{
 			q: 'Do you arrange group or private treks?',
-			a: 'Both. Small shared groups and fully private departures are available - ask about rates for your group size.'
+			a: 'Both. Small shared groups and fully private departures are available, ask about rates for your group size.'
 		}
 	];
 </script>
@@ -58,7 +90,7 @@
 	<title>Gorilla & Big 5 Safari - Call Now | Evajo Tours & Travel</title>
 	<meta
 		name="description"
-		content="Trek mountain gorillas and chimpanzees, then spot the Big 5 on the same journey. Permits are limited - call +256 708 506 649 to book your trek."
+		content="Trek mountain gorillas and chimpanzees, then spot the Big 5 on the same journey. Permits are limited, call +256 780 379 017 to book your trek."
 	/>
 	<meta name="robots" content="noindex, follow" />
 </svelte:head>
@@ -98,7 +130,7 @@
 			fetchpriority="high"
 			class="absolute inset-0 h-full w-full object-cover opacity-35"
 		/>
-		<div class="absolute inset-0 bg-linear-to-t from-primary via-primary/80 to-primary/40"></div>
+		<div class="absolute inset-0 bg-linear-to-t from-primary via-primary/60 to-primary/20"></div>
 
 		<div class="relative mx-auto max-w-4xl px-6 pb-16 pt-28 text-center sm:pt-36">
 			<!-- <p
@@ -130,7 +162,7 @@
 				</a>
 			</div>
 			<p class="mt-5 text-sm text-white/50">
-				Guides standing by 8 AM - 7 PM EAT - call or WhatsApp today
+				Guides standing by {localBusinessHours} - call or WhatsApp today
 			</p>
 		</div>
 	</section>
@@ -174,7 +206,7 @@
 					Chat With a Trek Specialist: {PHONE_PRIMARY}
 				</a>
 				<p class="mt-3 text-xs text-white/50">
-					Available 8 AM - 7 PM EAT · WhatsApp also available
+					Available {localBusinessHours} · WhatsApp also available
 				</p>
 			</div>
 		</div>
@@ -277,7 +309,7 @@
 					</p>
 				</div>
 				<div class="text-center">
-					<img src="/images/gorilla-trekking-uganda.webp" alt="Gorilla trekking in Uganda" class="aspect-16/10 object-cover w-full">
+					<img src="/images/Tourists_walking_in_rainforest_20260910101534.jpeg" alt="Gorilla trekking in Uganda" class="aspect-16/10 object-cover w-full">
 					<p class="mt-3 font-display text-xl tracking-wide">Expert Local Guides</p>
 					<p class="mt-1 text-sm text-black/60">
 						Experienced guides, safety-first protocols and a conservation-first approach.
@@ -464,9 +496,9 @@
 					<a href={PHONE_SECONDARY_TEL} class="underline">{PHONE_SECONDARY}</a>
 				</p>
 				<p>Email: <a href="mailto:{EMAIL}" class="underline">{EMAIL}</a></p>
-				<p>Hours: 9 AM–6 PM EAT, 7 days a week</p>
+				<p>Hours: {localBusinessHours}, 7 days a week</p>
 				<p class="pt-2 text-xs text-white/40">
-					Can't reach us? Email your details and we'll call you back within 2 hours.
+					Can't reach us? Email your details and we'll call you back within 12 hours.
 				</p>
 			</div>
 		</div>
